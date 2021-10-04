@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border">
+ 
+  <ion-toolbar color="none">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="carreras-fica"></ion-back-button>
+    </ion-buttons>
+    <ion-label>{{Carrera}}</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let oferta of ofertaAcademica">
+    <ion-card-header>
+      <ion-card-title>{{oferta.titulo}}</ion-card-title>
+      <ion-card-subtitle>{{oferta.descripcion}}</ion-card-subtitle>
+    </ion-card-header>
+    <video
+      *ngIf="oferta.tipo_archivo=='video/mp4' || oferta.tipo_archivo=='video/mov'"
+      width="100%"
+      preload="auto"
+      muted="false"
+      src="{{oferta.ruta_archivo}}"
+      
+      controls
+    ></video>
+    <div class="img">
+      <ion-img
+      *ngIf="oferta.tipo_archivo=='image/png' || oferta.tipo_archivo=='image/jpeg' "
+        src="{{oferta.ruta_archivo}}"
+       
+      ></ion-img>
+    </div>
+  </ion-card>
+  </ion-content>
+  
+ 

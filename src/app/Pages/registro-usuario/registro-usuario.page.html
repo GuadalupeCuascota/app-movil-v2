@@ -1,0 +1,90 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons  slot="start">
+        <ion-back-button  color="primary" defaultHref="login"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="header">
+    <h1>Registro</h1>
+  </div>
+  <form id="form" [formGroup]="formUsuario" (ngSubmit)="saveUsuarios()">
+      <ion-item>
+        <ion-label position="floating"> Nombre:</ion-label>
+        <ion-input
+          formControlName="nombre"
+          placeholder="Ingrese nombre"
+        ></ion-input>
+      </ion-item>
+      <br>
+
+      <ion-item>
+        <ion-label position="floating"> Apellido:</ion-label>
+        <ion-input
+          formControlName="apellido"
+          placeholder="Ingrese apellido"
+        ></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating"> Correo electrónico:</ion-label>
+        <ion-input
+          formControlName="correo_electronico"
+          placeholder="Ingrese email"
+        ></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating"> Contraseña:</ion-label>
+        <ion-input
+          [type]="showPassword ? 'text': 'password'"
+          formControlName="contrasenia"
+          placeholder="Ingrese contraseña"
+        ></ion-input>
+        <ion-icon
+          slot="end"
+          [name]="passwordIcon"
+          (click)="toggleShow()"
+        ></ion-icon>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>Nivel académico:</ion-label>
+        <ion-select
+          (ionChange)="optionsFn($event)"
+          placeholder="Seleccione"
+          formControlName="nivel_academico"
+        >
+          <ion-select-option value="secundaria">Secundaria</ion-select-option>
+          <ion-select-option value="superior"
+            >Educación superior</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+      <br>
+        <ion-item *ngIf="estado==false">
+          <ion-label> Carrera: </ion-label>
+          <ion-select placeholder="Seleccione" formControlName="carrera">
+            <ion-select-option  *ngFor="let carrera of carreras"
+              >{{carrera.nombre_carrera}}</ion-select-option
+            >
+           
+          </ion-select>
+        </ion-item>
+        
+        <ion-item *ngIf="estado">
+          <ion-label position="floating"> Unidad Educativa:</ion-label>
+          <ion-input
+            formControlName="unidad_educativa"
+            placeholder="Ingrese unidad educativa"
+          ></ion-input>
+        </ion-item>
+        
+        <ion-button type="submit" color="primary"  [disabled]="!formUsuario.valid" shape="round" expand="block" >Registrarse</ion-button>
+        <p>
+          <ion-text  color="medium"  class="ion-text-right">¿Ya tienes una cuenta?<a href="/login">Iniciar Sesión</a></ion-text>
+        </p>
+  </form>
+</ion-content>
