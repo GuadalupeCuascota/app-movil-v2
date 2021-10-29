@@ -5,7 +5,7 @@ import { UsuarioService } from 'src/app/Services/usuario.service';
 import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.service';
 import { ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { LoadingService } from 'src/app/Services/loading.service';
 RegistroCarrerasService
@@ -35,7 +35,8 @@ export class RegistroUsuarioPage implements OnInit {
     private navController: NavController,
     private mensajeServices: MensajesService,
     private loadinServices: LoadingService,
-    private  registroCarreraService: RegistroCarrerasService 
+    private  registroCarreraService: RegistroCarrerasService,
+    public alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -47,11 +48,21 @@ export class RegistroUsuarioPage implements OnInit {
       nivel_academico: new FormControl('', Validators.required),
       correo_electronico: new FormControl('', Validators.required),
       contrasenia: new FormControl('', Validators.required),
-      unidad_educativa: new FormControl(),
-      carrera: new FormControl(),
+      carrera: new FormControl('', Validators.required),
+      unidad_educativa: new FormControl('', Validators.required),
+
  // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
     })
+  this.formnivel=this.formBuilder.group({
+    nombre: new FormControl('', Validators.required),
+      apellido: new FormControl('', Validators.required),
+      nivel_academico: new FormControl('', Validators.required),
+      correo_electronico: new FormControl('', Validators.required),
+      contrasenia: new FormControl('', Validators.required),
+      
+  })
 
+  
 
     this.usuario = new Usuario();
 
@@ -104,6 +115,37 @@ export class RegistroUsuarioPage implements OnInit {
         console.log(err);
       }
     );
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Términos y condiciones',
+      // subHeader: 'Una vez confirmada la solicitud solo podra cancelar hasta antes de 24 horas de la hora seleccionada ',
+      message: 'Esta usted de acuerdo que podamos hacer uso de los datos ingresados para fines académicos',
+      buttons: [
+        // {
+        //   text: 'Cancelar',
+        //   role: 'cancel',
+        //   cssClass: 'secondary',
+        //   handler: (blah) => {
+        //     console.log('Cancelar');
+        //   },
+        // },
+        {
+          text: 'OK',
+          role: 'confirmar',
+          handler: () => {
+            console.log('Confirmar');
+            
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
   async saveUsuarios() {
 

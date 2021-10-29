@@ -1,0 +1,48 @@
+
+ion-content{
+    ion-list {
+
+
+        border-radius: 20px 20px 20px 20px;
+        padding-bottom: 10vh;
+        background: linear-gradient(150deg, #a630c4 10%, #f0c1f0 100%);
+    
+    
+        ion-label {
+    
+          font-weight: bold;
+          font-size: 1, 5rem;
+          text-align: center;
+          color: rgb(13, 13, 116);
+          margin-top: -20px;
+        }
+    
+        .user_div {
+       
+          padding-top: 35px;
+          margin-left: 10px;
+    
+          .first_div {
+    
+            .titulo {
+              font-size: 18px;
+              font-weight: 800;
+            }
+    
+    
+          }
+    
+          .second_div {
+            .descripcion {
+            font-weight: 500;
+              font-size: 20px;
+              color: #fdfdfd;
+    
+            }
+          }
+    
+    
+        }
+    
+      }
+}

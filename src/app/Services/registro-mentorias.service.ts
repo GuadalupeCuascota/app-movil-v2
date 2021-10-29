@@ -32,4 +32,5 @@ export class RegistroMentoriasService {
       return this.httpClient.get<RegistroMentorias>(environment.baseUrl+"/mentoriaUsuario/"+id_usuario);
     }
     
+    
 }

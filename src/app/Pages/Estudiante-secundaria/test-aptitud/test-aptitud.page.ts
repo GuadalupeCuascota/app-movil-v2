@@ -9,7 +9,9 @@ import { testAptitud } from 'src/app/Models/testAptitud';
 export class TestAptitudPage implements OnInit {
   @ViewChild('slides') slides: any;
   test: testAptitud[] = [];
-  option_selected: string = '';
+
+  option_selected: 0;
+  sumT = 0;
   testCarrera = '';
   const = 0;
   constElec = 0;
@@ -31,45 +33,82 @@ export class TestAptitudPage implements OnInit {
     console.log('test:', this.test);
   }
 
-  selectRes(event: any) {
-    console.log(event);
-    this.option_selected = event.detail.value;
-    for (let aux of this.test) {
-      console.log(aux[0].carrera)
-      // if(aux.carrera=="Textil"){
-      //   console.log("pasa textil")
-      //   this.const = this.const + parseInt(this.option_selected);
-        
-      // }
-      // if(aux.carrera=="Electricidad"){
+  // selectRes(event: any) {
+  //   console.log(event);
+  //   this.option_selected = event.detail.value
 
-      //   this.constElec= this.constElec + parseInt(this.option_selected);
-        
-      // }
+  //   console.log(this.sumT=this.sumT+1)
+
+  // }
+  hasAnswered: boolean = false;
+  textil: number = 0;
+  electricidad:number = 0;
+  industrial:number = 0;
+  software:number = 0;
+  telecomunicaciones:number = 0;
+  mecatronica:number = 0;
+  automotriz:number = 0;
+  selectAnswer(answer, question) {
+
+ console.log("el tamaño",this.test.length)
+  //  for(let i=0;this.test.length; i++){
+    if (question == 'Textil') {  
+      this.textil = this.textil + answer.puntos;
+     
+    }
+    if(question == 'Automotriz'){
+      this.automotriz=this.automotriz+answer.puntos;
       
     }
+    if(question == 'Industrial'){
+      this.industrial=this.industrial+answer.puntos;
+      
+    if(question == 'Mecatrónica'){
+      this.mecatronica=this.mecatronica+answer.puntos;
+      
+    }
+    if(question == 'Software'){
+      this.software=this.software+answer.puntos;
+      
+    }
+    if(question == 'Telecomunicaciones'){
+      this.telecomunicaciones=this.telecomunicaciones+answer.puntos;
+      
+    }
+    if(question == 'Electricidad'){
+      this.electricidad=this.electricidad+answer.puntos;
+      
+    }
+   }
+   
+  // } 
+  console.log('los puntos', this.textil);
 
-    console.log(this.const);
-    console.log(this.constElec);
+  console.log('los puntos', this.automotriz);
+  console.log('los puntos', this.industrial);
+  console.log('los puntos', this.mecatronica);
+  console.log('los puntos', this.software);
+  console.log('los puntos', this.telecomunicaciones);
+  console.log('los puntos', this.electricidad);
   }
-  getTestAptitud() {
-    var con = [];
-    console.log('pasa test');
-    this.testAptitud.gettest().subscribe((res: any) => {
-      for (let c of res) {
-        const op = c.opcion;
+  // getTestAptitud() {
+  //   var con = [];
+  //   console.log('pasa test');
+  //   this.testAptitud.gettest().subscribe((res: any) => {
+  //     for (let c of res) {
+  //       const op = c.opcion;
 
-        let opciones = {
-          opcion: op,
-        };
-        con.push(opciones);
-      }
-      this.opciones = con;
-      console.log('op', this.opciones);
-      this.pregunta = res;
-      console.log('las opciones', this.pregunta);
-    });
-  }
+  //       let opciones = {
+  //         opcion: op,
+  //       };
+  //       con.push(opciones);
+  //     }
+  //     this.opciones = con;
+  //     console.log('op', this.opciones);
+  //     this.pregunta = res;
+  //     console.log('las opciones', this.pregunta);
+  //   });
+  // }
   siguiente() {
     console.log(this.test.length);
     this.const = this.const + 1;

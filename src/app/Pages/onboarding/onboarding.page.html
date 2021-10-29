@@ -1,0 +1,55 @@
+<ion-content class="ion-padding">
+  <ion-slides pager="true">
+    <ion-slide class="ion-padding">
+      <img src="../../../assets/followers.png" class="slide-image" />
+      <div class="slider-text">
+        <h2>Bienvenida a STEM</h2>
+        <p>
+          Un lugar donde podras encontrar experiencias e información relevante
+          que une a mujeres en STEM
+        </p>
+      </div>
+
+      <div class="navigator">
+        <ion-button color="secondary" (click)="skip()" fill="clear"
+           style="font-weight: 900; font-size: 15px;">SKIP</ion-button
+        >
+        <ion-button color="secondary" (click)="next()" fill="clear" style="font-weight: 900; font-size: 15px;"
+          >NEXT</ion-button
+        >
+      </div>
+    </ion-slide>
+    <ion-slide class="ion-padding">
+      <img src="../../../assets/viral.png" class="slide-image" />
+      <div class="slider-text">
+        <h2>Comparte contenido</h2>
+        <p>
+         Mantente siempre comunicado, compartiendo contenido en redes sociales con amigos y familiares.
+        </p>
+      </div>
+
+      <div class="navigator">
+        <ion-button color="secondary" (click)="skip()" fill="clear"
+        style="font-weight: 900; font-size: 15px;">SKIP</ion-button
+        >
+        <ion-button  color="secondary" (click)="next()" fill="clear" style="font-weight: 900; font-size: 15px;"
+          >NEXT</ion-button
+        >
+      </div>
+    </ion-slide>
+    <ion-slide class="ion-padding">
+      <img src="../../../assets/support-team.png" class="slide-image" />
+      <div class="slider-text">
+        <h2>Conoce las profesiones del futuro</h2>
+        <p>
+        Elegir una profesión es una decisión clave en la vida profesional. informate y toma una de las mejores decisiones de tu vida.
+        </p>
+      </div>
+      
+    
+      <ion-button type="submit"  shape="round" expand="block" color="secondary" fill="outline"  (click)="registrarse()">REGISTRARSE</ion-button>
+      <ion-button type="submit" style="color:red"  shape="round" expand="block" color="secondary"  (click)="iniciarSesion()">INICIAR SESIÓN</ion-button>
+      <!-- <ion-button color="secondary">EMPEZAR</ion-button> -->
+    </ion-slide>
+  </ion-slides>
+</ion-content>

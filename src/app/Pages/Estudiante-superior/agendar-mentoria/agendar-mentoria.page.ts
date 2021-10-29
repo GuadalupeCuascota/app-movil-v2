@@ -19,6 +19,9 @@ export class AgendarMentoriaPage implements OnInit {
   registroM: RegistroMentorias;
   Horarios: any[] = [];
   localTime = moment().format();
+  datosM: any = {
+    estado_registro: 'Agendada',
+  };
   agendarMentoria: AgendarMentoria = {
     id_registro_mentoria: 0,
     observacion: '',
@@ -71,8 +74,8 @@ export class AgendarMentoriaPage implements OnInit {
       );
   }
   async getMentoria(id: number) {
-    const loading = await this.loadinServices.presentLoading('Cargando...');
-    await loading.present();
+    // const loading = await this.loadinServices.presentLoading('Cargando...');
+    // await loading.present();
     console.log('id_registro_mentoria ', id);
     this.regitroMentoriasService.getRegistroMentoria(id).subscribe(
       (res) => {
@@ -89,7 +92,7 @@ export class AgendarMentoriaPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Mentoria Seleccionada',
-
+      subHeader: 'Una vez confirmada la solicitud solo podra cancelar hasta antes de 24 horas de la hora seleccionada ',
       message: '¿Decea confirmar la solicitud?',
       buttons: [
         {
@@ -128,14 +131,20 @@ export class AgendarMentoriaPage implements OnInit {
     console.log(id);
     this.agendarMentoria.id_registro_mentoria = id;
     this.agendarMentoria.id_usuario = this.datos.id_usuario;
-
+  
     console.log('el registro', this.agendarMentoria);
     this.regitroAgendarMentoriaService
       .saveAgendarMentoria(this.agendarMentoria)
       .subscribe(
         (res) => {
           this.mensajeServices.presentToast('Mentoria Agendada correctamente');
+          this.regitroAgendarMentoriaService.updateEstadoAgendarMentoria(id,this.datosM).subscribe(
+            (res)=>{
+              console.log("ESTADO ACTUALIZADO")
+            }
+          )
           this.router.navigate(['/menu-opciones/tabs/home-superior']);
+
         },
         (err) => {
           loading.dismiss();
@@ -146,5 +155,8 @@ export class AgendarMentoriaPage implements OnInit {
         }
       );
     //  this.router.navigate(['/agendar-mentoria/',id]);
+  }
+  updateEstadoRegistroMentoria(){
+
   }
 }

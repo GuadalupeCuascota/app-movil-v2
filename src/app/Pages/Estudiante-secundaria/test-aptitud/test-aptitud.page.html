@@ -9,90 +9,49 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-slides #slides>
-
-    <ion-slide *ngFor="let preguntas of test; let i = index;">
-      <div>
-        <h4>{{i+1}} of {{test.length}}</h4>
-        <h3>{{preguntas.pregunta}}</h3>
-      </div>
-      <div class="list-item">
-        <ion-radio-group (ionChange)="selectRes($event)" value="biff">
-          <ion-list no-lines radio-group>
-            <ion-item *ngFor="let answer of test[i].opciones; let i = index;">
-              <ion-label>{{i+1}}. {{answer.opcion}}</ion-label>
-              <ion-radio value={{answer.puntos}}></ion-radio>
-            </ion-item>
-          </ion-list>
-        </ion-radio-group>
-       
-
+<ion-content>
+  <div class="list-item">
+    <ion-slides #slides>
+      <ion-slide *ngFor="let preguntas of test; let i = index;">
         <div>
-          <ion-button
-          *ngIf="i+1<test.length"
-            type="submit"
-            color="primary"
-            (click)="nextSlide()"
-            shape="round"
-            expand="block"
-            >Siguiente</ion-button
-          >
-          <ion-button
-            *ngIf="i+1==test.length"
-            type="submit"
-            color="primary"
-            shape="round"
-            expand="block"
-            routerLink="/resultado-test-aptitud"
-
-            >FINALIZAR</ion-button
-          >
+          <h4>Pregunta {{i+1}} of {{test.length}}</h4>
+          <h3>{{preguntas.pregunta}}</h3>
         </div>
-      </div>
-    </ion-slide>
-  </ion-slides>
+        <div class="list-item">
+          <ion-radio-group value="biff">
+            <ion-list no-lines radio-group>
+              <ion-item *ngFor="let answer of test[i].opciones; let i = index;">
+                <ion-label> {{answer.opcion}}</ion-label>
+                <!-- <ion-radio value={{answer.puntos}}></ion-radio> -->
+                <ion-radio
+                  (click)="selectAnswer(answer, preguntas.carrera)"
+                ></ion-radio>
+              </ion-item>
+            </ion-list>
+          </ion-radio-group>
+
+          <div>
+            <ion-button
+              *ngIf="i+1<test.length"
+              type="submit"
+              color="primary"
+              (click)="nextSlide()"
+              shape="round"
+              expand="block"
+              >Siguiente</ion-button
+            >
+            <ion-button
+              *ngIf="i+1==test.length"
+              type="submit"
+              color="primary"
+              shape="round"
+              expand="block"
+              routerLink="/resultado-test-aptitud"
+              >FINALIZAR</ion-button
+            >
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
-
-<!-- <ion-list>
-  <ion-radio-group value="biff">
-    <ion-list-header>
-      <ion-label>Name</ion-label>
-    </ion-list-header>
-
-    <ion-item>
-      <ion-label>Biff</ion-label>
-      <ion-radio slot="start" value=""></ion-radio>
-    </ion-item>
-
-   
-  </ion-radio-group>
-</ion-list> -->
-
-<!-- <p>{{const+1}} of {{test.length}}</p>
-  <h1>{{test[const].pregunta}}</h1>
-  <ion-list *ngFor="let opc of test[const].opciones">
-    <ion-radio-group value="biff">
-      <ion-item>
-        <ion-label>{{opc.opcion}}</ion-label>
-        <ion-radio slot="start" value="{{opc.opcion}}"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-  </ion-list>
-  <ion-button
-    *ngIf="const+1<test.length"
-    type="submit"
-    color="primary"
-    (click)="siguiente()"
-    shape="round"
-    expand="block"
-    >Siguiente</ion-button
-  >
-  <ion-button
-    *ngIf="const+1==test.length"
-    type="submit"
-    color="primary"
-    shape="round"
-    expand="block"
-    >FINALIZAR</ion-button
-  > -->

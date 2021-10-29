@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/Services/loading.service';
-import {AutenticacionService} from '../../../Services/autenticacion.service'
+import {AutenticacionService} from '../../../Services/autenticacion.service';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-menu-opciones',
   templateUrl: './menu-opciones.page.html',
@@ -9,7 +10,7 @@ import {AutenticacionService} from '../../../Services/autenticacion.service'
 export class MenuOpcionesPage implements OnInit {
   datos: any = {};
   constructor(private autenticacion:AutenticacionService,
-    private loadinServices: LoadingService) { }
+    private loadinServices: LoadingService,) { }
 
   ngOnInit() {
     this.datos=JSON.parse(localStorage.getItem('payload'));

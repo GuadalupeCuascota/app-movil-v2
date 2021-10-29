@@ -13,6 +13,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./noticias.page.scss'],
 })
 export class NoticiasPage implements OnInit {
+  isSeeMore:boolean=false;
   noticias: Publicacion[] = [];
   evento: Evento = {
     id_evento: 0,

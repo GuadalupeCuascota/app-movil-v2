@@ -17,86 +17,76 @@ import { YoutubeApiService } from 'src/app/Services/youtube-api.service';
 import { ObjectUnsubscribedError } from 'rxjs';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
-
 @Component({
   selector: 'app-perfiles',
   templateUrl: './perfiles.page.html',
   styleUrls: ['./perfiles.page.scss'],
 })
 export class PerfilesPage implements OnInit {
-  isSeeMore:boolean=false;
-  id_perfil=0
+  isSeeMore: boolean = false;
+  id_perfil = 0;
   perfiles: Publicacion[] = [];
   textoBuscar = '';
   tipoarchivo = false;
   tipovideo = 'video/mp4';
   tipoimagen = 'imagen/jpeg';
   datos: any = {};
-  valueSelected:string="perfiles"
+  valueSelected: string = 'perfiles';
 
   /////YOUTUBE-API/////
-  idcanal:string='UCS1EzRQqzi03AEYWSFMER_Q';
- 
-  maxRes:string='70+30';
-  googleToken:string='AIzaSyAIyv-RhbPIbXTIZrhA-aMR-4OsRBgFRTk';//api key
-  post:any=[];
-  posts:any=[];
-  search:string='Women in STEM'
-  playlistId="PL43UVswQuVDMrDJJvzbnnKco1CoJJhZMK"
-  MQcI6zKT7S8
+  idcanal: string = 'UCS1EzRQqzi03AEYWSFMER_Q';
+
+  maxRes: string = '70+30';
+  googleToken: string = 'AIzaSyAIyv-RhbPIbXTIZrhA-aMR-4OsRBgFRTk'; //api key
+  post: any = [];
+  posts: any = [];
+  search: string = 'Women in STEM';
+  playlistId = 'PL43UVswQuVDMrDJJvzbnnKco1CoJJhZMK';
+  MQcI6zKT7S8;
 
   constructor(
-    
     private regitroPublicacion: RegistroPublicacionService,
     private streamingMedia: StreamingMedia,
     private router: Router,
-    private yotubeapi:YoutubeApiService,
-    private youtube:YoutubeVideoPlayer
+    private yotubeapi: YoutubeApiService,
+    private youtube: YoutubeVideoPlayer
   ) {
-
-    
-  
-   
     // let url ="https://www.googleapis.com/youtube/v3/playlistItems?key="+this.googleToken+"&playlistId="+this.playlistId+"&part=snippet,id&maxResults=50"
     // this.regitroPublicacion.getPost(url).subscribe(
     //   (res) => {
     //     this.post=res;
     //     console.log("LA RESPUESTA",this.post.items);
     //   this.posts=this.post.items
-        
-       
     //   },
     //   (err) => {
     //     console.log(err);
     //   }
     // );
-
-    
   } //inyecto el servicio importado
 
   ngOnInit() {
     this.getPerfiles();
     this.doRefresh();
     this.getPlayList();
-    this.datos=JSON.parse(localStorage.getItem('payload'));
-    console.log(this.datos.nivel_academico)
+    this.datos = JSON.parse(localStorage.getItem('payload'));
+    console.log(this.datos.nivel_academico);
   }
 
-  getPlayList(){
+  getPlayList() {
     this.yotubeapi.getListVideos(this.playlistId).subscribe(
       (res) => {
-        this.post=res;
-        console.log("LA RESPUESTA 1",this.post.items);
-        this.posts=this.post.items
+        this.post = res;
+        console.log('LA RESPUESTA 1', this.post.items);
+        this.posts = this.post.items;
       },
       (err) => {
         console.log(err);
       }
-     )
+    );
   }
 
-  openVideo(video){
-this.youtube.openVideo(video)
+  openVideo(video) {
+    this.youtube.openVideo(video);
   }
   buscar(event) {
     this.textoBuscar = event.detail.value;
@@ -109,12 +99,12 @@ this.youtube.openVideo(video)
       $event.target.complete();
     }
   }
-  segmenntChange(event:any){
-    this.valueSelected=event.detail.value
-  console.log(this.valueSelected)
+  segmenntChange(event: any) {
+    this.valueSelected = event.detail.value;
+    console.log(this.valueSelected);
   }
 
-   playVideo(url: any) {
+  playVideo(url: any) {
     console.log('PASS');
     var options: StreamingVideoOptions = {
       successCallback: () => {
@@ -173,7 +163,6 @@ this.youtube.openVideo(video)
         }
 
         this.perfiles = auxper;
-       
       },
       (err) => {
         console.log(err);
@@ -183,17 +172,10 @@ this.youtube.openVideo(video)
 
   startAudio() {}
   stopAudio() {}
-  mostrar(id: number){
+  mostrar(id: number) {
     console.log('la publicacion', id);
     this.router.navigate(['/detalle-perfil/', id]);
-     
   }
 
-////////////////////////////////////////////////////////////////////
-
-
-
-
+  ////////////////////////////////////////////////////////////////////
 }
-
-

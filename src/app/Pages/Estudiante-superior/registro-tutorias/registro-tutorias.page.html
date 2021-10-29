@@ -33,7 +33,7 @@
     
     <div class="list-item">
      <ion-radio-group (ionChange)="selectRes($event)" formControlName="nombre_mentor">
-      <ion-list-header>
+      <ion-list-header *ngIf="!altert">
         <p>Seleccione el mentor..</p>
       </ion-list-header>
         
@@ -45,7 +45,7 @@
       </ion-radio-group>
     </div>
     
-    <ion-button type="submit" color="primary" shape="round" expand="block" [disabled]="!formGroup.valid"><ion-icon name="search-outline"></ion-icon> BUSCAR
+    <ion-button *ngIf="!altert" type="submit" color="primary" shape="round" expand="block" [disabled]="!formGroup.valid"><ion-icon name="search-outline"></ion-icon> BUSCAR
       DISPONIBILIDAD</ion-button>
     <p>{{mensaje}}</p>
 

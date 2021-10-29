@@ -46,8 +46,8 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'test-aptitud',
-        loadChildren: () => import('../../Estudiante-secundaria/test-aptitud/test-aptitud.module').then( m => m.TestAptitudPageModule)
+        path: 'home-test-aptitud',
+        loadChildren: () => import('../../Estudiante-secundaria/home-test-aptitud/home-test-aptitud.module').then( m => m.HomeTestAptitudPageModule)
       },
       {
         path: '',

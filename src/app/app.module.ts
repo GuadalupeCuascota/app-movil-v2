@@ -30,7 +30,6 @@ import {
 } from '@ionic-native/streaming-media/ngx';
 import { PipesModule } from './pipes/pipes.module';
 
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

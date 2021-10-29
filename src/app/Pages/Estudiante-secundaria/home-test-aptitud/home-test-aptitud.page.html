@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        color="primary"
+        defaultHref="menu-opciones-se/menu-principal/home-secundaria"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+     
+
+</ion-header>
+<br>
+
+<ion-content>
+  <ion-list lines="none">
+    <div class="user_div">
+      <div class="first_div">
+        <h2 class="titulo" style="text-align: center; color: midnightblue;">
+          TEST DE ORIENTACIÓN VOCACIONAL
+        </h2>
+        
+      </div>
+      <br>
+      <div class="second_div">
+        <ion-label class="descripcion">
+        La aplicación te permite identificar para qué rama de la ingeniería es recomendable su postulación. 
+        Debe seleccionar una respuesta por cada pregunta con verdad para que el resultado de la prueba tenga fiabilidad. 
+        </ion-label>  
+      </div>
+    </div>
+  </ion-list>
+  <br>
+  <ion-button type="submit" color="primary"   (click)="testVocacional()" shape="round" expand="block" >Empezar el test vocacional</ion-button>
+  <ion-button type="submit" color="primary"  (click)="regresar()" shape="round" expand="block" >Regresar</ion-button>
+</ion-content>

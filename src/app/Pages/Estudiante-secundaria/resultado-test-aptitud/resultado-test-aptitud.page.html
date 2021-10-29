@@ -1,9 +1,33 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>resultado-test-aptitud</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button
+        color="primary"
+        defaultHref="menu-opciones-se/menu-principal/home-secundaria"
+      ></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <div class="list-item">
+   <h2 style="text-align: center; color: darkmagenta; font-weight: 700;">FELICITACIONES</h2>
+
+  </div>
+  <ion-list lines="none">
+    <div class="user_div">
+      <div class="first_div">
+        <ion-label class="titulo">
+      Su test vocacional dio como resultado:
+        </ion-label>  
+      </div>
+      <br>
+      <div class="second_div">
+        <img  src="../../../../assets/Women-STEM.jpg" >
+        <ion-label class="descripcion">
+       Ingeniería en software
+        </ion-label>  
+      </div>
+    </div>
+  </ion-list>
 </ion-content>

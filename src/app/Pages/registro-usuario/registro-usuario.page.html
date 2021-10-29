@@ -8,6 +8,11 @@
 
 <ion-content>
   <div id="header">
+   
+    <img src="../../../assets/Data organization_Monochromatic.png" />
+    
+  </div>
+  <div id="header">
     <h1>Registro</h1>
   </div>
   <form id="form" [formGroup]="formUsuario" (ngSubmit)="saveUsuarios()">
@@ -17,6 +22,7 @@
           formControlName="nombre"
           placeholder="Ingrese nombre"
         ></ion-input>
+       
       </ion-item>
       <br>
 
@@ -26,6 +32,7 @@
           formControlName="apellido"
           placeholder="Ingrese apellido"
         ></ion-input>
+        
       </ion-item>
       <br>
       <ion-item>
@@ -34,6 +41,7 @@
           formControlName="correo_electronico"
           placeholder="Ingrese email"
         ></ion-input>
+        
       </ion-item>
       <br>
       <ion-item>
@@ -57,7 +65,7 @@
           placeholder="Seleccione"
           formControlName="nivel_academico"
         >
-          <ion-select-option value="secundaria">Secundaria</ion-select-option>
+          <ion-select-option value="secundaria">Bachillerato</ion-select-option>
           <ion-select-option value="superior"
             >Educación superior</ion-select-option
           >
@@ -81,10 +89,12 @@
             placeholder="Ingrese unidad educativa"
           ></ion-input>
         </ion-item>
-        
-        <ion-button type="submit" color="primary"  [disabled]="!formUsuario.valid" shape="round" expand="block" >Registrarse</ion-button>
+       
+         <ion-checkbox color="primary"  ></ion-checkbox><ion-label> <a  style=" font-weight: bold;text-decoration: none; color: darkgray;" (click)="presentAlert()"> Aceptar términos y condiciones</a> </ion-label>
+            
+        <ion-button type="submit" color="primary"  [disabled]="!formUsuario.valid " shape="round" expand="block" >Registrarse</ion-button>
         <p>
-          <ion-text  color="medium"  class="ion-text-right">¿Ya tienes una cuenta?<a href="/login">Iniciar Sesión</a></ion-text>
+          <ion-text   style=" font-weight: bold;" color="medium"  class="ion-text-right">¿Ya tienes una cuenta?<a  style=" font-weight: bold;text-decoration: none" href="/login"> Iniciar Sesión</a></ion-text>
         </p>
   </form>
 </ion-content>

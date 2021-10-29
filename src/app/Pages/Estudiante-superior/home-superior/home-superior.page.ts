@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-home-superior',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeSuperiorPage implements OnInit {
 
   datos: any = {};
-  constructor() { }
+  constructor(public storage: Storage) { }
 
   ngOnInit() {
     this.datos=JSON.parse(localStorage.getItem('payload'));

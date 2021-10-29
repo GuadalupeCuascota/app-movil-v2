@@ -8,7 +8,7 @@ import {StorageService}from '../../Services/storage.service'
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/Services/loading.service';
 import { MenuController } from '@ionic/angular';
-
+import { Storage } from '@ionic/storage';
 
 
 
@@ -28,11 +28,12 @@ export class LoginPage implements OnInit {
     private authServices: AutenticacionService,
     private formBuilder:FormBuilder,
     private mensajeServices: MensajesService,
-    
-    private storage:StorageService,
+    public storage: Storage,
+    // private storage:StorageService,
     private router: Router,
     private loadinServices: LoadingService,
     private menuCtrl: MenuController
+   
    
   ) {}
   usuario: Usuario;
@@ -68,6 +69,10 @@ export class LoginPage implements OnInit {
       (res) => {
         if (res) {
           this.resp = res;
+          // this.storage.create();
+          // this.storage.set('Token',this.resp.Token)
+          // this.storage.set('payload',JSON.stringify(this.resp.payload))
+        
           localStorage.setItem('Token',this.resp.Token)
           localStorage.setItem('payload',JSON.stringify(this.resp.payload))
          
@@ -76,8 +81,6 @@ export class LoginPage implements OnInit {
           if (id_rol == 4 && nivel_academico=="secundaria"){
             console.log("estudiante secundaria")
             this.router.navigate(['/menu-opciones-se/menu-principal']);
-           
-         
            
           }
             if (id_rol == 4 && nivel_academico=="superior"){

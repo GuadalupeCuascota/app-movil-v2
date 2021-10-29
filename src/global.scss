@@ -32,36 +32,33 @@
 
 // }
 :root {
-  
-    --background: linear-gradient(#2E0540, #D10A11);
-  
-  --ion-color-primary: #D10A11;
-  --ion-color-primary-rgb: 209,10,17;
+  --ion-color-primary: #7A4EA6;
+  --ion-color-primary-rgb: 128,46,242;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255,255,255;
-  --ion-color-primary-shade: #b8090f;
-  --ion-color-primary-tint: #d62329;
+  --ion-color-primary-shade: #7128d5;
+  --ion-color-primary-tint: #8d43f3;
 
-  --ion-color-secondary: #706F6F;
-  --ion-color-secondary-rgb: 175,174,174;
+  --ion-color-secondary: #F28A2E;
+  --ion-color-secondary-rgb: 242,138,46;
   --ion-color-secondary-contrast: #000000;
   --ion-color-secondary-contrast-rgb: 0,0,0;
-  --ion-color-secondary-shade: #9a9999;
-  --ion-color-secondary-tint: #b7b6b6;
+  --ion-color-secondary-shade: #d57928;
+  --ion-color-secondary-tint: #f39643;
 
-  --ion-color-tertiary: #FFFFFF;
-  --ion-color-tertiary-rgb: 255,255,255;
+  --ion-color-tertiary: #05AFF2;
+  --ion-color-tertiary-rgb: 5,175,242;
   --ion-color-tertiary-contrast: #000000;
   --ion-color-tertiary-contrast-rgb: 0,0,0;
-  --ion-color-tertiary-shade: #e0e0e0;
-  --ion-color-tertiary-tint: #ffffff;
+  --ion-color-tertiary-shade: #049ad5;
+  --ion-color-tertiary-tint: #1eb7f3;
 
-  --ion-color-success: #706F6F;
-  --ion-color-success-rgb: 112,111,111;
+  --ion-color-success: #2dd36f;
+  --ion-color-success-rgb: 45,211,111;
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255,255,255;
-  --ion-color-success-shade: #636262;
-  --ion-color-success-tint: #7e7d7d;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
 
   --ion-color-warning: #ffc409;
   --ion-color-warning-rgb: 255,196,9;
@@ -98,17 +95,26 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
-  --ion-color-new: #0833cec2;
-  --ion-color-new-rgb: 104,122,187;
-  --ion-color-new-contrast: #ffffff;
-  --ion-color-new-contrast-rgb: 255,255,255;
-  --ion-color-new-shade: #5c6ba5;
-  --ion-color-new-tint: #7787c2;
-    /* Set the background of the entire app */
-    --ion-background-color: #ffffff;
+  --ion-background-color: #ffffff;
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
   
-    /* Set the font family of the entire app */
-    --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
-    
-  }
-   
+}
+.swiper-pagination{
+  width: 50% !important;
+  left: 25% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.swiper-pagination-bullet{
+  transition: width 0.2s ease-in-out,height 0,2s ease-in-out;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active{
+  width: 12px;
+  height: 12px;
+  background: #8d43f3;
+  border: 3px solid var
+
+}

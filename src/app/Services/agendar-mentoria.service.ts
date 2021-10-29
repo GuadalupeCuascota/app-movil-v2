@@ -21,4 +21,7 @@ export class AgendarMentoriaService {
     deleteAgendarMentoria(id_agendamiento_mentoria:number){
       return this.httpClient.delete<AgendarMentoria>(environment.baseUrl+"/agendarMentoria/"+id_agendamiento_mentoria);
     }
+    updateEstadoAgendarMentoria(id_registro_mentoria:number,estado_registro:any){
+      return this.httpClient.put(environment.baseUrl+"/materiasEstudiante/"+id_registro_mentoria,estado_registro);
+    }
 }

@@ -6,7 +6,7 @@ import {AuthGuard} from './Services/auth.guard'
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'onboarding',
     pathMatch: 'full'
   },
   {
@@ -31,10 +31,10 @@ const routes: Routes = [
     loadChildren: () => import('./Pages/registro-usuario/registro-usuario.module').then( m => m.RegistroUsuarioPageModule)
    
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule)
-  },
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule)
+  // },
   {
     path: 'test-aptitud',
     loadChildren: () => import('./Pages/Estudiante-secundaria/test-aptitud/test-aptitud.module').then( m => m.TestAptitudPageModule)
@@ -54,9 +54,6 @@ const routes: Routes = [
    
   },
   
-
-
-
 
   {
     path: 'perfiles',
@@ -151,6 +148,16 @@ const routes: Routes = [
     path: 'resultado-test-aptitud',
     loadChildren: () => import('./Pages/Estudiante-secundaria/resultado-test-aptitud/resultado-test-aptitud.module').then( m => m.ResultadoTestAptitudPageModule)
   },
+  {
+    path: 'home-test-aptitud',
+    loadChildren: () => import('./Pages/Estudiante-secundaria/home-test-aptitud/home-test-aptitud.module').then( m => m.HomeTestAptitudPageModule)
+  },
+  {
+    path: 'onboarding',
+    loadChildren: () => import('./Pages/onboarding/onboarding.module').then( m => m.OnboardingPageModule)
+  },
+
+
 
 
  
