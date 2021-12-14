@@ -23,12 +23,15 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { AppAvailability } from '@ionic-native/app-availability/ngx';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 import {
   StreamingMedia
  
 } from '@ionic-native/streaming-media/ngx';
 import { PipesModule } from './pipes/pipes.module';
+//  import { YoutubePipe } from './pipes/youtube.pipe';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,13 +47,14 @@ import { PipesModule } from './pipes/pipes.module';
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
     PipesModule,
+    
   ],
-  providers: [ ImagePicker,File,Camera,InAppBrowser,
+  providers: [ ImagePicker,File,Camera,InAppBrowser,AppAvailability,
     FileTransfer,FileChooser, FilePath,PhotoLibrary,SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Storage,
     IonicStorageModule,
-    StreamingMedia,YoutubeVideoPlayer,
+    StreamingMedia,YoutubeVideoPlayer,EmailComposer
   ],
   exports: [MenuPrincipalPageModule],
   bootstrap: [AppComponent],

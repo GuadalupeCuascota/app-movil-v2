@@ -24,6 +24,7 @@ export class RecuperarContraseniaPage implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private formBuilder: FormBuilder,private router: Router,
+    private mensajeServices: MensajesService,
   ) {}
 
   ngOnInit() {
@@ -44,7 +45,8 @@ export class RecuperarContraseniaPage implements OnInit {
             }
         },
         (err) => {
-          console.log(err);
+          this.mensajeServices.presentAlert('Error',
+          'Correo electrónico no encontrado')
         }
       );
 

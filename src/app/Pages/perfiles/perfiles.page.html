@@ -112,12 +112,13 @@
         {{item.snippet.title}}
       </ion-card-header>
       <ion-card-content>
-        <img
+        <img style="width: 100%;"
           [src]="item.snippet.thumbnails.high.url"
           (click)="openVideo(item.snippet.resourceId.videoId)"
         />
-        
-
+      
+      <ion-icon class="playicon" name="caret-forward-circle" (click)="openVideo(item.snippet.resourceId.videoId)"></ion-icon>
+      
         <!-- <img [src]="item.snippet.thumbnails.high.url">  -->
         <!-- <iframe
           width="100%"

@@ -20,7 +20,7 @@ export class AgendarMentoriaPage implements OnInit {
   Horarios: any[] = [];
   localTime = moment().format();
   datosM: any = {
-    estado_registro: 'Agendada',
+    id_estado_mentoria: 2,
   };
   agendarMentoria: AgendarMentoria = {
     id_registro_mentoria: 0,
@@ -50,15 +50,25 @@ export class AgendarMentoriaPage implements OnInit {
     
     this.datos = JSON.parse(localStorage.getItem('payload'));
   }
-
+  doRefresh($event?: any) {
+    //envia un evento opcional de tipo any
+   this.buscarHorario();
+    if ($event) {
+      $event.target.complete();
+    }
+  }
   async buscarHorario() {
+    console.log("el parametro",this.params)
+    console.log("busacar horario")
     var RegistroHorario = [];
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
     this.regitroMentoriasService
       .getRegistrohorarioMentoria(this.params)
       .subscribe(
+        
         (res: any) => {
+          
           for (let horario of res) {
 
           console.log("la fecha",horario.fecha)
@@ -92,7 +102,7 @@ export class AgendarMentoriaPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Mentoria Seleccionada',
-      subHeader: 'Una vez confirmada la solicitud solo podra cancelar hasta antes de 24 horas de la hora seleccionada ',
+      subHeader: 'Una vez confirmada la solicitud solo podra cancelar hasta antes de 1 hora de la hora seleccionada ',
       message: '¿Decea confirmar la solicitud?',
       buttons: [
         {

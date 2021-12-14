@@ -1,48 +1,99 @@
+ion-content {
+  ion-label {
 
-ion-content{
-    ion-list {
-
-
-        border-radius: 20px 20px 20px 20px;
-        padding-bottom: 10vh;
-        background: linear-gradient(150deg, #a630c4 10%, #f0c1f0 100%);
-    
-    
-        ion-label {
-    
-          font-weight: bold;
-          font-size: 1, 5rem;
-          text-align: center;
-          color: rgb(13, 13, 116);
-          margin-top: -20px;
+    font-weight: bold;
+    font-size: 1,5rem;
+    text-align: center;
+   
+    margin-top: -20px;
+  }
+  ion-button {
+    margin-top: 30%
+  }
+  .list-item {
+    margin-left: 4%;
+    margin-right: 4%;
+    ion-list{
+      background-color: #89838f;
+    }
+    .menssage{
+      margin-top: 190px;
+      ion-button {
+          margin-top: 30%
         }
-    
-        .user_div {
-       
-          padding-top: 35px;
-          margin-left: 10px;
-    
-          .first_div {
-    
-            .titulo {
-              font-size: 18px;
-              font-weight: 800;
-            }
-    
-    
-          }
-    
-          .second_div {
-            .descripcion {
-            font-weight: 500;
-              font-size: 20px;
-              color: #fdfdfd;
-    
-            }
-          }
-    
-    
-        }
-    
-      }
+    }
+  }
+  ion-slide {
+    display: block;
+    align-items: flex-start;
+
+  }
+
+  h4 {
+      font-weight: 700;
+      font-size: 26px;
+      color: #010101;
+    }
+
+
+  // h3 {
+  //   font-weight: 700;
+  //   font-size: 26px;
+  //   color: #010101;
+  // }
+  // h4 {
+  //   font-weight: 700;
+  //   font-size: 26px;
+  //   color: #010101;
+  // }
+
+  // ion-button {
+  //   margin-top: 190px
+  // }
+
+  // ion-list {
+
+
+  //   border-radius: 20px 20px 20px 20px;
+  //   padding-bottom: 10vh;
+  //   background: linear-gradient(150deg, #a630c4 10%, #f0c1f0 100%);
+
+
+  //   ion-label {
+
+  //     font-weight: bold;
+  //     font-size: 1, 5rem;
+  //     text-align: center;
+  //     color: rgb(13, 13, 116);
+  //     margin-top: -20px;
+  //   }
+
+  //   // .user_div {
+
+  //   //   padding-top: 35px;
+  //   //   margin-left: 10px;
+
+  //   //   .first_div {
+
+  //   //     .titulo {
+  //   //       font-size: 18px;
+  //   //       font-weight: 800;
+  //   //     }
+
+
+  //   //   }
+
+  //   //   .second_div {
+  //   //     .descripcion {
+  //   //       font-weight: 500;
+  //   //       font-size: 20px;
+  //   //       color: #fdfdfd;
+
+  //   //     }
+  //   //   }
+
+
+  //   // }
+
+  // }
 }

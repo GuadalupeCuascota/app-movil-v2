@@ -7,7 +7,7 @@
     </ion-header> -->
     <ion-content auto-hide="false" >
       <div class="menu-header-bg">
-        <img  src="../../../../assets/MUJER_STEM.png" >
+        <img  src="../../../../assets/ficaStemUtnv2.png" >
       </div>
       <div class="menu-content">
         <ion-list>
@@ -16,9 +16,14 @@
               <ion-icon name="person" slot="start"></ion-icon>
               <label>Mi perfil</label>
             </ion-item>
+            <ion-item routerLink="/contacto">
+              <ion-icon name="chatbubbles" slot="start"></ion-icon>
+              <label>Contáctanos</label>
+              
+            </ion-item>
           
             <ion-item  (click)="logout()" routerDirection="login">
-              <ion-icon name="exit-outline" slot="start"></ion-icon>
+              <ion-icon name="exit" slot="start"></ion-icon>
               Cerrar sesión
             </ion-item>
           </ion-menu-toggle>

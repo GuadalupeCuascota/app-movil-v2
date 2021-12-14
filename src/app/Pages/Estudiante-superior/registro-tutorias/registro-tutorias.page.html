@@ -6,21 +6,23 @@
       </ion-buttons> -->
 
       <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
-        <ion-back-button color="light" defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
+        <ion-back-button
+          color="light"
+          defaultHref="menu-opciones/tabs/home-superior"
+        ></ion-back-button>
         <ion-label color="light">Mentorias</ion-label>
       </ion-buttons>
- 
     </ion-item>
   </ion-list>
 
-  <!-- <ion-segment (ionChange)="segmenntChange($event)" [value]="valueSelected">
+  <ion-segment (ionChange)="segmenntChange($event)" [value]="valueSelected">
     <ion-segment-button value="1">
       <ion-label>Disponibles</ion-label>
     </ion-segment-button>
     <ion-segment-button value="2">
       <ion-label>Solicitar </ion-label>
     </ion-segment-button>
-  </ion-segment> -->
+  </ion-segment>
 </ion-header>
 
 <ion-content>
@@ -28,35 +30,46 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <!-- <div *ngIf="valueSelected=='1'"> -->
-  <form id="form" [formGroup]="formGroup" (ngSubmit)="buscarDisponibilidad()">
-    
-    <div class="list-item">
-     <ion-radio-group (ionChange)="selectRes($event)" formControlName="nombre_mentor">
-      <ion-list-header *ngIf="!altert">
-        <p>Seleccione el mentor..</p>
-      </ion-list-header>
-        
+  <div *ngIf="valueSelected=='1'">
+    <form id="form" [formGroup]="formGroup" (ngSubmit)="buscarDisponibilidad()">
+      <div class="list-item">
+        <ion-radio-group
+          (ionChange)="selectRes($event)"
+          formControlName="nombre_mentor"
+        >
+          <ion-list-header *ngIf="!altert">
+            <p>Seleccione el mentor..</p>
+          </ion-list-header>
+
           <ion-item *ngFor="let registro of registroMentorias">
             <ion-label> {{registro.nombre}} {{registro.apellido}}</ion-label>
             <ion-radio value="{{registro.id_usuario}}"></ion-radio>
           </ion-item>
-      
-      </ion-radio-group>
-    </div>
-    
-    <ion-button *ngIf="!altert" type="submit" color="primary" shape="round" expand="block" [disabled]="!formGroup.valid"><ion-icon name="search-outline"></ion-icon> BUSCAR
-      DISPONIBILIDAD</ion-button>
-    <p>{{mensaje}}</p>
+        </ion-radio-group>
+      </div>
 
-    <!-- <ion-item>
+      <ion-button
+        *ngIf="!altert"
+        type="submit"
+        color="primary"
+        shape="round"
+        expand="block"
+        [disabled]="!formGroup.valid"
+        ><ion-icon name="search-outline"></ion-icon> BUSCAR
+        DISPONIBILIDAD</ion-button
+      >
+      <div class="text-solictudes">
+        <p>{{mensaje}}</p>
+      </div>
+
+      <!-- <ion-item>
             <ion-label>
               Mentora: {{registro.nombre}} {{registro.apellido}}</ion-label
             >
           
           </ion-item> -->
 
-    <!-- <ion-card-content>
+      <!-- <ion-card-content>
             <ion-card-subtitle>Día:{{registro.fecha}}</ion-card-subtitle>
             <ion-card-subtitle
               >Hora:{{registro.hora_inicio}}-{{registro.hora_fin}}</ion-card-subtitle
@@ -70,12 +83,11 @@
           >
           </ion-card-content> -->
 
+      <!-- </div> -->
+    </form>
+  </div>
 
-    <!-- </div> -->
-  </form>
-
-  <!-- SOLICITUD MENTORIAS
-    <div *ngIf="valueSelected=='2'">
+  <div *ngIf="valueSelected=='2'">
     <ion-card>
       <form
         id="form"
@@ -83,23 +95,76 @@
         (ngSubmit)="saveSolicitudMentoria()"
       >
         <ion-item>
-          <ion-label position="floating">
-            Selecciona la materia que decee apoyo académico:</ion-label
+          <ion-label>Materia: </ion-label>
+          <ion-select
+            placeholder="Seleccione"
+            formControlName="id_materia"
+            (ionChange)="optionsFn($event)"
           >
-          <ion-select placeholder="Seleccione" formControlName="nombre_materia">
-            <ion-select-option *ngFor="let materia of materiasC"
+            <ion-select-option
+              *ngFor="let materia of materias"
+              value="{{materia.id_materia}}
+             "
               >{{materia.nombre_materia}}</ion-select-option
             >
           </ion-select>
+         
         </ion-item>
+        <small
+        class="error-message"
+        *ngIf="formSolicitudM.get('id_materia').hasError('required') && formSolicitudM.get('id_materia').touched"
+        >campo es requerido</small
+      >
+
         <ion-item>
-          <ion-label position="floating"> Tema de interés:</ion-label>
+          <ion-label>Tema: </ion-label>
+          <ion-select
+            placeholder="Seleccione"
+            formControlName="id_tema_materia"
+          >
+            <ion-select-option
+              *ngFor="let temas of tema"
+              value="{{temas.id_tema_materia}}"
+              >{{temas.nombre_tema}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <small
+          class="error-message"
+          *ngIf="formSolicitudM.get('id_tema_materia').hasError('required') && formSolicitudM.get('id_tema_materia').touched"
+          >campo es requerido</small
+        >
+        <!-- <ion-item>
+          <ion-label>Materia:</ion-label>
+          <ion-select
+            (ionChange)="optionsFn($event)"
+            placeholder="Seleccione"
+            formControlName="materia"
+          >
+            <ion-select-option value="Matemática"
+              >Matemáticas</ion-select-option
+            >
+            <ion-select-option value="Orientación "
+              >Orientación vocacional</ion-select-option
+            >
+            <ion-select-option value="otro">Otro</ion-select-option>
+          </ion-select>
+        </ion-item> -->
+
+        <!-- <ion-item *ngIf="estado">
+          <ion-label position="floating"> Especifique materia:</ion-label>
           <ion-input
-            formControlName="tema"
-            placeholder="Ingrese tema"
+            value=""
+            formControlName="materia"
+            placeholder="Ingrese materia"
           ></ion-input>
         </ion-item>
-
+        <small
+          class="error-message"
+          *ngIf="formSolicitudM.get('materia').hasError('required') && formSolicitudM.get('materia').touched"
+          >campo es requerido</small
+        > -->
+        
         <br />
 
         <ion-button
@@ -114,24 +179,41 @@
     </ion-card>
     <br />
 
-
-    
+    <div>
+      <div class="text-solictudes">
+        <ion-label color="primary">Solicitudes enviadas</ion-label>
+      </div>
       <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6> MATERIA </ion-col>
-          <ion-col col-6> TEMA </ion-col>
-          <ion-col col-1> ACCIÓN</ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6 style="font-weight: 900; color: black">
+              MATERIA
+            </ion-col>
+            <ion-col col-6 style="font-weight: 900; color: black">
+              TEMA
+            </ion-col>
+            <ion-col col-1 style="font-weight: 900; color: black">
+              ANULAR</ion-col
+            >
+          </ion-row>
+          <ion-row *ngFor="let SolicitudesEst of solicitudesEst">
+            <ion-col col-6 style="font-weight: 900; color: black"
+              >{{SolicitudesEst.nombre_materia}}
+            </ion-col>
+            <ion-col col-6 style="font-weight: 900; color: black"
+              >{{SolicitudesEst.nombre_tema}}
+            </ion-col>
 
-        </ion-row>
-        <ion-row *ngFor="let SolicitudesEst of solicitudesEst" >
-          <ion-col col-6>{{SolicitudesEst.nombre_materia}} </ion-col>
-          <ion-col col-6>{{SolicitudesEst.tema}} </ion-col>
-          <ion-col col-1> <ion-icon name="trash-sharp"></ion-icon></ion-col>
-
-        </ion-row>
-      </ion-grid>
-      
-    </ion-card> 
-  </div> -->
+            <ion-col col-1>
+              <ion-button
+                class="enviar"
+                fill="clear"
+                (click)="presentAlertSolicitudMentoria(SolicitudesEst.id_solicitud_mentoria)"
+                ><ion-icon name="trash-sharp"></ion-icon> </ion-button
+            ></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

@@ -156,6 +156,23 @@ const routes: Routes = [
     path: 'onboarding',
     loadChildren: () => import('./Pages/onboarding/onboarding.module').then( m => m.OnboardingPageModule)
   },
+  {
+    path: 'test-ing',
+    loadChildren: () => import('./Pages/Estudiante-secundaria/test-ing/test-ing.module').then( m => m.TestIngPageModule)
+  },
+  {
+    path: 'contacto',
+    loadChildren: () => import('./Pages/contacto/contacto.module').then( m => m.ContactoPageModule)
+  },
+  {
+    path: 'ayuda-soporte',
+    loadChildren: () => import('./Pages/ayuda-soporte/ayuda-soporte.module').then( m => m.AyudaSoportePageModule)
+  },
+  {
+    path: 'detalle-oferta-academica/:id',
+    loadChildren: () => import('./Pages/Estudiante-secundaria/detalle-oferta-academica/detalle-oferta-academica.module').then( m => m.DetalleOfertaAcademicaPageModule)
+  },
+
 
 
 

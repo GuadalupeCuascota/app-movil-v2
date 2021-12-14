@@ -14,10 +14,11 @@
 
   <form id="form" [formGroup]="formGroup" (ngSubmit)="recuperarPass()">
     <ion-item>
-      <ion-label position="floating"> Ingrese su correo:</ion-label>
+      <ion-label position="floating"> Ingrese su correo electrónico:</ion-label>
 
       <ion-input  formControlName="correo_electronico" ></ion-input>
     </ion-item>
+    <small  class="error-message" *ngIf="formGroup.get('correo_electronico').hasError('required') && formGroup.get('correo_electronico').touched" >Campo es requerido</small>
     
     <br>
 

@@ -12,6 +12,127 @@
 <ion-content>
   <div class="list-item">
     <ion-slides #slides>
+      <ion-slide
+      
+        *ngFor="let preguntas of test; let i = index;"
+      >
+      <h4>PREGUNTA {{i+1}} DE {{test.length}}</h4>
+        <div style="margin-top: 100px">
+          <ion-text> {{preguntas.pregunta}} </ion-text>
+        </div>
+        <div style="margin-top: 70px">
+          <ion-button
+            (click)="respondPoll(1,preguntas.id_carrera)"
+            style="margin-top: 20px"
+            [fill]="button1.fill"
+            [color]="button1.color"
+            expand="block"
+            [disabled]="hasAnswered"
+          >
+            SI
+          </ion-button>
+          <ion-button
+            (click)="respondPoll(2,preguntas.id_carrera)"
+            style="margin-top: 20px"
+            [fill]="button2.fill"
+            [color]="button2.color"
+            expand="block"
+            [disabled]="hasAnswered"
+          >
+            NO
+          </ion-button>
+        </div>
+
+        <!-- <ion-list >
+          <ion-radio-group  (ionChange)="optionsFn($event)" >
+        
+        
+            <ion-item>
+              <ion-label>SI</ion-label>
+              <ion-radio slot="start" value="true"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>NO</ion-label>
+              <ion-radio slot="start" value="false"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-button
+        *ngIf="i+1<test.length"
+        type="submit"
+        color="primary"
+        (click)="nextSlide()"
+        shape="round"
+        expand="block"
+        >Siguiente
+      </ion-button>
+      <ion-button
+        *ngIf="i+1==test.length"
+        type="submit"
+        color="primary"
+        shape="round"
+        expand="block"
+        (click)="nextSlide()"
+        >FINALIZAR</ion-button
+      > -->
+
+        <!-- <ion-list no-lines radio-group>
+          <ion-item >
+            <ion-label>SI</ion-label>
+            <ion-radio
+            
+              (click)="selectAnswer(preguntas.nombre_carrera,si)"
+            ></ion-radio>
+          </ion-item>
+          <ion-item >
+            <ion-label>NO</ion-label>
+            <ion-radio  
+            (click)="selectAnswer(preguntas.nombre_carrera,no)"
+          ></ion-radio>
+          </ion-item>
+        </ion-list> -->
+
+        <!-- <ion-button
+              *ngIf="i+1<test.length"
+              type="submit"
+              color="primary"
+              (click)="nextSlide()"
+              shape="round"
+              expand="block"
+              >Siguiente
+            </ion-button>
+            <ion-button
+              *ngIf="i+1==test.length"
+              type="submit"
+              color="primary"
+              shape="round"
+              expand="block"
+              (click)="nextSlide()"
+              >FINALIZAR</ion-button
+            >
+           -->
+      </ion-slide>
+
+      <ion-slide  >
+
+        <h2>Final</h2>
+        <h2> Software {{software}}%</h2>
+        <h2> Mecatrónica {{mecatronica}}%</h2>
+        <h2> Textil {{textil}}%</h2>
+        <h2> Industrial {{industrial}}%</h2>
+        <h2> Automotriz {{automotriz}}%</h2>
+        <h2> Telecomunicaciones {{telecomunicaciones}}%</h2>
+        <h2> Electricidad {{electricidad}}%</h2>
+        <ion-button  (click)="restartQuiz()" type="submit" color="primary"  shape="round" expand="block" >Comenzar un nuevo test</ion-button>
+
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
+<!-- <ion-content>
+  <div class="list-item">
+    <ion-slides #slides>
       <ion-slide *ngFor="let preguntas of test; let i = index;">
         <div>
           <h4>Pregunta {{i+1}} of {{test.length}}</h4>
@@ -20,16 +141,24 @@
         <div class="list-item">
           <ion-radio-group value="biff">
             <ion-list no-lines radio-group>
-              <ion-item *ngFor="let answer of test[i].opciones; let i = index;">
-                <ion-label> {{answer.opcion}}</ion-label>
-                <!-- <ion-radio value={{answer.puntos}}></ion-radio> -->
+              <ion-item >
+                <ion-label>si</ion-label>
+               
                 <ion-radio
-                  (click)="selectAnswer(answer, preguntas.carrera)"
+                value="si"
+                  (click)="selectAnswer(preguntas.carrera,si)"
+                ></ion-radio>
+              </ion-item>
+              <ion-item >
+                <ion-label>no</ion-label>
+                
+                <ion-radio  value="no"
+                  (click)="selectAnswer(preguntas.carrera,no)"
                 ></ion-radio>
               </ion-item>
             </ion-list>
           </ion-radio-group>
-
+          
           <div>
             <ion-button
               *ngIf="i+1<test.length"
@@ -54,4 +183,4 @@
       </ion-slide>
     </ion-slides>
   </div>
-</ion-content>
+</ion-content> -->

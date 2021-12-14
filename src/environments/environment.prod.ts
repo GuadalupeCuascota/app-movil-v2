@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://server-app-stem-elreq.ondigitalocean.app/api'
+  baseUrl: 'https://wstem-server.herokuapp.com/api'
 };
 export const environmentLogin = {
-  production: false,
-  baseUrl: 'https://server-app-stem-elreq.ondigitalocean.app/login'
+  production: true,
+  baseUrl: 'https://wstem-server.herokuapp.com/login'
 };

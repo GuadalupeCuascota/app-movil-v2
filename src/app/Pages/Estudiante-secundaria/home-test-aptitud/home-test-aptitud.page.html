@@ -1,37 +1,302 @@
 <ion-header class="ion-no-border">
-
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-back-button
         color="primary"
         defaultHref="menu-opciones-se/menu-principal/home-secundaria"
       ></ion-back-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
-     
-
 </ion-header>
-<br>
-
 <ion-content>
+  <div class="list-item">
+    <ion-slides #slides>
+      <ion-slide>
+        <div class="list-item">
+          <h2>Estimado estudiante</h2>
+          <ion-text>
+            En la Universidad Técnica del Norte, en la Facultad de Ciencias
+            Aplicadas se ofertan las ingenierías en: Telecomunicaciones,
+            Software, Textil, Electricidad, Mecatrónica, Industrial, Automotriz.
+            Para iniciar una carrera de ingeniería se requiere de conocimientos
+            y aptitudes desarrolladas a partir de las materias STEM (Ciencia,
+            Tecnología, Ingeniería y Matemáticas). Por lo tanto, se ha elaborado
+            un test conformado por dos partes.
+            
+          </ion-text>
+          <ion-button
+            type="submit"
+            color="primary"
+            (click)="nextSlide()"
+            shape="round"
+            expand="block"
+            >SIGUIENTE</ion-button
+          >
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="list-item">
+          <h2>Parte I</h2>
+          <ion-text>
+           Se establecen los siguientes enunciados como preguntas que descartan inicialmente al no poseer con los conocimientos, destrezas y actitudes generales para estudiar ingeniería caso contrario se procede con la evaluación de la siguiente parte.
+          </ion-text>
+          <ion-list>
+            <ion-text style="color: white;">INSTRUCCIONES</ion-text> </ion-list>
+          <ion-text>
+            Lea atentamente cada una de las actividades. Selecciona una
+            respuesta por cada pregunta con verdad para que el resultado de la
+            prueba tenga fiabilidad.
+          </ion-text>
+          <ion-button
+            type="submit"
+            color="primary"
+            (click)="nextSlide()"
+            shape="round"
+            expand="block"
+            >COMENZAR TEST</ion-button
+          >
+        </div>
+      </ion-slide>
+
+      <ion-slide *ngFor="let test of TestIng;let i = index;">
+        <h4>PREGUNTA {{i+1}} DE {{TestIng.length}}</h4>
+        <div style="margin-top: 60px">
+          <ion-text> {{test.nombre_pregunta}} </ion-text>
+        </div>
+        <div style="margin-top: 70px">
+          <ion-button
+            (click)="respondPoll(1,test.id_pregunta)"
+            style="margin-top: 20px"
+            [fill]="button1.fill"
+            [color]="button1.color"
+            expand="block"
+            [disabled]="hasAnswered"
+          >
+            SÍ
+          </ion-button>
+          <ion-button
+            (click)="respondPoll(2,test.id_pregunta)"
+            style="margin-top: 20px"
+            [fill]="button2.fill"
+            [color]="button2.color"
+            expand="block"
+            [disabled]="hasAnswered1"
+          >
+            NO
+          </ion-button>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div *ngIf="totalQuizz>60">
+          <div class="list-item">
+            <h2>Parte II</h2>
+            <ion-text>
+              A la hora de realizar un trabajo profesional se debe estar cualificado para su desarrollo, por lo que es importante conocer qué tipo de área de la ingeniería se adapta mejor a cada persona por su carácter,gustos,etc. Las cualidades de cada persona hacen que seamos capaces de realizar mejor cada actividad de nuestro gusto.
+            </ion-text>
+            <ion-list> Instrucciones </ion-list>
+            <ion-text>
+              Lea atentamente cada una de las actividades. Selecciona una
+              respuesta por cada pregunta con verdad para que el resultado de la
+              prueba tenga fiabilidad.
+            </ion-text>
+            <ion-button
+              type="submit"
+              color="primary"
+              (click)="nextSlide()"
+              shape="round"
+              expand="block"
+              >COMENZAR TEST</ion-button
+            >
+          </div>
+        </div>
+        <div *ngIf="totalQuizz<60">
+          <div class="list-item">
+            <div class="menssage">
+              <ion-text>
+                No todos tenemos el perfil exacto para ser ingeniero; sin embargo, la perseverancia puede llevarte lejos.
+              </ion-text>
+              <ion-button (click)="restartQuiz()" type="submit" color="primary" shape="round" expand="block"
+              >REGRESAR</ion-button
+            >
+            </div>
+           
+          </div>
+          
+        </div>
+      </ion-slide>
+      
+      <ion-slide *ngFor="let preguntas of test; let i = index;"
+      >
+      <h4>PREGUNTA {{i+1}} DE {{test.length}}</h4>
+        <div style="margin-top: 100px">
+          <ion-text> {{preguntas.pregunta}} </ion-text>
+        </div>
+        <div style="margin-top: 70px">
+          <ion-button
+            (click)="respondPollTest2(1,preguntas.id_carrera)"
+            style="margin-top: 20px"
+            [fill]="button1.fill"
+            [color]="button1.color"
+            expand="block"
+            [disabled]="hasAnswered"
+          >
+            SI
+          </ion-button>
+          <ion-button
+            (click)="respondPollTest2(2,preguntas.id_carrera)"
+            style="margin-top: 20px"
+            [fill]="button2.fill"
+            [color]="button2.color"
+            expand="block"
+            [disabled]="hasAnswered1"
+          >
+            NO
+          </ion-button>
+        </div>
+
+        
+      </ion-slide>
+      <ion-slide  >
+
+      
+        <h2 style="font-weight: 700;">Estimada</h2>
+        <ion-label class="nombres">
+          {{datos.nombre}} {{datos.apellido}}
+        </ion-label>
+      
+        <h2>Bienvenida al mágico mundo  STEM  de acuerdo a tus respuestas  es recomendable aplicar a la Ingeniería en:</h2>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div style="font-weight: 700;">
+                Carrera
+              </div>
+            </ion-col>
+            <ion-col>
+              <div  style="font-weight: 700;">
+                Puntos
+              </div>
+            </ion-col>
+            
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div>
+                Software 
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+              {{software}}%
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div>
+                Mecatrónica 
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{mecatronica}}%
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div>
+                Textil 
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{textil}}%
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div>
+                Industrial 
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{industrial}}%
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div>
+                Automotriz 
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{automotriz}}%
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div>
+                Telecomunicaciones
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{telecomunicaciones}}% 
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div>
+                Electricidad 
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{electricidad}}%
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+       
+        <ion-button  (click)="restartQuiz()" type="submit" color="primary"  shape="round" expand="block" >Comenzar un nuevo test</ion-button>
+
+      </ion-slide>
+     
+    </ion-slides>
+  </div>
+</ion-content>
+
+
+
+
+
+<!-- <ion-content> 
   <ion-list lines="none">
     <div class="user_div">
       <div class="first_div">
         <h2 class="titulo" style="text-align: center; color: midnightblue;">
-          TEST DE ORIENTACIÓN VOCACIONAL
+        Parte I
         </h2>
         
       </div>
       <br>
       <div class="second_div">
         <ion-label class="descripcion">
-        La aplicación te permite identificar para qué rama de la ingeniería es recomendable su postulación. 
-        Debe seleccionar una respuesta por cada pregunta con verdad para que el resultado de la prueba tenga fiabilidad. 
+         
         </ion-label>  
       </div>
     </div>
   </ion-list>
   <br>
-  <ion-button type="submit" color="primary"   (click)="testVocacional()" shape="round" expand="block" >Empezar el test vocacional</ion-button>
-  <ion-button type="submit" color="primary"  (click)="regresar()" shape="round" expand="block" >Regresar</ion-button>
-</ion-content>
+  <ion-button type="submit" color="primary"   (click)="testVocacional()" shape="round" expand="block" >Empezar  test </ion-button>
+ 
+</ion-content>  -->

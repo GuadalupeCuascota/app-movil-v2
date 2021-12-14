@@ -50,11 +50,8 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'mis-mentorias',
-        loadChildren: () =>
-          import('../../../Pages/Estudiante-superior/mis-mentorias/mis-mentorias.module').then(
-            (m) => m.MisMentoriasPageModule
-          ),
+        path: 'detalle-perfil/:id',
+        loadChildren: () => import('../../detalle-perfil/detalle-perfil.module').then( m => m.DetallePerfilPageModule)
       },
 
     ],

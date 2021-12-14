@@ -11,7 +11,7 @@ import { AgendarMentoriaService } from 'src/app/Services/agendar-mentoria.servic
 import { LoadingService } from 'src/app/Services/loading.service';
 import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.service';
 import {
-  FormBuilder,  
+  FormBuilder,
   FormControl,
   FormGroup,
   Validators,
@@ -19,6 +19,11 @@ import {
 import { SolicitudMentoria } from 'src/app/Models/solicitudMentoria';
 import { SolicitudMentoriaService } from 'src/app/Services/solicitud-mentoria.service';
 
+import { Materia } from 'src/app/Models/materias';
+import { RegistroMateriaService } from 'src/app/Services/registro-materia.service';
+import { RegistroTemaMateriaService } from 'src/app/Services/registro-tema-materia.service';
+import { NumberSymbol } from '@angular/common';
+import { TemaMateria } from 'src/app/Models/temaMateria';
 @Component({
   selector: 'app-registro-tutorias',
   templateUrl: './registro-tutorias.page.html',
@@ -26,13 +31,15 @@ import { SolicitudMentoriaService } from 'src/app/Services/solicitud-mentoria.se
 })
 export class RegistroTutoriasPage implements OnInit {
   valueSelected: string = '1';
-  registroMentorias: any[]=[];
+  registroMentorias: any[] = [];
   registroM: RegistroMentorias;
   usuariosM: any[] = [];
   materiasC: any[] = [];
   solicitudesEst: any[] = [];
+  AnySolicitudes: any[] = [];
   solicitudM: SolicitudMentoria;
   datos: any = {};
+  materias: Materia[] = [];
 
   localTime = moment().format();
   mensaje = '';
@@ -47,13 +54,15 @@ export class RegistroTutoriasPage implements OnInit {
     hora_inicio: '',
     hora_fin: '',
   };
+
+  tema: TemaMateria[] = [];
   id_registro_mentoria = 0;
   altert: boolean = false;
   formSolicitudM: FormGroup;
   formGroup: FormGroup;
   option_selected: string = '';
-
-  
+  estado: boolean;
+  materia = '';
   constructor(
     private regitroMentoriasService: RegistroMentoriasService,
     private router: Router,
@@ -65,36 +74,72 @@ export class RegistroTutoriasPage implements OnInit {
     private registroCarrera: RegistroCarrerasService,
     private formBuilder: FormBuilder,
     private solicitudMentoriaSerive: SolicitudMentoriaService,
-    private navController: NavController
+    private navController: NavController,
+    private registroMateria: RegistroMateriaService,
+    private registroTemaMateria: RegistroTemaMateriaService
   ) {}
 
   ngOnInit() {
     this.doRefresh();
-   this.getMentorasRegistro()
+    this.getMaterias();
+    this.getMentorasRegistro();
     // this.getRegistroMentorias();
     this.getSolicitudesMentoria();
     this.datos = JSON.parse(localStorage.getItem('payload'));
-    this.getMateriasCarrera();
-    this.formSolicitudM= this.formBuilder.group({
-      nombre_materia: new FormControl('', Validators.required),
-      tema:new FormControl('', Validators.required),
-       
-    })
-    
-    this.solicitudM= new SolicitudMentoria();
+    // this.getMateriasCarrera();
+    this.formSolicitudM = this.formBuilder.group({
+      id_materia: new FormControl('', Validators.required),
+      id_tema_materia: new FormControl('', Validators.required),
+    });
+
+    this.solicitudM = new SolicitudMentoria();
+
     this.formGroup = this.formBuilder.group({
       nombre_mentor: new FormControl('', Validators.required),
     });
-  
-  
   }
   segmenntChange(event: any) {
     this.valueSelected = event.detail.value;
     console.log(this.valueSelected);
   }
+
+  async presentAlertSolicitudMentoria(id: number) {
+    console.log('solicitud mentoria', id);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Eliminar',
+
+      message: '¿Esta seguro que desea eliminar esto?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Cancelar');
+          },
+        },
+        {
+          text: 'Confirmar',
+          role: 'confirmar',
+          handler: () => {
+            console.log('Confirmar');
+            this.deleteSolicitud(id);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any
-    // this.getRegistroMentorias();
+    this.getMentorasRegistro();
+    this.getSolicitudesMentoria();
     if ($event) {
       $event.target.complete();
     }
@@ -107,25 +152,46 @@ export class RegistroTutoriasPage implements OnInit {
       event.target.complete();
       if (this.registroMentorias.length == 9) {
         event.target.disabled = true;
-        
       }
     }, 500);
   }
 
+  buscarDisponibilidad() {
+    const id = this.option_selected;
 
-  buscarDisponibilidad(){
-    const id=this.option_selected;
-    
-    this.option_selected
-    console.log("el id",this.option_selected)
-     this.router.navigate(['agendar-mentoria/'+id]);
+    this.option_selected;
+    console.log('el id', this.option_selected);
+    this.router.navigate(['agendar-mentoria/' + id]);
+  }
+
+  getMaterias() {
+    this.registroMateria.getMaterias().subscribe(
+      (res) => {
+        this.materias = res;
+        console.log('las materias', res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  deleteSolicitud(id: number) {
+    this.solicitudMentoriaSerive.deleteSolicitudMentoria(id).subscribe(
+      (res) => {
+        this.mensajeServices.presentToast('Solicitud eliminada');
+        this.getSolicitudesMentoria();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   getMateriasCarrera() {
     this.registroCarrera.getMateriaEstudiante(this.datos.carrera).subscribe(
       (res) => {
         this.materiasC = res;
-      
       },
       (err) => {
         console.log(err);
@@ -135,30 +201,24 @@ export class RegistroTutoriasPage implements OnInit {
   selectRes(event: any) {
     console.log(event);
     this.option_selected = event.detail.value;
-    console.log("la opcion",this.option_selected);
-
+    console.log('la opcion', this.option_selected);
   }
   getMentorasRegistro() {
-    
     var UsuMentoria = [];
     this.regitroMentoriasService.getMentorasRegistro().subscribe(
       (res) => {
-        console.log('las mentoras', res);
         for (let usu1 of res) {
-         
           if (usu1.carrera == this.datos.carrera) {
-            console.log("pasa carerra")
             UsuMentoria.push(usu1);
           }
         }
-       
+
         if (UsuMentoria.length > 0) {
           this.registroMentorias = UsuMentoria;
         } else {
           this.mensaje = 'No existe mentorias disponibles';
           this.altert = true;
         }
-
       },
       (err) => {
         console.log(err);
@@ -178,7 +238,7 @@ export class RegistroTutoriasPage implements OnInit {
   //           UsuMentoria.push(usu1);
   //         }
   //       }
-       
+
   //       if (UsuMentoria.length > 0) {
   //         this.registroMentorias = UsuMentoria;
   //       } else {
@@ -214,6 +274,7 @@ export class RegistroTutoriasPage implements OnInit {
           handler: () => {
             console.log('Confirmar');
             this.detalle(this.registroM.id_registro_mentoria);
+            this.getSolicitudesMentoria();
           },
         },
       ],
@@ -269,17 +330,15 @@ export class RegistroTutoriasPage implements OnInit {
     //  this.router.navigate(['/agendar-mentoria/',id]);
   }
 
-
-
   async saveSolicitudMentoria() {
-    this.solicitudM.nombre_materia=this.formSolicitudM.controls['nombre_materia'].value,
-   this.solicitudM.nombre_carrera=this.datos.carrera,
-   this.solicitudM.tema=this.formSolicitudM.controls['tema'].value,
-   this.solicitudM.id_usuario=this.datos.id_usuario
-  
+    (this.solicitudM.id_materia =
+      this.formSolicitudM.controls['id_materia'].value),
+      (this.solicitudM.id_tema_materia =
+        this.formSolicitudM.controls['id_tema_materia'].value),
+      (this.solicitudM.id_usuario = this.datos.id_usuario);
+
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
-
 
     this.solicitudMentoriaSerive
       .saveSolicitudMentoria(this.solicitudM)
@@ -289,8 +348,6 @@ export class RegistroTutoriasPage implements OnInit {
           if (res) {
             this.getSolicitudesMentoria();
             this.mensajeServices.presentToast('Solicitud enviada');
-            
-            
           }
         },
         () => {
@@ -305,14 +362,36 @@ export class RegistroTutoriasPage implements OnInit {
   async getSolicitudesMentoria() {
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
-   
-    this.solicitudMentoriaSerive.getSolicitudMentoria(this.datos.id_usuario).subscribe(
-      (res:any) => {
-      this.solicitudesEst=res;
 
-        console.log("res",res)
+    this.solicitudMentoriaSerive
+      .getSolicitudMentoria(this.datos.id_usuario)
+      .subscribe(
+        (res: any) => {
+          this.solicitudesEst = res;
+
+          console.log('obtiene respuesta', res);
+        },
+        (err: any) => {
+          this.solicitudesEst = this.AnySolicitudes;
+          console.log('no obtiene respuesta', err);
+        }
+      );
+  }
+
+  async getTemaMateria(id: number) {
+    console.log('id_registro_mentoria ', id);
+    this.registroTemaMateria.getTemasMateria(id).subscribe(
+      (res) => {
+        this.tema = res;
+        console.log("el tema segun la materia",this.tema)
       },
-      () => {}
+      (err) => {}
     );
+  }
+
+  public optionsFn(event) {
+    console.log('EL EVENTO ES', event.target.value);
+    const id = event.target.value;
+    this.getTemaMateria(id);
   }
 }

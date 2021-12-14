@@ -1,4 +1,4 @@
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Publicacion } from 'src/app/Models/publicacion';

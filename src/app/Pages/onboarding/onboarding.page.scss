@@ -7,15 +7,27 @@ ion-content{
         display: block;
         
     }
-    ion-slide img{
-        padding:5%;
+    .slide-image{
+        width: 100%;
+        height: 60%;
     }
-    .slider-text h2{
-    color: rgb(55, 49, 105);
-    font-weight: 800;
+    img{
+        width: 100%;
+        height: 40%;
+    } 
+    
+    .slider-text {
+      
+        h2{
+            color: rgb(0, 0, 0);
+            font-weight: 1000;
+            
+            }
+        
     }
+   
     .slider-text p{
-        font-size: 1rem;
+        // font-size: 1rem;
         color: #747272;
         margin-right: 5px;
      }

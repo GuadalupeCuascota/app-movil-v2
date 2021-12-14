@@ -1,12 +1,11 @@
 
-
 ion-header {
   background: var(--ion-color-light);
 
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
-    background: linear-gradient(150deg, #420252 20%, #f0c1f0 100%);;
+    background: #5F1673;
 
     //padding-bottom: 1vh; ancho del ion list
     ion-label {
@@ -49,6 +48,15 @@ ion-card {
   }
   span{
     font-weight: bold;
+  }
+  .playicon{
+    position: absolute;
+    top: calc(50% - 22%);
+    left: calc(50% - 18%);
+    height: 25%;
+    width: 25%;
+    opacity: 0.6;
+    color: #010101;
   }
 }
 

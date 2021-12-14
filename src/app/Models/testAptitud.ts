@@ -1,9 +1,10 @@
 export class testAptitud {
   pregunta: string;
-  carrera: string;
-  opciones: {
-    opcion: string;
-    puntos: number;
-    id_opcion: number;
-  }[];
+  id_carrera: number;
+
+  // opciones: {
+  //   opcion: string;
+  //   puntos: number;
+  //   id_opcion: number;
+  // }[];
 }

@@ -1,29 +1,50 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-      <ion-buttons  slot="start">
-        <ion-back-button  color="primary" defaultHref="login"></ion-back-button>
-      </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+
+
+
+
+  <ion-header class="ion-no-border">
+    <ion-list lines="none">
+      <ion-item color="none">
+       <ion-buttons  slot="start">
+          <ion-back-button
+            color="light"
+            defaultHref="login"
+          ></ion-back-button>
+        </ion-buttons>
+        <div id="header">
+          <div class="utnlogo">
+            <img src="../../../assets/utncbn.png" />
+          </div>
+         <div class="ficastemlogo">
+          <img src="../../../assets/ficaStemUtnv2.png" />
+         </div>
+          
+
+          
+        </div>
+      </ion-item>
+      <!-- <ion-item color="none"> </ion-item> -->
+    </ion-list>
+
+  
+  </ion-header>
+
 
 <ion-content>
-  <div id="header">
-   
-    <img src="../../../assets/Data organization_Monochromatic.png" />
-    
-  </div>
-  <div id="header">
+ 
+ 
     <h1>Registro</h1>
-  </div>
+ 
   <form id="form" [formGroup]="formUsuario" (ngSubmit)="saveUsuarios()">
       <ion-item>
         <ion-label position="floating"> Nombre:</ion-label>
-        <ion-input
+        <ion-input 
           formControlName="nombre"
           placeholder="Ingrese nombre"
         ></ion-input>
-       
       </ion-item>
+      <small  class="error-message" *ngIf="formUsuario.get('nombre').hasError('required') && formUsuario.get('nombre').touched" >campo es requerido</small>
+      <small  class="error-message" *ngIf="formUsuario.get('nombre').hasError('pattern') && formUsuario.get('nombre').touched" >Ingrese solo letras</small>
       <br>
 
       <ion-item>
@@ -34,6 +55,8 @@
         ></ion-input>
         
       </ion-item>
+      <small  class="error-message" *ngIf="formUsuario.get('apellido').hasError('required') && formUsuario.get('apellido').touched" >campo es requerido</small>
+      <small  class="error-message" *ngIf="formUsuario.get('apellido').hasError('pattern') && formUsuario.get('apellido').touched" >Ingrese solo letras</small>
       <br>
       <ion-item>
         <ion-label position="floating"> Correo electrónico:</ion-label>
@@ -43,6 +66,8 @@
         ></ion-input>
         
       </ion-item>
+      <small  class="error-message" *ngIf="formUsuario.get('correo_electronico').hasError('required') && formUsuario.get('correo_electronico').touched" >campo es requerido</small>
+      <small  class="error-message" *ngIf="formUsuario.get('correo_electronico').hasError('pattern') && formUsuario.get('correo_electronico').touched" >Ingrese correo valido</small>
       <br>
       <ion-item>
         <ion-label position="floating"> Contraseña:</ion-label>
@@ -57,6 +82,8 @@
           (click)="toggleShow()"
         ></ion-icon>
       </ion-item>
+      <small  class="error-message" *ngIf="formUsuario.get('contrasenia').hasError('required') && formUsuario.get('contrasenia').touched" >campo es requerido</small>
+      <small  class="error-message" *ngIf="formUsuario.get('contrasenia').hasError('minlength') && formUsuario.get('contrasenia').touched" >Cantidad minima de caracteres es (8)</small>
       <br>
       <ion-item>
         <ion-label>Nivel académico:</ion-label>
@@ -74,7 +101,7 @@
       <br>
         <ion-item *ngIf="estado==false">
           <ion-label> Carrera: </ion-label>
-          <ion-select placeholder="Seleccione" formControlName="carrera">
+          <ion-select placeholder="Seleccione" formControlName="id_carrera">
             <ion-select-option  *ngFor="let carrera of carreras"
               >{{carrera.nombre_carrera}}</ion-select-option
             >
@@ -90,7 +117,7 @@
           ></ion-input>
         </ion-item>
        
-         <ion-checkbox color="primary"  ></ion-checkbox><ion-label> <a  style=" font-weight: bold;text-decoration: none; color: darkgray;" (click)="presentAlert()"> Aceptar términos y condiciones</a> </ion-label>
+         <ion-checkbox ngControl="termsAccepted" (ionChange)="onTermsChecked($event)" color="primary" ></ion-checkbox><ion-label> <a  style=" font-weight: bold;text-decoration: none; color: darkgray;" (click)="presentAlert()"> Aceptar términos y condiciones</a> </ion-label>
             
         <ion-button type="submit" color="primary"  [disabled]="!formUsuario.valid " shape="round" expand="block" >Registrarse</ion-button>
         <p>

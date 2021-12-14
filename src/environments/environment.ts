@@ -8,14 +8,14 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:5000/api',
-  // baseUrl: 'https://server-app-stem-elreq.ondigitalocean.app/api',
+  // baseUrl: 'https://wstem-server.herokuapp.com/api',
 
  
 };
 export const environmentLogin = {
   production: false,
   baseUrl: 'http://localhost:5000/login',
-  // baseUrl: 'https://server-app-stem-elreq.ondigitalocean.app/login'
+  // baseUrl: 'https://wstem-server.herokuapp.com/login'
 };
 
 

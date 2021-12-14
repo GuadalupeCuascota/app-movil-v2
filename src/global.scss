@@ -32,7 +32,7 @@
 
 // }
 :root {
-  --ion-color-primary: #7A4EA6;
+  --ion-color-primary: #683381;
   --ion-color-primary-rgb: 128,46,242;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255,255,255;
@@ -96,8 +96,15 @@
   --ion-color-light-tint: #f5f6f9;
 
   --ion-background-color: #ffffff;
-  --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
+  // --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
   
+}
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('../src/assets/fonts/roboto_latin.woff2') format('woff2');
+}
+*{
+  font-family: 'Roboto Condensed', sans-serif;
 }
 .swiper-pagination{
   width: 50% !important;

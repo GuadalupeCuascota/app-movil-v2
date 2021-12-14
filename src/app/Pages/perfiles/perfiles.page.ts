@@ -41,7 +41,7 @@ export class PerfilesPage implements OnInit {
   post: any = [];
   posts: any = [];
   search: string = 'Women in STEM';
-  playlistId = 'PL43UVswQuVDMrDJJvzbnnKco1CoJJhZMK';
+  playlistId = 'PLlV71HhUrs0orVDEiAlidNWsfmf4OIQkQ';
   MQcI6zKT7S8;
 
   constructor(
@@ -174,7 +174,7 @@ export class PerfilesPage implements OnInit {
   stopAudio() {}
   mostrar(id: number) {
     console.log('la publicacion', id);
-    this.router.navigate(['/detalle-perfil/', id]);
+    this.router.navigate(['detalle-perfil/', id]);
   }
 
   ////////////////////////////////////////////////////////////////////

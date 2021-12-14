@@ -1,67 +1,125 @@
-ion-toolbar{
-  ion-buttons{
-    text-transform: initial;
-  }
+.error-message {
+  color: var(--ion-color-danger);
+  padding-left: 30px;
 }
-ion-content {
- 
-  #header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    h1 {
-      font-weight: 700;
-      font-size: 26px;
-      color: #010101;
-    }
-    img{
-      width: 38%;
-      height:30%;
-    }
-  }
+ion-header {
+  background: var(--ion-color-light);
 
-  #form {
-    margin-top: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
+  ion-list {
+    background: var(--ion-color-primary);
+    border-radius: 0 0 20px 20px;
+    background: #683381;
 
-    ion-item {
-      border-radius: 40px;
-      height: 50px;
-      box-shadow: 1px 1px 1px 1px rgb(83, 83, 83);
-      --highlight-height: 0px;
-      ion-label{
-        color: rgb(83, 83, 83);
+
+    #header {
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      // margin-right: 21%;
+      display: flex;
+      justify-content: space-between;
+
+      .utnlogo {
+        width: 30%;
+        height: 30%;
+        margin-top: 5%;
+        
+       
       }
+
+      .ficastemlogo {
+
+        width: 25%;
+        height: 25%;
+        margin-right: 5%;
+
+      }
+
+
     }
-    ion-text{
-     font-size:0.9rem;
-     
-    }
-    p {
-      text-align: center;
-    }
-    ion-button {
-      height: 50px;
+
+  }
+
+
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 26px;
+  color: #010101;
+  text-align: center;
+
+}
+
+#form {
+  margin-top: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  ion-item {
+    border-radius: 40px;
+    height: 50px;
+    box-shadow: 1px 1px 1px 1px rgb(83, 83, 83);
+    --highlight-height: 0px;
+
+    ion-label {
+      color: rgb(83, 83, 83);
     }
   }
-}
-// :host {
-//   display: flex;
-//   width: 100%;
-//   align-items: center;
-// .type-toggle {
-//     padding-inline-start: 0.5rem;
-// .show-option,
-//     .hide-option {
-//       font-size: 1.2rem;
-//       display: block;
 
-//       &:not(ion-icon) {
-//         text-transform: uppercase;
-//         font-size: 1rem;
-//       }
-//     }
-//   }
+  ion-text {
+    font-size: 0.9rem;
+
+  }
+
+  p {
+    text-align: center;
+  }
+
+  ion-button {
+    height: 50px;
+  }
+}
+
+.ion-no-border {
+  display: flex;
+  justify-content: space-between;
+
+  .utnlogo {
+    width: 10%;
+    height: 15%;
+  }
+
+  .ficastemlogo {
+    width: 10%;
+    height: 15%;
+  }
+}
+
+// .registro-page{
+// padding: 6% 0 0;
+//  background: #7B4593;
+//  background-repeat: no-repeat center center fixed;
+//  min-height: 50vh;
+//  background-size:100%;
+//  .buttons{
+//   display: flex;
+//   justify-content: space-between;
+
+// }
+//  .container{
+//   height: 90%;
+//   width: 100%;
+//   background-color: white;
+//   bottom: 0;
+//   position: absolute;
+//   border-top-left-radius: 25px;
+//   border-top-right-radius: 25px;
+
+
+
+//  }
+
+
 // }

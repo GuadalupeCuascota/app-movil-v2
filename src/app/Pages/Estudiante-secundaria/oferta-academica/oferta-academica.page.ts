@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Publicacion } from 'src/app/Models/publicacion';
 import { Carreras } from 'src/app/Models/carreras-fica';
 import { RegistroPublicacionService } from '../../../Services/registro-publicacion.service';
@@ -16,9 +16,11 @@ export class OfertaAcademicaPage implements OnInit {
   carrera:Carreras
   datos: any = {};
   id = 0;
+  valueSelected: string = 'noticias';
   constructor(
     private resgitroPublicacion: RegistroPublicacionService,
     private actRoute: ActivatedRoute, // recibir parametros en la ruta,
+    private router: Router,
     private registroCarreras: RegistroCarrerasService
   ) {}
 
@@ -32,13 +34,17 @@ export class OfertaAcademicaPage implements OnInit {
     
     this.getPublicacionesCarrera();
   }
+
   // getCarrera() {
   //   this.registroCarreras.getCarrera(this.id).subscribe((res) => {
       
   //     console.log('la res', res);
   //   });
   // }
-  
+  segmenntChange(event: any) {
+    this.valueSelected = event.detail.value;
+    console.log(this.valueSelected);
+  }
   getPublicacionesCarrera() {
     console.log('pasa c');
     this.resgitroPublicacion
@@ -59,6 +65,11 @@ export class OfertaAcademicaPage implements OnInit {
     if ($event) {
       $event.target.complete();
     }
+  }
+  detalle(id: number) {
+    console.log('la publicacion', id);
+    this.router.navigate(['/detalle-oferta-academica/', id]);
+    // this.navCtrl.navigateForward('/detalle-noticia/,id');
   }
 
   //   loadData(event) {

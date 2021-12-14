@@ -3,14 +3,17 @@ import { Usuario } from 'src/app/Models/usuario';
 import { Carreras } from 'src/app/Models/carreras-fica';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.service';
-import { ActivatedRoute } from '@angular/router'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { LoadingService } from 'src/app/Services/loading.service';
-RegistroCarrerasService
-
-
+RegistroCarrerasService;
 
 @Component({
   selector: 'app-registro-usuario',
@@ -18,57 +21,57 @@ RegistroCarrerasService
   styleUrls: ['./registro-usuario.page.scss'],
 })
 export class RegistroUsuarioPage implements OnInit {
-  usuarios: Usuario[]=[];
-  carreras: Carreras[]=[];
-  usuario: Usuario
+  usuarios: Usuario[] = [];
+  carreras: Carreras[] = [];
+  usuario: Usuario;
   formUsuario: FormGroup;
   formnivel: FormGroup;
   estado: boolean;
   showPassword = false;
   passwordIcon = 'eye';
-  isLoaded=false;
-  // carreras= ['Ingeniería en Mecatrónica', 'Ingeniería en Telecomunicaciones','Ingeniería en Software','Ingeniería Industrial','Ingeniería Textil','Ingeniería Automotriz', 'Ingeniería en Electricidad'];
-
-  constructor(private usuarioService: UsuarioService,
+  isLoaded = false;
+  
+  private emailPattern: any =
+  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  constructor(
+    private usuarioService: UsuarioService,
     private actRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private navController: NavController,
     private mensajeServices: MensajesService,
     private loadinServices: LoadingService,
-    private  registroCarreraService: RegistroCarrerasService,
-    public alertController: AlertController,
-  ) { }
+    private registroCarreraService: RegistroCarrerasService,
+    public alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.getCarreras();
-//Validators.email
+
     this.formUsuario = this.formBuilder.group({
-      nombre: new FormControl('', Validators.required),
-      apellido: new FormControl('', Validators.required),
+      nombre: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z a-zA-ZñÑáéíóúÁÉÍÓÚ]+'),
+      ]),
+      apellido: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z a-zA-ZñÑáéíóúÁÉÍÓÚ]+'),
+      ]),
       nivel_academico: new FormControl('', Validators.required),
-      correo_electronico: new FormControl('', Validators.required),
-      contrasenia: new FormControl('', Validators.required),
-      carrera: new FormControl('', Validators.required),
+      correo_electronico: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.emailPattern),
+      ]),
+      contrasenia: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+
+      id_carrera: new FormControl('', Validators.required),
       unidad_educativa: new FormControl('', Validators.required),
-
- // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    })
-  this.formnivel=this.formBuilder.group({
-    nombre: new FormControl('', Validators.required),
-      apellido: new FormControl('', Validators.required),
-      nivel_academico: new FormControl('', Validators.required),
-      correo_electronico: new FormControl('', Validators.required),
-      contrasenia: new FormControl('', Validators.required),
-      
-  })
-
-  
+      termsAccepted: [null, Validators.required],
+    });
 
     this.usuario = new Usuario();
-
-
-
-
   }
   toggleShow(): void {
     this.showPassword = !this.showPassword;
@@ -78,38 +81,50 @@ export class RegistroUsuarioPage implements OnInit {
       this.passwordIcon = 'eye';
     }
   }
-  getUsuarios() {
-    this.usuarioService.getUsuarios().subscribe(res => {
-      this.usuarios = res;
-      console.log(this.usuarios)
-    },
-      err => console.log(err));
+  onTermsChecked(event) {
+    console.log(event);
+
+    if (event.detail.checked == true) {
+      this.formUsuario.patchValue({ termsAccepted: true });
+    } else {
+      this.formUsuario.patchValue({ termsAccepted: null });
+    }
   }
-  public optionsFn(event) { //here item is an object 
+  getUsuarios() {
+    this.usuarioService.getUsuarios().subscribe(
+      (res) => {
+        this.usuarios = res;
+        console.log(this.usuarios);
+      },
+      (err) => console.log(err)
+    );
+  }
+  public optionsFn(event) {
+    //here item is an object
     console.log(event.target.value);
-    if (event.target.value == "secundaria") {
-      this.estado = true
-
+    if (event.target.value == 'secundaria') {
+      this.estado = true;
+      this.formUsuario.patchValue({carrera: true });
+    } else {
+      if(event.target.value == 'superior'){
+        this.estado = false;
+        this.formUsuario.patchValue({unidad_educativa: true });
+      }
+      
     }
-    else {
-      this.estado = false
-    }
-
-
   }
   getCarreras() {
     var auxper = [];
     this.registroCarreraService.getCarreras().subscribe(
       (res) => {
-        console.log("la ress",res)
+        console.log('la ress', res);
         for (let aux of res) {
-          if (aux.id_carrera !=1) {
+          if (aux.id_carrera != 1) {
             auxper.push(aux);
           }
         }
-        this.carreras =auxper;
-        this.isLoaded=true;
-
+        this.carreras = auxper;
+        this.isLoaded = true;
       },
       (err) => {
         console.log(err);
@@ -121,7 +136,8 @@ export class RegistroUsuarioPage implements OnInit {
       cssClass: 'my-custom-class',
       header: 'Términos y condiciones',
       // subHeader: 'Una vez confirmada la solicitud solo podra cancelar hasta antes de 24 horas de la hora seleccionada ',
-      message: 'Esta usted de acuerdo que podamos hacer uso de los datos ingresados para fines académicos',
+      message:
+        'La Universidad Técnica del Norte en cumplimiento con la ley, garantiza que lo datos que usted entregue en el presente formulario serán de uso exclusivo de nuestra entidad con fines academicos. Debe saber que sus contestaciones son totalmente privadas.',
       buttons: [
         // {
         //   text: 'Cancelar',
@@ -136,7 +152,6 @@ export class RegistroUsuarioPage implements OnInit {
           role: 'confirmar',
           handler: () => {
             console.log('Confirmar');
-            
           },
         },
       ],
@@ -148,31 +163,32 @@ export class RegistroUsuarioPage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
   async saveUsuarios() {
-
-    const loading = await this.loadinServices.presentLoading("Cargando...");
+    const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
 
     this.usuario.nombre = this.formUsuario.controls['nombre'].value;
     this.usuario.apellido = this.formUsuario.controls['apellido'].value;
-    this.usuario.correo_electronico = this.formUsuario.controls['correo_electronico'].value;
+    this.usuario.correo_electronico =
+      this.formUsuario.controls['correo_electronico'].value;
     this.usuario.contrasenia = this.formUsuario.controls['contrasenia'].value;
-    this.usuario.nivel_academico = this.formUsuario.controls['nivel_academico'].value;
-    this.usuario.carrera = this.formUsuario.controls['carrera'].value;
-    this.usuario.unidad_educativa = this.formUsuario.controls['unidad_educativa'].value;
-    this.usuarioService.saveUsuario(this.usuario).subscribe(res => {
-      loading.dismiss();
-      if (res) {
-        this.mensajeServices.presentToast("Usuario registrado");
-        console.log("usuario guardado")
-        this.navController.back();
-      }
-
-    },
-      () => {
+    this.usuario.nivel_academico =
+      this.formUsuario.controls['nivel_academico'].value;
+    this.usuario.id_carrera = this.formUsuario.controls['id_carrera'].value;
+    this.usuario.unidad_educativa =
+      this.formUsuario.controls['unidad_educativa'].value;
+    this.usuarioService.saveUsuario(this.usuario).subscribe(
+      (res) => {
         loading.dismiss();
-        this.mensajeServices.presentAlert('Error', 'Hubo un problema al guardar')
+        if (res) {
+          this.mensajeServices.presentToast('Usuario registrado');
+          console.log('usuario guardado');
+          this.navController.back();
+        }
+      },
+      (err) => {
+        loading.dismiss();
+        this.mensajeServices.presentAlert('Error', err.error.text)
       }
-    )
+    );
   }
-
 }

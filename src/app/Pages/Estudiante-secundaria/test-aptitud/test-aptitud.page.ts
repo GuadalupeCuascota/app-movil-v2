@@ -1,114 +1,143 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TestAptitudService } from '../../../Services/test-aptitud.service';
 import { testAptitud } from 'src/app/Models/testAptitud';
+import { IonSlides } from '@ionic/angular';
+interface ButtonStyle {
+  fill: string;
+  color: string;
+}
 @Component({
   selector: 'app-test-aptitud',
   templateUrl: './test-aptitud.page.html',
   styleUrls: ['./test-aptitud.page.scss'],
 })
 export class TestAptitudPage implements OnInit {
-  @ViewChild('slides') slides: any;
+  // @ViewChild('slides') slides: any;
+  @ViewChild(IonSlides, { static: true }) slides: IonSlides;
+  hasAnswered: boolean = false;
+  textil: number = 0;
+  electricidad: number = 0;
+  industrial: number = 0;
+  software: number = 0;
+  telecomunicaciones: number = 0;
+  mecatronica: number = 0;
+  automotriz: number = 0;
   test: testAptitud[] = [];
-
-  option_selected: 0;
-  sumT = 0;
-  testCarrera = '';
   const = 0;
-  constElec = 0;
-  pregunta: testAptitud[] = [];
-
-  opciones = [
-    {
-      opcion: '',
-    },
-  ];
-  preguntas = '';
+  si = 20;
+  carrera={
+    nombre_carrera:'',
+    puntos:0,
+  }
 
   constructor(private testAptitud: TestAptitudService) {}
 
+  button1: ButtonStyle = {
+    fill: 'outline',
+    color: 'primary',
+  };
+  button2: ButtonStyle = {
+    fill: 'outline',
+    color: 'primary',
+  };
+
   ngOnInit() {
-    console.log('pasa test aptitud');
-    // this.getTestAptitud();
-    this.test = this.testAptitud.getTest();
-    console.log('test:', this.test);
+    this.slides.slideTo(0, 100);
+    this.slides.lockSwipeToNext(true);
+    //deshabilitar el deslizar si no responde una pregunta
+    this.getTestAptitud();
+    // this.test = this.testAptitud.getTest();
+    // console.log('test:', this.test);
   }
 
-  // selectRes(event: any) {
-  //   console.log(event);
-  //   this.option_selected = event.detail.value
+  public optionsFn(event) {
+    //here item is an object
+    console.log(event);
+  }
+  resetButtonStyles() {
+    this.button1 = {
+      fill: 'outline',
+      color: 'primary',
+    };
+    this.button2 = {
+      fill: 'outline',
+      color: 'primary',
+    };
+  }
+  applyButtonSelectedStyle(buttonSelect: number) {
+    switch (buttonSelect) {
+      case 1:
+        this.button1 = {
+          fill: 'solid',
+          color: 'primary',
+        };
 
-  //   console.log(this.sumT=this.sumT+1)
+        break;
+      case 2:
+        this.button2 = {
+          fill: 'solid',
+          color: 'primary',
+        };
 
-  // }
-  hasAnswered: boolean = false;
-  textil: number = 0;
-  electricidad:number = 0;
-  industrial:number = 0;
-  software:number = 0;
-  telecomunicaciones:number = 0;
-  mecatronica:number = 0;
-  automotriz:number = 0;
-  selectAnswer(answer, question) {
-
- console.log("el tamaño",this.test.length)
-  //  for(let i=0;this.test.length; i++){
-    if (question == 'Textil') {  
-      this.textil = this.textil + answer.puntos;
-     
+        break;
     }
-    if(question == 'Automotriz'){
-      this.automotriz=this.automotriz+answer.puntos;
-      
+  }
+  respondPoll(buttonSelect: number, question) {
+  this.hasAnswered = true;
+    if (buttonSelect == 1) { 
+      if (question == '7') {
+        this.textil = this.textil + 20;
+      }
+      if (question == '10') {
+        this.automotriz = this.automotriz + 20;
+      }
+      if (question == '6') {
+        this.industrial = this.industrial + 20;
+      }
+      if (question == '2') {
+        this.mecatronica = this.mecatronica + 20;
+      }
+      if (question == '5') {
+        this.software = this.software + 20;
+      }
+      if (question == '3') {
+        this.telecomunicaciones = this.telecomunicaciones + 20;
+      }
+      if (question == '11') {
+        this.electricidad = this.electricidad + 20;
+      }
     }
-    if(question == 'Industrial'){
-      this.industrial=this.industrial+answer.puntos;
-      
-    if(question == 'Mecatrónica'){
-      this.mecatronica=this.mecatronica+answer.puntos;
-      
-    }
-    if(question == 'Software'){
-      this.software=this.software+answer.puntos;
-      
-    }
-    if(question == 'Telecomunicaciones'){
-      this.telecomunicaciones=this.telecomunicaciones+answer.puntos;
-      
-    }
-    if(question == 'Electricidad'){
-      this.electricidad=this.electricidad+answer.puntos;
-      
-    }
-   }
+    
+    this.applyButtonSelectedStyle(buttonSelect);
+      setTimeout(() => {
+      this.hasAnswered = false;
+      this.nextSlide();
+    }, 1200);
+  }
+  restartQuiz() {
+    this.textil = 0;
+  this.electricidad= 0;
+  this.industrial= 0;
+  this.software= 0;
+  this.telecomunicaciones= 0;
+  this.mecatronica= 0;
+  this.automotriz= 0;
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(0, 700);
+    this.slides.lockSwipes(true);
+}
+ 
+  resultado(){
    
-  // } 
-  console.log('los puntos', this.textil);
-
-  console.log('los puntos', this.automotriz);
-  console.log('los puntos', this.industrial);
-  console.log('los puntos', this.mecatronica);
-  console.log('los puntos', this.software);
-  console.log('los puntos', this.telecomunicaciones);
-  console.log('los puntos', this.electricidad);
   }
-  // getTestAptitud() {
-  //   var con = [];
-  //   console.log('pasa test');
-  //   this.testAptitud.gettest().subscribe((res: any) => {
-  //     for (let c of res) {
-  //       const op = c.opcion;
 
-  //       let opciones = {
-  //         opcion: op,
-  //       };
-  //       con.push(opciones);
-  //     }
-  //     this.opciones = con;
-  //     console.log('op', this.opciones);
-  //     this.pregunta = res;
-  //     console.log('las opciones', this.pregunta);
-  //   });
-  // }
+  getTestAptitud() {
+    console.log('pasa test');
+    this.testAptitud.gettest().subscribe((res: any) => {
+      console.log(res);
+      this.test = res;
+    });
+  }
   siguiente() {
     console.log(this.test.length);
     this.const = this.const + 1;
@@ -116,8 +145,10 @@ export class TestAptitudPage implements OnInit {
     }
   }
   nextSlide() {
-    this.slides.lockSwipes(false);
+    this.resetButtonStyles();
+    this.slides.lockSwipeToNext(false);
     this.slides.slideNext();
-    this.slides.lockSwipes(true);
+    this.slides.lockSwipeToNext(true);
+   
   }
 }

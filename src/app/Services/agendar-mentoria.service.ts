@@ -24,4 +24,10 @@ export class AgendarMentoriaService {
     updateEstadoAgendarMentoria(id_registro_mentoria:number,estado_registro:any){
       return this.httpClient.put(environment.baseUrl+"/materiasEstudiante/"+id_registro_mentoria,estado_registro);
     }
+   
+    cancelarMentoria(id_agendamiento_mentoria:number,estado_registro:any){
+      return this.httpClient.put(environment.baseUrl+"/cancelacionMentoriaEst/"+id_agendamiento_mentoria,estado_registro);
+    }
+
+
 }

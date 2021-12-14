@@ -1,3 +1,8 @@
+.error-message{
+  color: var(--ion-color-danger);
+  padding-left: 30px;
+}
+
 ion-card {
     border-radius: 10px;
 }
@@ -7,7 +12,7 @@ ion-header {
     ion-list {
       background: var(--ion-color-primary);
       border-radius: 0 0 18px 18px;
-      background: linear-gradient(150deg, #420252 10%, #f0c1f0 100%);
+      background:#683381 ;
   
       //padding-bottom: 1vh; ancho del ion list
       ion-label {
@@ -26,6 +31,13 @@ ion-header {
     margin-right: 5px;
     
   }
+  .text-solictudes{
+    margin-left: 10px;
+    font-weight: 700;
+  }
+  // .enviar{
+  //   --background: linear-gradient(150deg, #420252 10%, #f0c1f0 100%);
+  // }
   // ion-label{
   //   text-align: center;
   // }
