@@ -2,7 +2,10 @@
   color: var(--ion-color-danger);
   padding-left: 30px;
 }
-
+// .required::after {
+//   content: "*";
+//   color: red;
+// }
 ion-header {
   background: var(--ion-color-light);
 
@@ -22,16 +25,16 @@ ion-header {
 
       .utnlogo {
         width: 30%;
-        height: 30%;
-        margin-top: 5%;
-        
-       
+        height: 27%;
+        margin-top: 3%;
+        margin-left: 4%;
+
       }
 
       .ficastemlogo {
 
-        width: 25%;
-        height: 25%;
+        width: 20%;
+        height: 20%;
         margin-right: 5%;
 
       }

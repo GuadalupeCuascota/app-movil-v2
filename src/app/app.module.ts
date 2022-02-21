@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http'; //importar módulo de http para realizar peticiones
 import { Storage } from '@ionic/storage';
+// import { IonicStorageModule } from '@ionic/storage-angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { AppComponent } from './app.component';
@@ -27,17 +28,21 @@ import { AppAvailability } from '@ionic-native/app-availability/ngx';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 import {
   StreamingMedia
- 
+
 } from '@ionic-native/streaming-media/ngx';
 import { PipesModule } from './pipes/pipes.module';
 //  import { YoutubePipe } from './pipes/youtube.pipe';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
+
+
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-  
+
     BrowserModule,
     IonicModule.forRoot(),
     HttpClientModule,
@@ -47,14 +52,14 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
     PipesModule,
-    
+
   ],
   providers: [ ImagePicker,File,Camera,InAppBrowser,AppAvailability,
     FileTransfer,FileChooser, FilePath,PhotoLibrary,SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Storage,
     IonicStorageModule,
-    StreamingMedia,YoutubeVideoPlayer,EmailComposer
+    StreamingMedia,YoutubeVideoPlayer,EmailComposer,
   ],
   exports: [MenuPrincipalPageModule],
   bootstrap: [AppComponent],

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from './Services/auth.guard'
-
+import { LoggedInGuard } from './Services/guards/logged-in.guard';
+import{LoggedOutGuard} from './Services/guards/logged-out.guard'
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
     redirectTo: 'onboarding',
     pathMatch: 'full'
   },
+
   {
     path: 'menu-opciones',
     loadChildren: () => import('./Pages/Estudiante-superior/menu-opciones/menu-opciones.module').then( m => m.MenuOpcionesPageModule)
@@ -17,54 +19,44 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./Pages/Estudiante-superior/menu-tabs1/menu-tabs1.module').then( m => m.MenuTabs1PageModule)
   },
+
   {
     path: 'mi-perfil/:id',
     loadChildren: () => import('./Pages/mi-perfil/mi-perfil.module').then( m => m.MiPerfilPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./Pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./Pages/login/login.module').then( m => m.LoginPageModule),canActivate:[LoggedOutGuard]
   },
 
   {
     path: 'registro-usuario',
-    loadChildren: () => import('./Pages/registro-usuario/registro-usuario.module').then( m => m.RegistroUsuarioPageModule)
-   
+    loadChildren: () => import('./Pages/registro-usuario/registro-usuario.module').then( m => m.RegistroUsuarioPageModule),
   },
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule)
-  // },
+
   {
     path: 'test-aptitud',
     loadChildren: () => import('./Pages/Estudiante-secundaria/test-aptitud/test-aptitud.module').then( m => m.TestAptitudPageModule)
   },
- 
-  
 
   {
     path: 'menu-opciones-se',
     loadChildren: () => import('./Pages/Estudiante-secundaria/menu-opciones-se/menu-opciones-se.module').then( m => m.MenuOpcionesSePageModule),
     canActivate:[AuthGuard]
-  }, 
+  },
   {
     path: 'menu-principal',
     loadChildren: () => import('./Pages/Estudiante-secundaria/menu-principal/menu-principal.module').then( m => m.MenuPrincipalPageModule),
     canActivate:[AuthGuard]
-   
+
   },
-  
 
   {
     path: 'perfiles',
     loadChildren: () => import('./Pages/perfiles/perfiles.module').then( m => m.PerfilesPageModule),
-  },  
-  
-  // {
-  //   path: 'noticias',
-  //   loadChildren: () => import('./Pages/noticias/noticias.module').then( m => m.NoticiasPageModule),
-  // }, 
-    {
+  },
+
+  {
     path: 'oferta-academica',
     loadChildren: () => import('./Pages/Estudiante-secundaria/oferta-academica/oferta-academica.module').then( m => m.OfertaAcademicaPageModule)
   },
@@ -72,28 +64,7 @@ const routes: Routes = [
     path: 'oferta-academica/:id/:nombre_carrera',
     loadChildren: () => import('./Pages/Estudiante-secundaria/oferta-academica/oferta-academica.module').then( m => m.OfertaAcademicaPageModule)
   },
-  //  {
-  //   path: 'home-superior',
-  //   loadChildren: () => import('./Pages/Estudiante-superior/home-superior/home-superior.module').then( m => m.HomeSuperiorPageModule)
-  // }, 
 
-  
-  // {
-  //   path: 'malla-curricular',
-  //   loadChildren: () => import('./Pages/Estudiante-superior/malla-curricular/malla-curricular.module').then( m => m.MallaCurricularPageModule)
-  // },
-  
-
-
-  // {
-  //   path: 'oferta-academica',
-  //   loadChildren: () => import('./Pages/Estudiante-secundaria/oferta-academica/oferta-academica.module').then( m => m.OfertaAcademicaPageModule)
-  // },
-  
-  // {
-  //   path: 'menu',
-  //   loadChildren: () => import('./Pages/menu/menu.module').then( m => m.MenuPageModule)
-  // },
   {
     path: 'mi-perfil',
     loadChildren: () => import('./Pages/mi-perfil/mi-perfil.module').then( m => m.MiPerfilPageModule)
@@ -102,12 +73,12 @@ const routes: Routes = [
     path: 'carreras-fica',
     loadChildren: () => import('./Pages/Estudiante-secundaria/carreras-fica/carreras-fica.module').then( m => m.CarrerasFicaPageModule)
   },
-  
+
   {
     path: 'detalle-noticia/:id',
     loadChildren: () => import('./Pages/detalle-noticia/detalle-noticia.module').then( m => m.DetalleNoticiaPageModule)
   },
-  
+
   {
     path: 'registro-tutorias',
     loadChildren: () => import('./Pages/Estudiante-superior/registro-tutorias/registro-tutorias.module').then( m => m.RegistroTutoriasPageModule)
@@ -128,6 +99,7 @@ const routes: Routes = [
     path: 'recuperar-contrasenia',
     loadChildren: () => import('./Pages/recuperar-contrasenia/recuperar-contrasenia.module').then( m => m.RecuperarContraseniaPageModule)
   },
+
   {
     path: 'cambiar-contrasenia/:id',
     loadChildren: () => import('./Pages/cambiar-contrasenia/cambiar-contrasenia.module').then( m => m.CambiarContraseniaPageModule)
@@ -144,6 +116,7 @@ const routes: Routes = [
     path: 'detalle-perfil/:id',
     loadChildren: () => import('./Pages/detalle-perfil/detalle-perfil.module').then( m => m.DetallePerfilPageModule)
   },
+
   {
     path: 'resultado-test-aptitud',
     loadChildren: () => import('./Pages/Estudiante-secundaria/resultado-test-aptitud/resultado-test-aptitud.module').then( m => m.ResultadoTestAptitudPageModule)
@@ -154,7 +127,7 @@ const routes: Routes = [
   },
   {
     path: 'onboarding',
-    loadChildren: () => import('./Pages/onboarding/onboarding.module').then( m => m.OnboardingPageModule)
+    loadChildren: () => import('./Pages/onboarding/onboarding.module').then( m => m.OnboardingPageModule ),canActivate:[LoggedOutGuard]
   },
   {
     path: 'test-ing',
@@ -168,6 +141,7 @@ const routes: Routes = [
     path: 'ayuda-soporte',
     loadChildren: () => import('./Pages/ayuda-soporte/ayuda-soporte.module').then( m => m.AyudaSoportePageModule)
   },
+
   {
     path: 'detalle-oferta-academica/:id',
     loadChildren: () => import('./Pages/Estudiante-secundaria/detalle-oferta-academica/detalle-oferta-academica.module').then( m => m.DetalleOfertaAcademicaPageModule)
@@ -177,11 +151,11 @@ const routes: Routes = [
 
 
 
- 
 
 
 
-  
+
+
 ];
 
 @NgModule({

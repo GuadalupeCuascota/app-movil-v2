@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
     <ion-item color="none">
-      <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+      <ion-buttons *ngIf="datos.id_rol==5" slot="start">
         <ion-back-button
           color="light"
           defaultHref="/registro-tutorias"
@@ -26,9 +26,9 @@
       <ion-card-subtitle
         >Hora:{{horario.hora_inicio}}-{{horario.hora_fin}}</ion-card-subtitle
       >
-      <ion-card-subtitle>Materia:{{horario.materia}}</ion-card-subtitle>
+      <ion-card-subtitle>Materia:{{horario.nombre_materia}}</ion-card-subtitle>
       <ion-button
-        fill="outline"
+        
         slot="end"
         (click)="getMentoria(horario.id_registro_mentoria)"
         >AGENDAR</ion-button

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { AppAvailability } from '@ionic-native/app-availability/ngx';
+
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.page.html',
@@ -11,9 +12,11 @@ export class ContactoPage implements OnInit {
   datos: any = {};
   constructor(private platform: Platform,
     private inAppBrowser: InAppBrowser,
-    private appAvailability: AppAvailability) { }
+    private appAvailability: AppAvailability,
+  ) { }
 
   ngOnInit() {
+
     this.datos=JSON.parse(localStorage.getItem('payload'));
   }
   socialMedia(type) {
@@ -48,7 +51,7 @@ export class ContactoPage implements OnInit {
     }
     this.appAvailability.check(app)
       .then(res => {
-        
+
         console.log("EXISTE")
         const fbUrl = 'fb://facewebmodal/f?href=' + url;
         this.openInApp(fbUrl);
@@ -108,6 +111,6 @@ export class ContactoPage implements OnInit {
       this.openInApp('https://wstemproject.eu/');
       return;
     }
-   
+
   }
 }

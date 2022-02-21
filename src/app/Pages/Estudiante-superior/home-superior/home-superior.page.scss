@@ -14,7 +14,8 @@ ion-header {
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
-    padding-bottom: 7vh;background: #683381;
+   padding-bottom: 6vh;
+    background: linear-gradient(#66317F, #a870b1);
     
 
     ion-label {
@@ -32,8 +33,10 @@ ion-header {
       display: flex;
       padding-top: 10px;
       justify-content: space-between;
+      
       .first_div{
-      padding-top: 35px;
+      padding-top: 30px;
+
 
         .bienvenida{
           font-size: 18px;
@@ -43,6 +46,13 @@ ion-header {
           
           font-size: 20px;
           color: #fdfdfd;
+          
+        }
+      }
+      
+      .secd_div{
+        img {
+          width: 60%;
           
         }
       }

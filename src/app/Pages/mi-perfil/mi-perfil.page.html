@@ -1,12 +1,29 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-      <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+  <ion-list lines="none">
+    <ion-item color="none">
+      <div id="header">
+        <!-- <ion-buttons slot="start">
+          <ion-back-button color="light" defaultHref="login"></ion-back-button>
+        </ion-buttons> -->
+
+        <div class="utnlogo">
+          <img src="../../../assets/utncbn.png" />
+        </div>
+        <div class="ficastemlogo">
+          <img src="../../../assets/logostemfica (2).png" />
+        </div>
+      </div>
+    </ion-item>
+    <!-- <ion-item color="none"> </ion-item> -->
+  </ion-list>
+  <!-- <ion-toolbar>
+      <ion-buttons *ngIf="datos.id_rol==4" slot="start">
         <ion-back-button  color="primary" defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
       </ion-buttons>
-      <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+      <ion-buttons  *ngIf="datos.id_rol==5" slot="start">
         <ion-back-button  color="primary" defaultHref="/menu-opciones/tabs/home-superior"></ion-back-button>
       </ion-buttons>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
@@ -56,5 +73,8 @@
     </ion-item>
     <br>
     <ion-button type="submit" color="primary"  [disabled]="!formGroup.valid" shape="round" expand="block" >Actualizar</ion-button>
+    <ion-button fill="outline"  color="secondary" shape="round" expand="block" (click)="regresar()">Cancelar</ion-button>
+
   </form>
+ 
 </ion-content>

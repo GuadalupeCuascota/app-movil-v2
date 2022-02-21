@@ -8,13 +8,13 @@
     </div>
     
     
-    <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+    <ion-buttons  *ngIf="datos.id_rol==4" slot="start">
       <ion-back-button
         color="light"
         defaultHref="menu-opciones-se/menu-principal/home-secundaria"
       ></ion-back-button>
     </ion-buttons>
-    <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+    <ion-buttons *ngIf="datos.id_rol==5" slot="start">
       <ion-back-button
         color="light"
         defaultHref="/menu-opciones/tabs/home-superior"

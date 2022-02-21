@@ -5,31 +5,32 @@
   padding-left: 25px;
 }
 .login-page {
- 
+
   padding: 6% 0 0;
-background: #683381;
-  
-  // background: linear-gradient(100deg,rgba(104, 51, 129, 0.9),rgba(176, 122, 180, 0.8));
-  background-repeat: no-repeat center center fixed;
+  // background: #683381;
+  background: linear-gradient(#66317F, #a870b1);
+
+  // background: linear-gradient(100deg,rgba(#61358C, 0.10),rgba(#9868A6, 0.8));
+  // background-repeat: no-repeat center center fixed;
   min-height: 50vh;
   background-size:100%;
 
   #header {
-    position:absolute;
+    position:relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 1;
-     top: 5%;
-     
+
+     top: -12%;
+
     img {
       width: 60%;
       height: 60%;
-    
-     
+
+
     }
 
-    
+
   }
   #head {
     display: flex;
@@ -37,26 +38,29 @@ background: #683381;
     align-items:start;
      margin-left: 5%;
     img {
-      width: 24%;
-      height: 24%;
-     
-      
+      width: 34%;
+      height: 34%;
+
+
     }
   }
- 
+
   .container{
     h1 {
       font-weight: 700;
       font-size: 26px;
       color: #010101;
       text-align: center;
-      
+
     }
-    height: 65%;
+    height: 60vh;
     width: 100%;
     background-color: white;
+    right: 0;
+    left:0;
     bottom: 0;
-    position: absolute;
+    position: fixed;
+    margin:auto;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     // border-bottom-left-radius: 40px;
@@ -72,18 +76,18 @@ background: #683381;
         border-radius: 40px;
         height: 50px;
         --background:rgba(255,255,255,0.5);
-     
+
         box-shadow: 1px 1px 1px 1px rgb(116, 53, 110);
         --highlight-height: 0px;
         ion-icon{
           font-size: 23px;
-         
+
         }
       }
       ion-text{
        font-size:0.9rem;
-      
-       
+
+
       }
       .head{
       display: flex;
@@ -97,12 +101,12 @@ background: #683381;
       }
       ion-button {
         height: 50px;
-        
+
       }
 
     }
-  
-  
+
+
   }
 
 }

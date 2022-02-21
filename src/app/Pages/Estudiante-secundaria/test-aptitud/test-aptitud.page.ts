@@ -34,11 +34,11 @@ export class TestAptitudPage implements OnInit {
 
   button1: ButtonStyle = {
     fill: 'outline',
-    color: 'primary',
+    color: 'secondary',
   };
   button2: ButtonStyle = {
     fill: 'outline',
-    color: 'primary',
+    color: 'secondary',
   };
 
   ngOnInit() {
@@ -57,11 +57,11 @@ export class TestAptitudPage implements OnInit {
   resetButtonStyles() {
     this.button1 = {
       fill: 'outline',
-      color: 'primary',
+      color: 'secondary',
     };
     this.button2 = {
       fill: 'outline',
-      color: 'primary',
+      color: 'secondary',
     };
   }
   applyButtonSelectedStyle(buttonSelect: number) {

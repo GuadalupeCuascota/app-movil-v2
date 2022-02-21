@@ -7,5 +7,5 @@ export class RegistroMentorias{
     id_estado_mentoria: number;
     nombre:string;
     apellido:string;
-    carrera:string;
+    id_carrera:number;
 }

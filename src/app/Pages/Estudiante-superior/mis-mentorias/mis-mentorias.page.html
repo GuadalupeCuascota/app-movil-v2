@@ -1,14 +1,14 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
     <ion-item color="none">
-      <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+      <ion-buttons *ngIf="datos.id_rol==4" slot="start">
         <ion-back-button
           color="light"
           defaultHref="menu-opciones-se/menu-principal/home-secundaria"
         ></ion-back-button>
       </ion-buttons>
 
-      <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+      <ion-buttons *ngIf="datos.id_rol==5" slot="start">
         <ion-back-button
           color="light"
           defaultHref="menu-opciones/tabs/home-superior"
@@ -20,6 +20,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card *ngFor="let mentorias of mentoriasAgendadas">
     <ion-card-content>
       <ion-label> Mentora: </ion-label>{{mentorias.nombre}}
@@ -30,10 +33,11 @@
       <ion-label> Hora: </ion-label>
       Hora:{{mentorias.hora_inicio}}-{{mentorias.hora_fin}}
       <br />
-      <ion-label> Materia: </ion-label>{{mentorias.materia}}
+      <ion-label> Materia: </ion-label>{{mentorias.nombre_materia}}
       <BR>
       <ion-button
-            fill="outline"
+      
+          
             slot="end"
             (click)="presentAlert(mentorias.id_agendamiento_mentoria,mentorias.id_registro_mentoria)"
             ><ion-icon name="trash-outline"></ion-icon> ANULAR</ion-button>

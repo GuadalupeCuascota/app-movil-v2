@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {AutenticacionService} from './Services/autenticacion.service'
 import { MenuController } from '@ionic/angular';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,12 +12,12 @@ import { MenuController } from '@ionic/angular';
 export class AppComponent {
   datos: any = {};
 
-  constructor() {}
- 
+  constructor( ) {}
+
 
   ngOnInit(): void {
-   
-    
+
+
   }
 
 }

@@ -5,7 +5,7 @@ ion-header {
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
-    background: #5F1673;
+    background: linear-gradient(#66317F, #a870b1);
 
     //padding-bottom: 1vh; ancho del ion list
     ion-label {
@@ -35,7 +35,8 @@ ion-card {
 
   //background: var(--ion-color-white);
   ion-icon {
-    color:#706F6F;
+    
+    color:#66317F;
     font-size: 25px;
   }
 

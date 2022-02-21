@@ -82,7 +82,7 @@ export class CarrerasFicaPage implements OnInit {
     this.registroCarreras.getCarreras().subscribe(
       (res) => {
         for (let aux of res) {
-          if (aux.id_carrera != 1) {
+          if (aux.id_carrera != 1 && aux.id_carrera!=12) {
             auxper.push(aux);
           }
         }

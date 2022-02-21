@@ -12,6 +12,7 @@ import { LoadingService } from 'src/app/Services/loading.service';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 
+
 @Component({
   selector: 'app-cambiar-contrasenia',
   templateUrl: './cambiar-contrasenia.page.html',
@@ -30,10 +31,12 @@ export class CambiarContraseniaPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private actRoute: ActivatedRoute,
-    private mensajeServices: MensajesService
+    private mensajeServices: MensajesService,
+
   ) {}
 
   ngOnInit() {
+
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
     console.log('el id', this.id);

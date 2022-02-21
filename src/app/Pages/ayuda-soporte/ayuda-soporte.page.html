@@ -1,14 +1,4 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button color="primary" defaultHref="/login"></ion-back-button>
-    </ion-buttons>
-    <ion-title
-      style="color: rgba(123, 69, 147); text-align: center; font-weight: 700"
-      >Ayuda y Soporte</ion-title
-    >
-  </ion-toolbar>
-</ion-header> -->
+
 <div class="user_div">
   <ion-header class="ion-no-border">
     <ion-list lines="none">
@@ -17,7 +7,7 @@
           <ion-back-button color="light" defaultHref="/login"></ion-back-button>
         </ion-buttons>
         <ion-title
-          style="color: rgb(249, 248, 250); text-align: center; font-weight: 700"
+          style="color: rgb(249, 248, 250); font-weight: 700"
           >Ayuda y Soporte</ion-title
         >
         
@@ -29,26 +19,14 @@
   </ion-header>
 </div>
 <ion-content>
-  <br />
-  <br />
-  <!-- <ion-card>
-  
-    <ion-item href="#">
-      <ion-icon name="chatbubble-ellipses"></ion-icon>
-      
-    <ion-label >  Facebook Messenger</ion-label>
-    <ion-button fill="outline" slot="end"><ion-icon name="chevron-forward"></ion-icon></ion-button>
-      
-    </ion-item>
-  
-  </ion-card> -->
+  <br /> 
 
-  <ion-card>
+  <ion-card (click)="OpenEmailcomposer()">
     <ion-item>
-      <ion-icon name="mail"></ion-icon>
-      <ion-label style="color: #010101"> Correo electrónico</ion-label>
       
-      <ion-button (click)="OpenEmailcomposer()" fill="outline" slot="end"
+      <ion-label style="color: #010101"> <ion-icon name="mail"></ion-icon> Correo electrónico</ion-label>
+      
+      <ion-button (click)="OpenEmailcomposer()"  fill="outline" slot="end"
         ><ion-icon name="chevron-forward"></ion-icon
       ></ion-button>
     </ion-item>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/Models/usuario';
 import { LoadingService } from 'src/app/Services/loading.service';
@@ -18,16 +18,20 @@ export class MiPerfilPage implements OnInit {
   formGroup: FormGroup;
   showPassword = false;
   passwordIcon = 'eye';
- 
+
   constructor(private usuarioService: UsuarioService,
     private actRoute: ActivatedRoute,
     private loadinServices: LoadingService,
     private mensajeServices: MensajesService,
     private formBuilder: FormBuilder,
     private navController:NavController,
+    private router: Router,
+
     ) { }
-  
+
   async ngOnInit() {
+
+
     this.datos=JSON.parse(localStorage.getItem('payload'));
 
 
@@ -50,7 +54,7 @@ export class MiPerfilPage implements OnInit {
       this.formGroup.controls['apellido'].setValue(this.usuario.apellido);
       this.formGroup.controls['correo_electronico'].setValue(this.usuario.correo_electronico);
       this.formGroup.controls['contrasenia'].setValue(this.usuario.contrasenia);
-      
+
         },
         () => {
           loading.dismiss();
@@ -62,6 +66,18 @@ export class MiPerfilPage implements OnInit {
     }
 
   }
+  regresar(){
+    if(this.datos.id_rol==4){
+      this.router.navigate(['/menu-opciones-se/menu-principal/home-secundaria']);
+
+    }else{
+      if(this.datos.id_rol==5){
+        this.router.navigate(['/menu-opciones/tabs/home-superior']);
+
+      }
+
+    }
+  }
   toggleShow(): void {
     this.showPassword = !this.showPassword;
     if (this.passwordIcon == 'eye') {
@@ -70,7 +86,7 @@ export class MiPerfilPage implements OnInit {
       this.passwordIcon = 'eye';
     }
   }
-  
+
    async updateUsuarios() {
 
     const loading = await this.loadinServices.presentLoading("Cargando...");
@@ -80,7 +96,7 @@ export class MiPerfilPage implements OnInit {
     this.usuario.apellido = this.formGroup.controls['apellido'].value;
     this.usuario.correo_electronico = this.formGroup.controls['correo_electronico'].value;
     this.usuario.contrasenia = this.formGroup.controls['contrasenia'].value;
-    
+
     this.usuarioService.updateUsuario(this.usuario.id_usuario,this.usuario).subscribe(res => {
       loading.dismiss();
       if (res) {

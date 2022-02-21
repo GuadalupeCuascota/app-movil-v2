@@ -24,22 +24,23 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-// ion-toolbar, 
-// > ion-toolbar, 
+// ion-toolbar,
+// > ion-toolbar,
 // ion-button{
 //     --background: #ec407a
 //     --color: red;
 
 // }
 :root {
-  --ion-color-primary: #683381;
+
+  --ion-color-primary:  #683381;
   --ion-color-primary-rgb: 128,46,242;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255,255,255;
   --ion-color-primary-shade: #7128d5;
   --ion-color-primary-tint: #8d43f3;
 
-  --ion-color-secondary: #F28A2E;
+  --ion-color-secondary:  #F28A2E;
   --ion-color-secondary-rgb: 242,138,46;
   --ion-color-secondary-contrast: #000000;
   --ion-color-secondary-contrast-rgb: 0,0,0;
@@ -97,7 +98,7 @@
 
   --ion-background-color: #ffffff;
   // --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
-  
+
 }
 @font-face {
   font-family: 'Roboto Condensed';
@@ -112,7 +113,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
 }
 .swiper-pagination-bullet{
   transition: width 0.2s ease-in-out,height 0,2s ease-in-out;

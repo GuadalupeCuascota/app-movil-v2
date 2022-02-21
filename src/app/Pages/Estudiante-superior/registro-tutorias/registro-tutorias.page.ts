@@ -86,6 +86,7 @@ export class RegistroTutoriasPage implements OnInit {
     // this.getRegistroMentorias();
     this.getSolicitudesMentoria();
     this.datos = JSON.parse(localStorage.getItem('payload'));
+    console.log('DATOS', this.datos);
     // this.getMateriasCarrera();
     this.formSolicitudM = this.formBuilder.group({
       id_materia: new FormControl('', Validators.required),
@@ -140,6 +141,7 @@ export class RegistroTutoriasPage implements OnInit {
     //envia un evento opcional de tipo any
     this.getMentorasRegistro();
     this.getSolicitudesMentoria();
+   
     if ($event) {
       $event.target.complete();
     }
@@ -165,10 +167,19 @@ export class RegistroTutoriasPage implements OnInit {
   }
 
   getMaterias() {
+    var UsuMat = [];
     this.registroMateria.getMaterias().subscribe(
       (res) => {
-        this.materias = res;
-        console.log('las materias', res);
+        for (let mat of res) {
+          
+          if (this.datos.id_carrera == mat.id_carrera && mat.id_estado_materia== 1 ) {
+
+            UsuMat.push(mat)
+            this.materias = res;
+            console.log('las materias es', res);
+          }
+          this.materias=UsuMat
+        }
       },
       (err) => {
         console.log(err);
@@ -204,11 +215,14 @@ export class RegistroTutoriasPage implements OnInit {
     console.log('la opcion', this.option_selected);
   }
   getMentorasRegistro() {
+
     var UsuMentoria = [];
     this.regitroMentoriasService.getMentorasRegistro().subscribe(
       (res) => {
+
+        console.log("mentoras",res)
         for (let usu1 of res) {
-          if (usu1.carrera == this.datos.carrera) {
+          if (usu1.id_carrera == this.datos.id_carrera ||usu1.id_carrera==12) {
             UsuMentoria.push(usu1);
           }
         }
@@ -367,7 +381,9 @@ export class RegistroTutoriasPage implements OnInit {
       .getSolicitudMentoria(this.datos.id_usuario)
       .subscribe(
         (res: any) => {
-          this.solicitudesEst = res;
+          for (let aux of res) {
+            this.solicitudesEst = res;
+          }
 
           console.log('obtiene respuesta', res);
         },
@@ -383,7 +399,7 @@ export class RegistroTutoriasPage implements OnInit {
     this.registroTemaMateria.getTemasMateria(id).subscribe(
       (res) => {
         this.tema = res;
-        console.log("el tema segun la materia",this.tema)
+        console.log('el tema segun la materia', this.tema);
       },
       (err) => {}
     );

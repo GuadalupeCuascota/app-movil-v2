@@ -1,5 +1,6 @@
-import { Component, OnInit, ContentChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Usuario } from 'src/app/Models/usuario';
+import { Rol } from 'src/app/Models/roles';
 import { Carreras } from 'src/app/Models/carreras-fica';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.service';
@@ -23,14 +24,14 @@ RegistroCarrerasService;
 export class RegistroUsuarioPage implements OnInit {
   usuarios: Usuario[] = [];
   carreras: Carreras[] = [];
+  roles: Rol [] = [];
   usuario: Usuario;
-  formUsuario: FormGroup;
-  formnivel: FormGroup;
   estado: boolean;
   showPassword = false;
   passwordIcon = 'eye';
   isLoaded = false;
-  
+  formUsuario: FormGroup;
+  formnivel: FormGroup;
   private emailPattern: any =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   constructor(
@@ -41,10 +42,13 @@ export class RegistroUsuarioPage implements OnInit {
     private mensajeServices: MensajesService,
     private loadinServices: LoadingService,
     private registroCarreraService: RegistroCarrerasService,
-    public alertController: AlertController
+    public alertController: AlertController,
+
   ) {}
 
   ngOnInit() {
+
+    this.ObtenerRoles();
     this.getCarreras();
 
     this.formUsuario = this.formBuilder.group({
@@ -56,7 +60,7 @@ export class RegistroUsuarioPage implements OnInit {
         Validators.required,
         Validators.pattern('[a-zA-Z a-zA-ZñÑáéíóúÁÉÍÓÚ]+'),
       ]),
-      nivel_academico: new FormControl('', Validators.required),
+      id_rol: new FormControl('', Validators.required),
       correo_electronico: new FormControl('', [
         Validators.required,
         Validators.pattern(this.emailPattern),
@@ -66,9 +70,9 @@ export class RegistroUsuarioPage implements OnInit {
         Validators.minLength(8),
       ]),
 
-      id_carrera: new FormControl('', Validators.required),
+      nombre_carrera: new FormControl('', Validators.required),
       unidad_educativa: new FormControl('', Validators.required),
-      termsAccepted: [null, Validators.required],
+      termsAccepted: ['', Validators.required],
     });
 
     this.usuario = new Usuario();
@@ -81,6 +85,8 @@ export class RegistroUsuarioPage implements OnInit {
       this.passwordIcon = 'eye';
     }
   }
+
+
   onTermsChecked(event) {
     console.log(event);
 
@@ -100,17 +106,21 @@ export class RegistroUsuarioPage implements OnInit {
     );
   }
   public optionsFn(event) {
+    console.log("el evento ",event.target.value)
+
+    this.usuario.unidad_educativa=null
+    this.formUsuario.controls['unidad_educativa'].setValue(this.usuario.unidad_educativa);
     //here item is an object
-    console.log(event.target.value);
-    if (event.target.value == 'secundaria') {
+
+    if (event.target.value == 4) {
       this.estado = true;
-      this.formUsuario.patchValue({carrera: true });
+      this.formUsuario.patchValue({id_carrera: true });
     } else {
-      if(event.target.value == 'superior'){
+      if(event.target.value == 5){
         this.estado = false;
         this.formUsuario.patchValue({unidad_educativa: true });
       }
-      
+
     }
   }
   getCarreras() {
@@ -119,7 +129,7 @@ export class RegistroUsuarioPage implements OnInit {
       (res) => {
         console.log('la ress', res);
         for (let aux of res) {
-          if (aux.id_carrera != 1) {
+          if (aux.id_carrera != 1 && aux.id_carrera!=12) {
             auxper.push(aux);
           }
         }
@@ -171,11 +181,11 @@ export class RegistroUsuarioPage implements OnInit {
     this.usuario.correo_electronico =
       this.formUsuario.controls['correo_electronico'].value;
     this.usuario.contrasenia = this.formUsuario.controls['contrasenia'].value;
-    this.usuario.nivel_academico =
-      this.formUsuario.controls['nivel_academico'].value;
-    this.usuario.id_carrera = this.formUsuario.controls['id_carrera'].value;
-    this.usuario.unidad_educativa =
+    this.usuario.unidad_educativa=
       this.formUsuario.controls['unidad_educativa'].value;
+    this.usuario.nombre_carrera = this.formUsuario.controls['nombre_carrera'].value;
+    this.usuario.id_rol =
+      this.formUsuario.controls['id_rol'].value;
     this.usuarioService.saveUsuario(this.usuario).subscribe(
       (res) => {
         loading.dismiss();
@@ -189,6 +199,20 @@ export class RegistroUsuarioPage implements OnInit {
         loading.dismiss();
         this.mensajeServices.presentAlert('Error', err.error.text)
       }
+    );
+  }
+  ObtenerRoles() {
+    var rol = [];
+    this.usuarioService.getRoles().subscribe(
+      (res: any) => {
+        for (let rol1 of res) {
+          if (rol1.id_rol == 4 || rol1.id_rol == 5) {
+            rol.push(rol1);
+          }
+        }
+        this.roles  = rol;
+      },
+      (err) => console.error(err)
     );
   }
 }

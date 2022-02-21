@@ -28,6 +28,14 @@ export class MisMentoriasPage implements OnInit {
     
     
   }
+  doRefresh($event?: any) {
+    //envia un evento opcional de tipo any
+    this.getAgedamiento();
+    if ($event) {
+      $event.target.complete();
+    }
+  }
+
   getAgedamiento(){
     var UsuMentoria = [];
     this.regitroAgendarMentoriaService.getAgendarMentorias().subscribe(
@@ -104,8 +112,10 @@ export class MisMentoriasPage implements OnInit {
 
       },
       (err)=>{
-      console.log(err)
+        console.log(err)
+      this.mensajeServices.presentAlert('',err.error.text)
       }
+
     )
 
   }

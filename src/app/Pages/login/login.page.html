@@ -1,37 +1,56 @@
 
 
 <div class="login-page">
-  
-  <div id="head">
-   
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" sizeSm="6">
+        <div id="head">
+
+        <img src="../../../assets/utncbn.png" />
+
+      </div>
+      </ion-col>
+      <ion-col size="12" sizeSm="6">
+        <div id="header">
+
+          <img src="../../../assets/logostemfica.png" />
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <!-- <div id="head">
+
     <img src="../../../assets/utncbn.png" />
-    
+
   </div>
   <div id="header">
-   
+
     <img src="../../../assets/logostemfica.png" />
-    
-  </div>
+
+  </div> -->
   <div class="container ">
     <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
       <h1>Iniciar Sesión </h1>
       <ion-item>
         <ion-label color="medium" position="floating"> Correo electrónico:</ion-label>
         <ion-input   formControlName="correo_electronico" ></ion-input>
-        <ion-icon 
+        <ion-icon
         slot="end" name="mail"></ion-icon>
       </ion-item>
       <small  class="error-message" *ngIf="formLogin.get('correo_electronico').hasError('required') && formLogin.get('correo_electronico').touched" >Campo es requerido</small>
       <br>
       <ion-item>
         <ion-label  color="medium" position="floating"> Contraseña:</ion-label>
-        <ion-input formControlName="contrasenia" 
+        <ion-input formControlName="contrasenia"
           [type]="showPassword ? 'text': 'password'"
-          
-        ></ion-input>
-        <ion-icon 
 
-       
+        ></ion-input>
+        <ion-icon
+
+
           slot="end"
           [name]="passwordIcon"
           (click)="toggleShow()"
@@ -41,14 +60,14 @@
       <br>
       <div class="head">
         <ion-text color="medium"  class="ion-text-right"></ion-text>
-      
+
          <a style="color: darkgray" routerLink="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
-        
+
       </div>
-      
+
      <br>
-     
-      <ion-button type="submit" class="btnclass" [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión</ion-button>
+
+      <ion-button type="submit" class="btnclass" [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión </ion-button>
       <p>
         <ion-text style=" font-weight: bold;" color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a style=" font-weight: bold; text-decoration: none;"href="/registro-usuario" >Registrate</a></ion-text>
       </p>

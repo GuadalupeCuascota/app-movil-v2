@@ -1,127 +1,205 @@
+<ion-header class="ion-no-border">
+  <ion-list lines="none">
+    <ion-item color="none">
+      <div id="header">
+        <!-- <ion-buttons slot="start">
+          <ion-back-button color="light" defaultHref="login"></ion-back-button>
+        </ion-buttons> -->
 
-
-
-
-  <ion-header class="ion-no-border">
-    <ion-list lines="none">
-      <ion-item color="none">
-       <ion-buttons  slot="start">
-          <ion-back-button
-            color="light"
-            defaultHref="login"
-          ></ion-back-button>
-        </ion-buttons>
-        <div id="header">
-          <div class="utnlogo">
-            <img src="../../../assets/utncbn.png" />
-          </div>
-         <div class="ficastemlogo">
-          <img src="../../../assets/ficaStemUtnv2.png" />
-         </div>
-          
-
-          
+        <div class="utnlogo">
+          <img src="../../../assets/utncbn.png" />
         </div>
-      </ion-item>
-      <!-- <ion-item color="none"> </ion-item> -->
-    </ion-list>
-
-  
-  </ion-header>
-
+        <div class="ficastemlogo">
+          <img src="../../../assets/logostemfica (2).png" />
+        </div>
+      </div>
+    </ion-item>
+    <!-- <ion-item color="none"> </ion-item> -->
+  </ion-list>
+</ion-header>
 
 <ion-content>
- 
- 
-    <h1>Registro</h1>
- 
-  <form id="form" [formGroup]="formUsuario" (ngSubmit)="saveUsuarios()">
-      <ion-item>
-        <ion-label position="floating"> Nombre:</ion-label>
-        <ion-input 
-          formControlName="nombre"
-          placeholder="Ingrese nombre"
-        ></ion-input>
-      </ion-item>
-      <small  class="error-message" *ngIf="formUsuario.get('nombre').hasError('required') && formUsuario.get('nombre').touched" >campo es requerido</small>
-      <small  class="error-message" *ngIf="formUsuario.get('nombre').hasError('pattern') && formUsuario.get('nombre').touched" >Ingrese solo letras</small>
-      <br>
+  <ion-buttons slot="start">
+    <ion-back-button color="primary" defaultHref="login"></ion-back-button>
+  </ion-buttons>
+  <h1>Registro</h1>
 
-      <ion-item>
-        <ion-label position="floating"> Apellido:</ion-label>
-        <ion-input
-          formControlName="apellido"
-          placeholder="Ingrese apellido"
-        ></ion-input>
-        
-      </ion-item>
-      <small  class="error-message" *ngIf="formUsuario.get('apellido').hasError('required') && formUsuario.get('apellido').touched" >campo es requerido</small>
-      <small  class="error-message" *ngIf="formUsuario.get('apellido').hasError('pattern') && formUsuario.get('apellido').touched" >Ingrese solo letras</small>
-      <br>
-      <ion-item>
-        <ion-label position="floating"> Correo electrónico:</ion-label>
-        <ion-input
-          formControlName="correo_electronico"
-          placeholder="Ingrese email"
-        ></ion-input>
-        
-      </ion-item>
-      <small  class="error-message" *ngIf="formUsuario.get('correo_electronico').hasError('required') && formUsuario.get('correo_electronico').touched" >campo es requerido</small>
-      <small  class="error-message" *ngIf="formUsuario.get('correo_electronico').hasError('pattern') && formUsuario.get('correo_electronico').touched" >Ingrese correo valido</small>
-      <br>
-      <ion-item>
-        <ion-label position="floating"> Contraseña:</ion-label>
-        <ion-input
-          [type]="showPassword ? 'text': 'password'"
-          formControlName="contrasenia"
-          placeholder="Ingrese contraseña"
-        ></ion-input>
-        <ion-icon
-          slot="end"
-          [name]="passwordIcon"
-          (click)="toggleShow()"
-        ></ion-icon>
-      </ion-item>
-      <small  class="error-message" *ngIf="formUsuario.get('contrasenia').hasError('required') && formUsuario.get('contrasenia').touched" >campo es requerido</small>
-      <small  class="error-message" *ngIf="formUsuario.get('contrasenia').hasError('minlength') && formUsuario.get('contrasenia').touched" >Cantidad minima de caracteres es (8)</small>
-      <br>
-      <ion-item>
-        <ion-label>Nivel académico:</ion-label>
-        <ion-select
-          (ionChange)="optionsFn($event)"
-          placeholder="Seleccione"
-          formControlName="nivel_academico"
+  <form id="form" [formGroup]="formUsuario" (ngSubmit)="saveUsuarios()">
+    <ion-item>
+      <ion-label class="required" position="floating"> Nombre:</ion-label>
+      <ion-input
+        formControlName="nombre"
+        placeholder="Ingrese nombre"
+      ></ion-input>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('nombre').hasError('required') && formUsuario.get('nombre').touched"
+      >campo es requerido</small
+    >
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('nombre').hasError('pattern') && formUsuario.get('nombre').touched"
+      >Ingrese solo letras</small
+    >
+    <br />
+
+    <ion-item>
+      <ion-label class="required" position="floating"> Apellido:</ion-label>
+      <ion-input
+        formControlName="apellido"
+        placeholder="Ingrese apellido"
+      ></ion-input>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('apellido').hasError('required') && formUsuario.get('apellido').touched"
+      >campo es requerido</small
+    >
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('apellido').hasError('pattern') && formUsuario.get('apellido').touched"
+      >Ingrese solo letras</small
+    >
+    <br />
+    <ion-item>
+      <ion-label class="required" position="floating">
+        Correo electrónico:</ion-label
+      >
+      <ion-input
+        formControlName="correo_electronico"
+        placeholder="Ingrese email"
+      ></ion-input>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('correo_electronico').hasError('required') && formUsuario.get('correo_electronico').touched"
+      >campo es requerido</small
+    >
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('correo_electronico').hasError('pattern') && formUsuario.get('correo_electronico').touched"
+      >Ingrese correo valido</small
+    >
+    <br />
+    <ion-item>
+      <ion-label class="required" position="floating"> Contraseña:</ion-label>
+      <ion-input
+        [type]="showPassword ? 'text': 'password'"
+        formControlName="contrasenia"
+        placeholder="Ingrese contraseña"
+      ></ion-input>
+      <ion-icon
+        slot="end"
+        [name]="passwordIcon"
+        (click)="toggleShow()"
+      ></ion-icon>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('contrasenia').hasError('required') && formUsuario.get('contrasenia').touched"
+      >campo es requerido</small
+    >
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('contrasenia').hasError('minlength') && formUsuario.get('contrasenia').touched"
+      >Cantidad minima de caracteres es (8)</small
+    >
+    <br />
+    <!-- <ion-item>
+      <ion-label class="required">Nivel académico:</ion-label>
+      <ion-select
+        (ionChange)="optionsFn($event)"
+        placeholder="Seleccione"
+        formControlName="id_rol"
+      >
+        <ion-select-option *ngFor="let rol of roles" >{{rol.tipo_rol}}</ion-select-option>
+      
+      </ion-select>
+    </ion-item> -->
+    <!-- <small
+    class="error-message"
+    *ngIf="formUsuario.get('id_rol').hasError('required') && formUsuario.get('id_rol').touched"
+    >campo es requerido</small
+  > -->
+
+   
+    <ion-item>
+      <ion-label class="required"> Nivel académico: </ion-label>
+      <ion-select    (ionChange)="optionsFn($event)" placeholder="Seleccione" formControlName="id_rol">
+        <ion-select-option  *ngFor="let rol of roles"  value="{{rol.id_rol}}"
+          >{{rol.tipo_rol}}</ion-select-option
         >
-          <ion-select-option value="secundaria">Bachillerato</ion-select-option>
-          <ion-select-option value="superior"
-            >Educación superior</ion-select-option
-          >
-        </ion-select>
-      </ion-item>
-      <br>
-        <ion-item *ngIf="estado==false">
-          <ion-label> Carrera: </ion-label>
-          <ion-select placeholder="Seleccione" formControlName="id_carrera">
-            <ion-select-option  *ngFor="let carrera of carreras"
-              >{{carrera.nombre_carrera}}</ion-select-option
-            >
-           
-          </ion-select>
-        </ion-item>
-        
-        <ion-item *ngIf="estado">
-          <ion-label position="floating"> Unidad Educativa:</ion-label>
-          <ion-input
-            formControlName="unidad_educativa"
-            placeholder="Ingrese unidad educativa"
-          ></ion-input>
-        </ion-item>
-       
-         <ion-checkbox ngControl="termsAccepted" (ionChange)="onTermsChecked($event)" color="primary" ></ion-checkbox><ion-label> <a  style=" font-weight: bold;text-decoration: none; color: darkgray;" (click)="presentAlert()"> Aceptar términos y condiciones</a> </ion-label>
-            
-        <ion-button type="submit" color="primary"  [disabled]="!formUsuario.valid " shape="round" expand="block" >Registrarse</ion-button>
-        <p>
-          <ion-text   style=" font-weight: bold;" color="medium"  class="ion-text-right">¿Ya tienes una cuenta?<a  style=" font-weight: bold;text-decoration: none" href="/login"> Iniciar Sesión</a></ion-text>
-        </p>
+      </ion-select>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('id_rol').hasError('required') && formUsuario.get('id_rol').touched"
+      >campo es requerido</small
+    >
+    <br />
+    <ion-item *ngIf="estado==false">
+      <ion-label class="required"> Carrera: </ion-label>
+      <ion-select value=""  placeholder="Seleccione" formControlName="nombre_carrera">
+        <ion-select-option *ngFor="let carrera of carreras"
+          >{{carrera.nombre_carrera}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('nombre_carrera').hasError('required') && formUsuario.get('nombre_carrera').touched"
+      >campo es requerido</small
+    >
+
+    <ion-item *ngIf="estado">
+      <ion-label position="floating" class="required">
+        Unidad Educativa:</ion-label
+      >
+      <ion-input
+        formControlName="unidad_educativa"
+        placeholder="Ingrese unidad educativa"
+      ></ion-input>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formUsuario.get('unidad_educativa').hasError('required') && formUsuario.get('unidad_educativa').touched"
+      >campo es requerido</small
+    >
+    <br />
+
+    <ion-checkbox
+      ngControl="termsAccepted"
+      (ionChange)="onTermsChecked($event)"
+      color="primary"
+    ></ion-checkbox
+    ><ion-label>
+      <a
+        style="font-weight: bold; text-decoration: none; color: darkgray"
+        (click)="presentAlert()"
+      >
+        Aceptar términos y condiciones</a
+      >
+    </ion-label>
+    <br>
+    <br>
+    <ion-button
+      type="submit"
+      color="primary"
+      [disabled]="!formUsuario.valid "
+      shape="round"
+      expand="block"
+      >Registrarse</ion-button
+    >
+    <p>
+      <ion-text style="font-weight: bold" color="medium" class="ion-text-right"
+        >¿Ya tienes una cuenta?<a
+          style="font-weight: bold; text-decoration: none"
+          href="/login"
+        >
+          Iniciar Sesión</a
+        ></ion-text
+      >
+    </p>
   </form>
 </ion-content>

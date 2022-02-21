@@ -3,5 +3,6 @@ export interface Materia {
     nombre_materia: string;
     id_estado_materia:number;
     id_usuario:number
+    id_carrera:number
   
 }

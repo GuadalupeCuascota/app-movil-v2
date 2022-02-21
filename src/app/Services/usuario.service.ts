@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Rol } from '../Models/roles';
 import { Usuario } from '../Models/usuario';
 
 @Injectable({
@@ -12,6 +13,8 @@ export class UsuarioService {
   getUsuarios(){
   return this.httpClient.get<Array<Usuario>>(environment.baseUrl+"/usuarios");
   }
+
+
   getUsuario(idUsuario:number){
     return this.httpClient.get<Usuario>(environment.baseUrl+"/usuarios/"+idUsuario);
   }
@@ -30,5 +33,8 @@ export class UsuarioService {
   RestablecerPass(correo_electronico:string,usuario:any){
     return this.httpClient.put(environment.baseUrl+"/restablecerPass/"+correo_electronico,usuario);
   }
+  getRoles(){
+    return this.httpClient.get<Array<Rol>>(environment.baseUrl+"/roles");
+    }
   
 }

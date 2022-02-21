@@ -13,26 +13,27 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { LoadingController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-publicar-contenido',
   templateUrl: './publicar-contenido.page.html',
   styleUrls: ['./publicar-contenido.page.scss'],
 })
 export class PublicarContenidoPage implements OnInit {
- 
+
   respData: any;
   imgRes: any;
  formGroup: FormGroup;
   publicacion: Publicacion;
   archivo: File;
-  
+
   id_carrera = 'sin asignar';
   id_tipo_publicacion = '2';
   id_estado_publicacion = '2';
   datos: any = {};
   fileUrl: any = null;
   fileTransfer: FileTransferObject = this.transfer.create();
-  
+
 uploadText:any;
 donwloadText:any;
 url: string;
@@ -48,9 +49,10 @@ imageURI:any;
     private regitroPublicacion: RegistroPublicacionService,
     private photoLibrary: PhotoLibrary,
     private camera: Camera,
-  
+
     public loadingCtrl: LoadingController,
-    
+
+
   ) {
     this.uploadText="";
     this.donwloadText="";
@@ -58,6 +60,7 @@ imageURI:any;
   }
 
   ngOnInit() {
+
     this.datos = JSON.parse(localStorage.getItem('payload'));
     this.formGroup = this.formBuilder.group({
       titulo: new FormControl('', Validators.required),
@@ -65,7 +68,7 @@ imageURI:any;
     });
   }
 
- 
+
   open() {
     let filter = { mime: 'image/png , video/mp4' };
     this.fileChooser.open(filter).then((uri) => {
@@ -79,8 +82,8 @@ imageURI:any;
         alert(JSON.stringify(err))
       })
 
-        
-      
+
+
       })
 
       .catch((e) => console.log(e));
@@ -91,14 +94,14 @@ imageURI:any;
       destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }
-  
+
     this.camera.getPicture(options).then((imageData) => {
       console.log("umg",imageData)
       this.url = imageData;
       this.upload()
     }, (err) => {
       console.log(err);
-      
+
     });
   }
   getFormData(){
@@ -106,11 +109,11 @@ imageURI:any;
       console.log(uri)
       this.file.resolveLocalFilesystemUrl(uri).then((nativepath)=>{
      console.log("path",nativepath);
-  
-  
-  
-  
-  
+
+
+
+
+
   },(err)=>{
     alert(JSON.stringify(err))
   })
@@ -119,13 +122,13 @@ imageURI:any;
   this.url=nativepath
     console.log("ruta",nativepath);
     this.upload()
-    
+
   },(err)=>{
     alert(JSON.stringify(err))
   })
   },
   (err)=>{
-  alert(JSON.stringify(err))  
+  alert(JSON.stringify(err))
   }
   )
   }
@@ -136,7 +139,7 @@ imageURI:any;
        fileKey: 'file',
        fileName: 'name.jpg',
        headers: {}
-       
+
     }
   console.log("url new",this.url)
     this.fileTransfer.upload(this.url, 'http://192.168.100.45:3000/uploads/', options)
@@ -150,7 +153,7 @@ imageURI:any;
        console.log(err)
      })
   }
-  
+
   savePublicacion() {
     console.log('save');
     try {
@@ -175,7 +178,7 @@ imageURI:any;
       console.log('error');
     }
   }
-  
+
 
 
 }
@@ -185,7 +188,7 @@ imageURI:any;
   //     this.photoLibrary.getLibrary().subscribe({
   //       next: library => {
   //         console.log("li",library)
-          
+
   //       },
   //       error: err => { console.log('could not get photos'); },
   //       complete: () => { console.log('done getting photos'); }
@@ -193,7 +196,7 @@ imageURI:any;
   //   })
   //   .catch(err => console.log('permissions weren\'t granted'));
   // }
-  
+
   /////// METODO II/////////////
   // pickerimg(){
   //   var options: ImagePickerOptions={

@@ -12,6 +12,7 @@ import { Storage } from '@ionic/storage';
 
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -31,25 +32,26 @@ export class LoginPage implements OnInit {
     public storage: Storage,
     // private storage:StorageService,
     private router: Router,
+
     private loadinServices: LoadingService,
-    private menuCtrl: MenuController
-   
-   
+    private menuCtrl: MenuController,
+
+
   ) {}
   usuario: Usuario;
-  
+
   async ngOnInit() {
-    
-  
+
+
     this.formLogin=this.formBuilder.group({
       correo_electronico: new FormControl('', Validators.required),
       contrasenia: new FormControl('', Validators.required),
     })
 
     this.usuario = new Usuario();
-    
+
   }
-  
+
   toggleShow(): void {
     this.showPassword = !this.showPassword;
     if (this.passwordIcon == 'eye-off') {
@@ -58,7 +60,7 @@ export class LoginPage implements OnInit {
       this.passwordIcon = 'eye-off';
     }
   }
-  
+
  async login() {
     const loading = await this.loadinServices.presentLoading("Cargando...");
     await loading.present();
@@ -66,36 +68,37 @@ export class LoginPage implements OnInit {
     this.usuario.contrasenia = this.formLogin.controls['contrasenia'].value;
 
     this.authServices.login(this.usuario).subscribe(
-      (res) => {
+      async (res) => {
         if (res) {
           this.resp = res;
-          // this.storage.create();
-          // this.storage.set('Token',this.resp.Token)
-          // this.storage.set('payload',JSON.stringify(this.resp.payload))
-        
+
+          // await this.storage.create();
+          // await this.storage.set("Token", this.resp.Token);
+          // await this.storage.set('payload',JSON.stringify(this.resp.payload))
+
           localStorage.setItem('Token',this.resp.Token)
           localStorage.setItem('payload',JSON.stringify(this.resp.payload))
-         
+
           const id_rol = this.resp.payload.id_rol;
           const nivel_academico = this.resp.payload.nivel_academico;
-          if (id_rol == 4 && nivel_academico=="secundaria"){
+          if (id_rol == 4 ){
             console.log("estudiante secundaria")
             this.router.navigate(['/menu-opciones-se/menu-principal']);
-           
+
           }
-            if (id_rol == 4 && nivel_academico=="superior"){
+            if (id_rol == 5){
               console.log("pasa aqui estudiante superior")
               this.router.navigate(['/menu-opciones/tabs']);
           }
-          
-  
+
+
         }
       },
       (err) => {
-        
+
         this.mensajeServices.presentAlert('Error', err.error.text)
       }
     );
   }
-  
+
 }

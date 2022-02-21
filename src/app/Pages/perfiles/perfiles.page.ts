@@ -49,7 +49,9 @@ export class PerfilesPage implements OnInit {
     private streamingMedia: StreamingMedia,
     private router: Router,
     private yotubeapi: YoutubeApiService,
-    private youtube: YoutubeVideoPlayer
+    private youtube: YoutubeVideoPlayer,
+    private loadinServices: LoadingService,
+
   ) {
     // let url ="https://www.googleapis.com/youtube/v3/playlistItems?key="+this.googleToken+"&playlistId="+this.playlistId+"&part=snippet,id&maxResults=50"
     // this.regitroPublicacion.getPost(url).subscribe(
@@ -65,6 +67,7 @@ export class PerfilesPage implements OnInit {
   } //inyecto el servicio importado
 
   ngOnInit() {
+
     this.getPerfiles();
     this.doRefresh();
     this.getPlayList();
@@ -150,7 +153,9 @@ export class PerfilesPage implements OnInit {
       }
     }, 500);
   }
-  getPerfiles() {
+  async getPerfiles() {
+    const loading = await this.loadinServices.presentLoading("Cargando...");
+    await loading.present();
     var auxper = [];
     this.regitroPublicacion.getpublicaciones().subscribe(
       (res) => {

@@ -7,6 +7,7 @@ import { RegistroEventoService } from 'src/app/Services/registro-evento.service'
 import { RegistroPublicacionService } from 'src/app/Services/registro-publicacion.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 @Component({
   selector: 'app-detalle-perfil',
   templateUrl: './detalle-perfil.page.html',
@@ -31,7 +32,7 @@ export class DetallePerfilPage implements OnInit {
   };
   datos: any = {};
   respuesta: any = {};
-   
+
   constructor(
     private regitroPublicacion: RegistroPublicacionService,
     private actRoute: ActivatedRoute,
@@ -42,9 +43,11 @@ export class DetallePerfilPage implements OnInit {
     public actionSheetController: ActionSheetController,
     private browser: InAppBrowser,
     private socialSharing: SocialSharing,
+
   ) { }
-  
+
   ngOnInit() {
+
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.regitroPublicacion.getPublicacion()
     const params = this.actRoute.snapshot.params;
@@ -63,7 +66,7 @@ export class DetallePerfilPage implements OnInit {
       this.enlaceLinkend=this.perfil.enlace;
       console.log(this.perfil);
     });
-    
+
     this.evento.id_usuario = this.datos.id_usuario;
     this.registroEvento
       .getEvento(this.id, this.datos.id_usuario)
@@ -144,7 +147,7 @@ export class DetallePerfilPage implements OnInit {
   }
 
   socialS(imgUrl) {
-   
+
     var options = {
       tittle: this.nombre_perfil,
       message: this.descripcion,
@@ -161,18 +164,18 @@ export class DetallePerfilPage implements OnInit {
   openUrl(url){
     this.browser.create(url,'_system')
   }
- 
+
   // async presentActionSheet() {
   //   const actionSheet = await this.actionSheetController.create({
   //     header: 'Comparta contenido con personas cercanas',
   //     cssClass: 'my-custom-class',
 
-      
+
   //     buttons: [{
   //       text: '',
   //       role: 'destructive',
   //       icon: 'logo-whatsapp',
-     
+
   //       handler: () => {
   //         console.log('Delete clicked');
   //       }

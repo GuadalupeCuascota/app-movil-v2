@@ -5,6 +5,7 @@ import { RegistroEventoService } from '../../Services/registro-evento.service';
 import { Evento } from 'src/app/Models/evento';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { LoadingService } from 'src/app/Services/loading.service';
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
@@ -29,10 +30,13 @@ export class NoticiasPage implements OnInit {
     private regitroPublicacion: RegistroPublicacionService,
     private registroEvento: RegistroEventoService,
     private router: Router,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private loadinServices: LoadingService,
+
   ) {}
 
   ngOnInit() {
+
     this.selectedTab = 'heart-outline';
     this.getNoticias();
     this.doRefresh();
@@ -72,7 +76,9 @@ export class NoticiasPage implements OnInit {
     this.router.navigate(['/detalle-noticia/', id]);
     // this.navCtrl.navigateForward('/detalle-noticia/,id');
   }
-  getNoticias() {
+  async getNoticias() {
+    const loading = await this.loadinServices.presentLoading("Cargando...");
+    await loading.present();
     var auxnot = [];
     this.regitroPublicacion.getpublicaciones().subscribe(
       (res) => {

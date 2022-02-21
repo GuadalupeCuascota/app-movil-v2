@@ -47,8 +47,9 @@ export class AgendarMentoriaPage implements OnInit {
 
   ngOnInit() {
     this.buscarHorario();
-    
+    console.log("´PASA AQUI")
     this.datos = JSON.parse(localStorage.getItem('payload'));
+    console.log(this.datos)
   }
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any
@@ -70,11 +71,15 @@ export class AgendarMentoriaPage implements OnInit {
         (res: any) => {
           
           for (let horario of res) {
+            if(horario.id_estado_mentoria==1 || horario.id_estado_mentoria==2){
+              console.log("la fecha",horario.fecha)
+              this.localTime = moment(horario.fecha).format('DD/MM/YYYY');
+              horario.fecha = this.localTime;
+              RegistroHorario.push(horario);
 
-          console.log("la fecha",horario.fecha)
-            this.localTime = moment(horario.fecha).format('DD/MM/YYYY');
-            horario.fecha = this.localTime;
-            RegistroHorario.push(horario);
+            }
+
+         
           }
           this.Horarios = RegistroHorario;
         },
@@ -84,30 +89,30 @@ export class AgendarMentoriaPage implements OnInit {
       );
   }
   async getMentoria(id: number) {
-    // const loading = await this.loadinServices.presentLoading('Cargando...');
-    // await loading.present();
+   
     console.log('id_registro_mentoria ', id);
     this.regitroMentoriasService.getRegistroMentoria(id).subscribe(
       (res) => {
+
         this.registroM = res;
         this.localTime = moment(this.registroM.fecha).format('DD/MM/YYYY');
         console.log('el registro', this.registroM);
-
         this.presentAlert();
       },
       () => {}
     );
   }
   async presentAlert() {
+    console.log("pasaa")
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Mentoria Seleccionada',
       subHeader: 'Una vez confirmada la solicitud solo podra cancelar hasta antes de 1 hora de la hora seleccionada ',
-      message: '¿Decea confirmar la solicitud?',
+      message: '¿Decea confir mar la solicitud?',
       buttons: [
         {
           text: 'Cancelar',
-          role: 'cancel',
+          role: 'cancel', 
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Cancelar');

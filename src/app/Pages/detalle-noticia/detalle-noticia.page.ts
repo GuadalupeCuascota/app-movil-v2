@@ -12,6 +12,7 @@ import { ModalController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { SocialsharePage } from '../socialshare/socialshare.page';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 @Component({
   selector: 'app-detalle-noticia',
   templateUrl: './detalle-noticia.page.html',
@@ -19,6 +20,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 })
 export class DetalleNoticiaPage implements OnInit {
   constructor(
+
     private regitroPublicacion: RegistroPublicacionService,
     private actRoute: ActivatedRoute,
     private registroEvento: RegistroEventoService,
@@ -26,6 +28,7 @@ export class DetalleNoticiaPage implements OnInit {
     public modalCtrl: ModalController,
     public actionSheetController: ActionSheetController,
     private browser: InAppBrowser,
+
 
   ) {}
   id = 0;
@@ -52,16 +55,17 @@ export class DetalleNoticiaPage implements OnInit {
   ////SHARE//
   // link: string = 'https://link.medium.com/JA4amAHFJ5';
   // text: string = 'Flamenco';
-  // imgurl: string =
-  //   'https://dametresminutos.files.wordpress.com/2018/11/nick-fewings-532590-unsplash.jpg?w=584';
+ imgurl: string =
+   'https://dametresminutos.files.wordpress.com/2018/11/nick-fewings-532590-unsplash.jpg?w=584';
   ngOnInit() {
+
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.regitroPublicacion.getPublicacion()
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
 
-    
-    
+
+
     console.log('el id es', params);
     this.regitroPublicacion.getPublicacion(params.id).subscribe((res) => {
       this.noticia = res;
@@ -113,7 +117,7 @@ export class DetalleNoticiaPage implements OnInit {
     this.registroEvento.saveEvento(this.id_publicacion, this.datos.id_usuario, this.evento).subscribe(
       (res) => {
        console.log("guardado")
-        
+
       },
       (err) => {
         console.log('no se puede guardar');
@@ -123,7 +127,7 @@ export class DetalleNoticiaPage implements OnInit {
 
   async showShareOptions() {
     //modal para compartir con redes sociales seleccionadas
-   
+
     const modal = await this.modalCtrl.create({
       component: SocialsharePage,
       cssClass: 'backTransparent',
@@ -180,7 +184,7 @@ export class DetalleNoticiaPage implements OnInit {
         }
       );
   }
-  
+
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
       header: 'Comparta contenido con personas cercanas',
@@ -235,5 +239,5 @@ export class DetalleNoticiaPage implements OnInit {
   openUrl(url){
     this.browser.create(url,'_self')
   }
- 
+
 }
