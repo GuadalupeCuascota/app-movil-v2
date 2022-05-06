@@ -24,6 +24,7 @@ import { RegistroMateriaService } from 'src/app/Services/registro-materia.servic
 import { RegistroTemaMateriaService } from 'src/app/Services/registro-tema-materia.service';
 import { NumberSymbol } from '@angular/common';
 import { TemaMateria } from 'src/app/Models/temaMateria';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @Component({
   selector: 'app-registro-tutorias',
   templateUrl: './registro-tutorias.page.html',
@@ -76,10 +77,12 @@ export class RegistroTutoriasPage implements OnInit {
     private solicitudMentoriaSerive: SolicitudMentoriaService,
     private navController: NavController,
     private registroMateria: RegistroMateriaService,
-    private registroTemaMateria: RegistroTemaMateriaService
+    private registroTemaMateria: RegistroTemaMateriaService,
+    private so: ScreenOrientation,
   ) {}
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.doRefresh();
     this.getMaterias();
     this.getMentorasRegistro();
@@ -141,7 +144,8 @@ export class RegistroTutoriasPage implements OnInit {
     //envia un evento opcional de tipo any
     this.getMentorasRegistro();
     this.getSolicitudesMentoria();
-   
+
+
     if ($event) {
       $event.target.complete();
     }
@@ -171,15 +175,16 @@ export class RegistroTutoriasPage implements OnInit {
     this.registroMateria.getMaterias().subscribe(
       (res) => {
         for (let mat of res) {
-          
+
           if (this.datos.id_carrera == mat.id_carrera && mat.id_estado_materia== 1 ) {
 
             UsuMat.push(mat)
             this.materias = res;
-            console.log('las materias es', res);
+            
           }
           this.materias=UsuMat
         }
+        console.log('las materias es', res);
       },
       (err) => {
         console.log(err);

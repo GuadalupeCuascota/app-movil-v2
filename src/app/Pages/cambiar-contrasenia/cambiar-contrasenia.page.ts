@@ -11,6 +11,7 @@ import { Usuario } from 'src/app/Models/usuario';
 import { LoadingService } from 'src/app/Services/loading.service';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { UsuarioService } from 'src/app/Services/usuario.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 
 @Component({
@@ -32,11 +33,12 @@ export class CambiarContraseniaPage implements OnInit {
     private router: Router,
     private actRoute: ActivatedRoute,
     private mensajeServices: MensajesService,
+    private so: ScreenOrientation,
 
   ) {}
 
   ngOnInit() {
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
     console.log('el id', this.id);

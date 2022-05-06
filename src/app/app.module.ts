@@ -33,7 +33,7 @@ import {
 import { PipesModule } from './pipes/pipes.module';
 //  import { YoutubePipe } from './pipes/youtube.pipe';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 
 
@@ -55,7 +55,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
   ],
   providers: [ ImagePicker,File,Camera,InAppBrowser,AppAvailability,
-    FileTransfer,FileChooser, FilePath,PhotoLibrary,SocialSharing,
+    FileTransfer,FileChooser, FilePath,PhotoLibrary,SocialSharing, ScreenOrientation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Storage,
     IonicStorageModule,

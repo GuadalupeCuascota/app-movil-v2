@@ -2,6 +2,10 @@
   color: var(--ion-color-danger);
   padding-left: 30px;
 }
+.required:after {
+  content: "*";
+  color: red;
+}
 // .required::after {
 //   content: "*";
 //   color: red;
@@ -12,7 +16,7 @@ ion-header {
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
-    background: #683381;
+    background: linear-gradient(#66317F, #a870b1);;
 
 
     #header {
@@ -22,6 +26,7 @@ ion-header {
       // margin-right: 21%;
       display: flex;
       justify-content: space-between;
+
 
       .utnlogo {
         width: 30%;
@@ -49,7 +54,7 @@ ion-header {
 
 h1 {
   font-weight: 700;
-  font-size: 26px;
+  font-size: 180%;
   color: #010101;
   text-align: center;
 

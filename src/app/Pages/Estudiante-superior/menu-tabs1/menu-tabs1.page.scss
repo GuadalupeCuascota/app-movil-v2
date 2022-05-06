@@ -1,14 +1,12 @@
 ion-tab-bar{
     --background:#a870b1;
-    // border-top-left-radius: 25px;
-    // border-top-right-radius: 25px;
-    // width: 90%!important;
-    // border-radius: 30px;
-    height: 45px;
-    // margin-bottom: 1.5rem!important;
-    // margin: auto;
+
 }
+ion-tab-button{
+  max-width: 40%;
+}
+
 .tab-selected{
-   
+
     background-color: #66317F;
 }

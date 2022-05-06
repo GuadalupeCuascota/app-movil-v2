@@ -12,7 +12,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { LoadingController } from '@ionic/angular';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-publicar-contenido',
@@ -51,6 +51,7 @@ imageURI:any;
     private camera: Camera,
 
     public loadingCtrl: LoadingController,
+    private so: ScreenOrientation,
 
 
   ) {
@@ -60,7 +61,7 @@ imageURI:any;
   }
 
   ngOnInit() {
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos = JSON.parse(localStorage.getItem('payload'));
     this.formGroup = this.formBuilder.group({
       titulo: new FormControl('', Validators.required),

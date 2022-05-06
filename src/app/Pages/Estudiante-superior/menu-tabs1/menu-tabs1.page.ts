@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonTabs } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-menu-tabs1',
   templateUrl: './menu-tabs1.page.html',
@@ -17,7 +18,7 @@ export class MenuTabs1Page implements OnInit {
     this.selectedTab=this.tabs.getSelected();
     console.log("ES",this.selectedTab)
   }
-  
-  
+
+
 
 }

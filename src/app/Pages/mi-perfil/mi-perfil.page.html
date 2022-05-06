@@ -1,11 +1,11 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="login"></ion-back-button>
+    </ion-buttons>
+
     <ion-item color="none">
       <div id="header">
-        <!-- <ion-buttons slot="start">
-          <ion-back-button color="light" defaultHref="login"></ion-back-button>
-        </ion-buttons> -->
-
         <div class="utnlogo">
           <img src="../../../assets/utncbn.png" />
         </div>
@@ -34,13 +34,13 @@
   <form id="form" [formGroup]="formGroup" (ngSubmit)="updateUsuarios()">
     <ion-item>
       <ion-label position="floating"> Nombre:</ion-label>
-      
+
       <ion-input
         formControlName="nombre"
         placeholder="Ingrese nombre"
       ></ion-input>
     </ion-item>
-    <br>
+    <br />
 
     <ion-item>
       <ion-label position="floating"> Apellido:</ion-label>
@@ -49,15 +49,15 @@
         placeholder="Ingrese apellido"
       ></ion-input>
     </ion-item>
-    <br>
+    <br />
     <ion-item>
       <ion-label position="floating"> Correo electrónico:</ion-label>
-      <ion-input 
+      <ion-input
         formControlName="correo_electronico"
         placeholder="Ingrese email"
       ></ion-input>
     </ion-item>
-     <br>
+    <br />
     <ion-item>
       <ion-label position="floating"> Contraseña:</ion-label>
       <ion-input
@@ -71,10 +71,22 @@
         (click)="toggleShow()"
       ></ion-icon>
     </ion-item>
-    <br>
-    <ion-button type="submit" color="primary"  [disabled]="!formGroup.valid" shape="round" expand="block" >Actualizar</ion-button>
-    <ion-button fill="outline"  color="secondary" shape="round" expand="block" (click)="regresar()">Cancelar</ion-button>
-
+    <br />
+    <ion-button
+      type="submit"
+      color="primary"
+      [disabled]="!formGroup.valid"
+      shape="round"
+      expand="block"
+      >Actualizar</ion-button
+    >
+    <!-- <ion-button
+      fill="outline"
+      color="secondary"
+      shape="round"
+      expand="block"
+      (click)="regresar()"
+      >Cancelar</ion-button
+    > -->
   </form>
- 
 </ion-content>

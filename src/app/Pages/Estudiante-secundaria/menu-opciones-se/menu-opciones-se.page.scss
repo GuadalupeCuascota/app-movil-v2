@@ -1,15 +1,40 @@
-ion-icon{
-    color: #444242;
-  } 
-  .menu-header-bg{
-    height: 20%;
-    background-color: #683381;
-    border-radius: 0px 0px 15px 15px;
-    img{
+ion-content{
+  // --background: var(--ion-item-background,var(--ion-background-color,var
+  // (--ion-color-secondary)))
+  background: var(--ion-color-secondary);
+}
+.my-custom-menu {
+  --width: 50%;
+}
+.menu-header-bg{
+
+  height: 20%;
+  background: linear-gradient(#66317F, #a870b1);
+
+  border-radius: 0px 0px 15px 15px;
+  img{
       align-items: center;
       margin-top: 8%;
       height: 80%;
       margin-left: 33%;
+
     }
+
+}
+.myColor {
+  background-color: #66317F;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.social-icons {
+  font-size: 50px;
+  color: #683381;
 }
 
+.horizontal {
+  display: flex;
+  justify-content: space-evenly;
+
+}

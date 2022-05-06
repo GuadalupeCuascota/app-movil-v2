@@ -14,7 +14,7 @@
       <ion-slide>
         <div class="list-item">
           <h2>Estimado estudiante</h2>
-          <ion-text>
+          <ion-text style="font-size: 120%;">
             En la Universidad Técnica del Norte, en la Facultad de Ciencias
             Aplicadas se ofertan las ingenierías en: Telecomunicaciones,
             Software, Textil, Electricidad, Mecatrónica, Industrial, Automotriz.
@@ -22,7 +22,7 @@
             y aptitudes desarrolladas a partir de las materias STEM (Ciencia,
             Tecnología, Ingeniería y Matemáticas). Por lo tanto, se ha elaborado
             un test conformado por dos partes.
-            
+
           </ion-text>
           <ion-button
             type="submit"
@@ -38,12 +38,12 @@
       <ion-slide>
         <div class="list-item">
           <h2>Parte I</h2>
-          <ion-text>
+          <ion-text style="font-size: 120%;">
            Se establecen los siguientes enunciados como preguntas que descartan inicialmente al no poseer con los conocimientos, destrezas y actitudes generales para estudiar ingeniería caso contrario se procede con la evaluación de la siguiente parte.
           </ion-text>
           <ion-list>
-            <ion-text style="color: white;">INSTRUCCIONES</ion-text> </ion-list>
-          <ion-text>
+            <ion-text style="color: white;font-size: 125%;">INSTRUCCIONES</ion-text> </ion-list>
+          <ion-text style="font-size: 120%;">
             Lea atentamente cada una de las actividades. Selecciona una
             respuesta por cada pregunta con verdad para que el resultado de la
             prueba tenga fiabilidad.
@@ -60,9 +60,9 @@
       </ion-slide>
 
       <ion-slide *ngFor="let test of TestIng;let i = index;">
-        <h4>PREGUNTA {{i+1}} DE {{TestIng.length}}</h4>
+        <h4 style="font-size: 140%;">PREGUNTA {{i+1}} DE {{TestIng.length}}</h4>
         <div style="margin-top: 60px">
-          <ion-text> {{test.nombre_pregunta}} </ion-text>
+          <ion-text style="font-size: 130%;"> {{test.nombre_pregunta}} </ion-text>
         </div>
         <div style="margin-top: 70px">
           <ion-button
@@ -92,11 +92,11 @@
         <div *ngIf="totalQuizz>60">
           <div class="list-item">
             <h2>Parte II</h2>
-            <ion-text>
+            <ion-text style="font-size: 120%;">
               A la hora de realizar un trabajo profesional se debe estar cualificado para su desarrollo, por lo que es importante conocer qué tipo de área de la ingeniería se adapta mejor a cada persona por su carácter,gustos,etc. Las cualidades de cada persona hacen que seamos capaces de realizar mejor cada actividad de nuestro gusto.
             </ion-text>
-            <ion-list> Instrucciones </ion-list>
-            <ion-text>
+            <ion-list style="font-size: 130%;"> Instrucciones </ion-list>
+            <ion-text style="font-size: 120%;">
               Lea atentamente cada una de las actividades. Selecciona una
               respuesta por cada pregunta con verdad para que el resultado de la
               prueba tenga fiabilidad.
@@ -114,19 +114,19 @@
         <div *ngIf="totalQuizz<60">
           <div class="list-item">
             <div class="menssage">
-              <ion-text>
+              <ion-text style="font-size: 120%;">
                 No todos tenemos el perfil exacto para ser ingeniero; sin embargo, la perseverancia puede llevarte lejos.
               </ion-text>
               <ion-button (click)="restartQuiz()" type="submit" color="primary" shape="round" expand="block"
               >REGRESAR</ion-button
             >
             </div>
-           
+
           </div>
-          
+
         </div>
       </ion-slide>
-      
+
       <ion-slide *ngFor="let preguntas of test; let i = index;"
       >
       <h4>PREGUNTA {{i+1}} DE {{test.length}}</h4>
@@ -156,17 +156,17 @@
           </ion-button>
         </div>
 
-        
+
       </ion-slide>
       <ion-slide  >
 
-      
+
         <h2 style="font-weight: 700;">Estimada</h2>
         <ion-label class="nombres">
           {{datos.nombre}} {{datos.apellido}}
         </ion-label>
-      
-        <h2>Bienvenida al mágico mundo  STEM  de acuerdo a tus respuestas  es recomendable aplicar a la Ingeniería en:</h2>
+
+        <h2 style="font-size: 120%;">Bienvenida al mágico mundo  STEM  de acuerdo a tus respuestas  es recomendable aplicar a la Ingeniería en:</h2>
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -179,12 +179,12 @@
                 Puntos
               </div>
             </ion-col>
-            
+
           </ion-row>
           <ion-row>
             <ion-col>
               <div>
-                Software 
+                Software
               </div>
             </ion-col>
             <ion-col>
@@ -196,7 +196,7 @@
           <ion-row>
             <ion-col>
               <div>
-                Mecatrónica 
+                Mecatrónica
               </div>
             </ion-col>
             <ion-col>
@@ -208,7 +208,7 @@
           <ion-row>
             <ion-col>
               <div>
-                Textil 
+                Textil
               </div>
             </ion-col>
             <ion-col>
@@ -220,7 +220,7 @@
           <ion-row>
             <ion-col>
               <div>
-                Industrial 
+                Industrial
               </div>
             </ion-col>
             <ion-col>
@@ -232,7 +232,7 @@
           <ion-row>
             <ion-col>
               <div>
-                Automotriz 
+                Automotriz
               </div>
             </ion-col>
             <ion-col>
@@ -249,14 +249,14 @@
             </ion-col>
             <ion-col>
               <div>
-                {{telecomunicaciones}}% 
+                {{telecomunicaciones}}%
               </div>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
               <div>
-                Electricidad 
+                Electricidad
               </div>
             </ion-col>
             <ion-col>
@@ -266,11 +266,11 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-       
+
         <ion-button  (click)="restartQuiz()" type="submit" color="primary"  shape="round" expand="block" >Comenzar un nuevo test</ion-button>
 
       </ion-slide>
-     
+
     </ion-slides>
   </div>
 </ion-content>
@@ -279,24 +279,24 @@
 
 
 
-<!-- <ion-content> 
+<!-- <ion-content>
   <ion-list lines="none">
     <div class="user_div">
       <div class="first_div">
         <h2 class="titulo" style="text-align: center; color: midnightblue;">
         Parte I
         </h2>
-        
+
       </div>
       <br>
       <div class="second_div">
         <ion-label class="descripcion">
-         
-        </ion-label>  
+
+        </ion-label>
       </div>
     </div>
   </ion-list>
   <br>
   <ion-button type="submit" color="primary"   (click)="testVocacional()" shape="round" expand="block" >Empezar  test </ion-button>
- 
+
 </ion-content>  -->

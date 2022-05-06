@@ -7,6 +7,7 @@ import { RegistroEventoService } from 'src/app/Services/registro-evento.service'
 import { RegistroPublicacionService } from 'src/app/Services/registro-publicacion.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-detalle-perfil',
@@ -22,7 +23,7 @@ export class DetallePerfilPage implements OnInit {
   tipo_archivo = '';
   nombre_perfil = '';
   selectedTab = '';
-  enlaceLinkend='';
+  enlaceLinkend = '';
   evento: Evento = {
     id_evento: 0,
     id_tipo_evento: 0,
@@ -43,11 +44,11 @@ export class DetallePerfilPage implements OnInit {
     public actionSheetController: ActionSheetController,
     private browser: InAppBrowser,
     private socialSharing: SocialSharing,
-
-  ) { }
+    private so: ScreenOrientation
+  ) {}
 
   ngOnInit() {
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.regitroPublicacion.getPublicacion()
     const params = this.actRoute.snapshot.params;
@@ -55,16 +56,15 @@ export class DetallePerfilPage implements OnInit {
     console.log('el id es', params);
     this.regitroPublicacion.getPublicacion(params.id).subscribe((res) => {
       this.perfil = res;
-      console.log("perfil",this.perfil)
+      console.log('perfil', this.perfil);
       console.log('la noticia detalle', this.perfil);
       this.API_URI = this.perfil.ruta_archivo;
       this.descripcion = this.perfil.descripcion;
-      console.log("des",this.descripcion)
+      console.log('des', this.descripcion);
       this.profesion = this.perfil.profesion;
       this.tipo_archivo = this.perfil.tipo_archivo;
       this.nombre_perfil = this.perfil.nombre_perfil;
-      this.enlaceLinkend=this.perfil.enlace;
-      console.log(this.perfil);
+      this.enlaceLinkend = this.perfil.enlace;
     });
 
     this.evento.id_usuario = this.datos.id_usuario;
@@ -86,16 +86,6 @@ export class DetallePerfilPage implements OnInit {
         }
       });
   }
-  // async showShareOptions() {
-  //   const modal = await this.modalCtrl.create({
-  //     component: SocialsharePage,
-  //     cssClass: 'backTransparent',
-  //     backdropDismiss: true
-  //   });
-  //   return modal.present();
-  // }
-
-
 
   buscar(id_publicacion) {
     this.evento.id_tipo_evento = 1;
@@ -147,68 +137,22 @@ export class DetallePerfilPage implements OnInit {
   }
 
   socialS(imgUrl) {
-
     var options = {
       tittle: this.nombre_perfil,
       message: this.descripcion,
       url: imgUrl,
     };
-    var onSuccess=function(result){
-      console.log("Guardado Completado"+result);
+    var onSuccess = function (result) {
+      console.log('Guardado Completado' + result);
     };
-    var onError=function(msg){
-      console.log("Guardado Completado"+msg);
+    var onError = function (msg) {
+      console.log('Guardado Completado' + msg);
     };
     this.socialSharing.shareWithOptions(options);
   }
-  openUrl(url){
-    this.browser.create(url,'_system')
+  openUrl(url) {
+    this.browser.create(url, '_system');
   }
 
-  // async presentActionSheet() {
-  //   const actionSheet = await this.actionSheetController.create({
-  //     header: 'Comparta contenido con personas cercanas',
-  //     cssClass: 'my-custom-class',
 
-
-  //     buttons: [{
-  //       text: '',
-  //       role: 'destructive',
-  //       icon: 'logo-whatsapp',
-
-  //       handler: () => {
-  //         console.log('Delete clicked');
-  //       }
-  //     }, {
-  //       text: 'Share',
-  //       icon: 'logo-facebook',
-  //       handler: () => {
-  //         console.log('Share clicked');
-  //       }
-  //     }, {
-  //       text: 'Play (open modal)',
-  //       icon: 'logo-twitter',
-  //       handler: () => {
-  //         console.log('Play clicked');
-  //       }
-  //     }, {
-  //       text: 'Favorite',
-  //       icon: 'heart',
-  //       handler: () => {
-  //         console.log('Favorite clicked');
-  //       }
-  //     }, {
-  //       text: 'Cancel',
-  //       icon: 'close',
-  //       role: 'logo-instagram',
-  //       handler: () => {
-  //         console.log('Cancel clicked');
-  //       }
-  //     }]
-  //   });
-  //   await actionSheet.present();
-
-  //   const { role } = await actionSheet.onDidDismiss();
-  //   console.log('onDidDismiss resolved with role', role);
-  // }
 }

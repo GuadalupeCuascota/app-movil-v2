@@ -6,6 +6,7 @@ import { Evento } from 'src/app/Models/evento';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/Services/loading.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
@@ -32,11 +33,12 @@ export class NoticiasPage implements OnInit {
     private router: Router,
     private navCtrl: NavController,
     private loadinServices: LoadingService,
+    private so: ScreenOrientation,
 
   ) {}
 
   ngOnInit() {
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.selectedTab = 'heart-outline';
     this.getNoticias();
     this.doRefresh();

@@ -15,6 +15,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AgendarMentoria } from 'src/app/Models/agendarMentoria';
 import { AgendarMentoriaService } from 'src/app/Services/agendar-mentoria.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @Component({
   selector: 'app-detalle-mentoria',
   templateUrl: './detalle-mentoria.page.html',
@@ -54,7 +55,8 @@ export class DetalleMentoriaPage implements OnInit {
     private loadinServices: LoadingService,
     private router: Router,
     public alertController: AlertController,
-    private regitroAgendarMentoriaService: AgendarMentoriaService
+    private regitroAgendarMentoriaService: AgendarMentoriaService,
+    private so: ScreenOrientation,
   ) {}
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -88,7 +90,8 @@ export class DetalleMentoriaPage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
   async ngOnInit() {
-   
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
+
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
     const params = this.actRoute.snapshot.params;
@@ -97,7 +100,7 @@ export class DetalleMentoriaPage implements OnInit {
         (res) => {
           console.log('registro', res);
           this.registroM = res;
-          
+
           this.localTime = moment(this.registroM.fecha).format('DD/MM/YYYY');
           //  this.time=moment(this.registroM.hora_inicio).format('h:mm a');
           //  this.time1=moment(this.registroM.hora_fin).format('h:mm a');
@@ -124,7 +127,7 @@ export class DetalleMentoriaPage implements OnInit {
     console.log(id);
     this.agendarMentoria.id_registro_mentoria = id;
     this.agendarMentoria.id_usuario = this.datos.id_usuario;
-    
+
     console.log('el registro', this.agendarMentoria);
     this.regitroAgendarMentoriaService
       .saveAgendarMentoria(this.agendarMentoria)

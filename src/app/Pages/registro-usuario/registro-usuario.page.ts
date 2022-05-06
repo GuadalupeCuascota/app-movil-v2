@@ -14,6 +14,7 @@ import {
 import { AlertController, NavController } from '@ionic/angular';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { LoadingService } from 'src/app/Services/loading.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 RegistroCarrerasService;
 
 @Component({
@@ -43,11 +44,12 @@ export class RegistroUsuarioPage implements OnInit {
     private loadinServices: LoadingService,
     private registroCarreraService: RegistroCarrerasService,
     public alertController: AlertController,
+    private so: ScreenOrientation,
 
   ) {}
 
   ngOnInit() {
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.ObtenerRoles();
     this.getCarreras();
 
@@ -191,7 +193,7 @@ export class RegistroUsuarioPage implements OnInit {
         loading.dismiss();
         if (res) {
           this.mensajeServices.presentToast('Usuario registrado');
-          console.log('usuario guardado');
+
           this.navController.back();
         }
       },

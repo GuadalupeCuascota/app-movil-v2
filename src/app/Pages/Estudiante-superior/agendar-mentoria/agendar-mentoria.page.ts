@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AgendarMentoriaService } from 'src/app/Services/agendar-mentoria.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
-
 import { LoadingService } from 'src/app/Services/loading.service';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { AgendarMentoria } from 'src/app/Models/agendarMentoria';
 import { AlertController, NavController } from '@ionic/angular';
 import { RegistroMentoriasService } from 'src/app/Services/registro-mentorias.service';
 import { RegistroMentorias } from 'src/app/Models/registro-mentorias';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @Component({
   selector: 'app-agendar-mentoria',
   templateUrl: './agendar-mentoria.page.html',
@@ -18,7 +18,7 @@ export class AgendarMentoriaPage implements OnInit {
   datos: any = {};
   registroM: RegistroMentorias;
   Horarios: any[] = [];
-  localTime = moment().format();
+  localTime = moment().utc().format('DD/MM/YYYY');
   datosM: any = {
     id_estado_mentoria: 2,
   };
@@ -43,44 +43,61 @@ export class AgendarMentoriaPage implements OnInit {
     private regitroMentoriasService: RegistroMentoriasService,
     private regitroAgendarMentoriaService: AgendarMentoriaService,
     public alertController: AlertController,
+    private so: ScreenOrientation
   ) {}
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.buscarHorario();
-    console.log("´PASA AQUI")
     this.datos = JSON.parse(localStorage.getItem('payload'));
-    console.log(this.datos)
   }
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any
-   this.buscarHorario();
+    this.buscarHorario();
     if ($event) {
       $event.target.complete();
     }
   }
   async buscarHorario() {
-    console.log("el parametro",this.params)
-    console.log("busacar horario")
+    var f;
     var RegistroHorario = [];
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
     this.regitroMentoriasService
       .getRegistrohorarioMentoria(this.params)
       .subscribe(
-        
         (res: any) => {
-          
           for (let horario of res) {
-            if(horario.id_estado_mentoria==1 || horario.id_estado_mentoria==2){
-              console.log("la fecha",horario.fecha)
+            if (
+              horario.id_estado_mentoria == 1 ||
+              horario.id_estado_mentoria == 2
+            ) {
               this.localTime = moment(horario.fecha).format('DD/MM/YYYY');
               horario.fecha = this.localTime;
+
+              var hInicio = horario.hora_inicio;
+              var hFin = horario.hora_fin;
+              var elem = hInicio.split(':');
+              var elem1= hFin.split(':');
+              var h = elem[0];
+              var hF = elem1[0];
+              if (h >= 12) {
+               horario.hora_inicio=hInicio+" PM"
+
+              } else {
+                horario.hora_inicio=hInicio+" AM"
+              }
+              if (hF >= 12) {
+                horario.hora_fin=hFin+" PM"
+
+               } else {
+                 horario.hora_fin=hFin+" AM"
+               }
+
               RegistroHorario.push(horario);
-
             }
-
-         
           }
+
           this.Horarios = RegistroHorario;
         },
         (err) => {
@@ -89,11 +106,9 @@ export class AgendarMentoriaPage implements OnInit {
       );
   }
   async getMentoria(id: number) {
-   
     console.log('id_registro_mentoria ', id);
     this.regitroMentoriasService.getRegistroMentoria(id).subscribe(
       (res) => {
-
         this.registroM = res;
         this.localTime = moment(this.registroM.fecha).format('DD/MM/YYYY');
         console.log('el registro', this.registroM);
@@ -103,16 +118,17 @@ export class AgendarMentoriaPage implements OnInit {
     );
   }
   async presentAlert() {
-    console.log("pasaa")
+    console.log('pasaa');
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Mentoria Seleccionada',
-      subHeader: 'Una vez confirmada la solicitud solo podra cancelar hasta antes de 1 hora de la hora seleccionada ',
+      subHeader:
+        'Una vez confirmada la solicitud solo podra cancelar hasta antes de 1 hora de la hora seleccionada ',
       message: '¿Decea confir mar la solicitud?',
       buttons: [
         {
           text: 'Cancelar',
-          role: 'cancel', 
+          role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Cancelar');
@@ -135,8 +151,6 @@ export class AgendarMentoriaPage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-
-  
   async detalle(id: number) {
     console.log('id_registro_mentoria ', id);
     const loading = await this.loadinServices.presentLoading('Cargando...');
@@ -146,20 +160,19 @@ export class AgendarMentoriaPage implements OnInit {
     console.log(id);
     this.agendarMentoria.id_registro_mentoria = id;
     this.agendarMentoria.id_usuario = this.datos.id_usuario;
-  
+
     console.log('el registro', this.agendarMentoria);
     this.regitroAgendarMentoriaService
       .saveAgendarMentoria(this.agendarMentoria)
       .subscribe(
         (res) => {
           this.mensajeServices.presentToast('Mentoria Agendada correctamente');
-          this.regitroAgendarMentoriaService.updateEstadoAgendarMentoria(id,this.datosM).subscribe(
-            (res)=>{
-              console.log("ESTADO ACTUALIZADO")
-            }
-          )
+          this.regitroAgendarMentoriaService
+            .updateEstadoAgendarMentoria(id, this.datosM)
+            .subscribe((res) => {
+              console.log('ESTADO ACTUALIZADO');
+            });
           this.router.navigate(['/menu-opciones/tabs/home-superior']);
-
         },
         (err) => {
           loading.dismiss();
@@ -171,7 +184,5 @@ export class AgendarMentoriaPage implements OnInit {
       );
     //  this.router.navigate(['/agendar-mentoria/',id]);
   }
-  updateEstadoRegistroMentoria(){
-
-  }
+  updateEstadoRegistroMentoria() {}
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { AppAvailability } from '@ionic-native/app-availability/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-contacto',
@@ -13,10 +14,11 @@ export class ContactoPage implements OnInit {
   constructor(private platform: Platform,
     private inAppBrowser: InAppBrowser,
     private appAvailability: AppAvailability,
+    private so: ScreenOrientation,
   ) { }
 
   ngOnInit() {
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
   }
   socialMedia(type) {

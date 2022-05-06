@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-home-secundaria',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeSecundariaPage implements OnInit {
   datos: any = {};
-  constructor() { }
+  constructor(private so: ScreenOrientation,) { }
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
     console.log("hola estudiante secundaria",this.datos)
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-home-superior',
@@ -9,9 +10,10 @@ import { Storage } from '@ionic/storage';
 export class HomeSuperiorPage implements OnInit {
 
   datos: any = {};
-  constructor(public storage: Storage) { }
+  constructor(public storage: Storage,private so: ScreenOrientation,) { }
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
     console.log("hola estudiante secundaria",this.datos)
   }

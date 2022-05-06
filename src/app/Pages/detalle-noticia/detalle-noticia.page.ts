@@ -12,6 +12,7 @@ import { ModalController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { SocialsharePage } from '../socialshare/socialshare.page';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-detalle-noticia',
@@ -28,6 +29,7 @@ export class DetalleNoticiaPage implements OnInit {
     public modalCtrl: ModalController,
     public actionSheetController: ActionSheetController,
     private browser: InAppBrowser,
+    private so: ScreenOrientation,
 
 
   ) {}
@@ -58,7 +60,7 @@ export class DetalleNoticiaPage implements OnInit {
  imgurl: string =
    'https://dametresminutos.files.wordpress.com/2018/11/nick-fewings-532590-unsplash.jpg?w=584';
   ngOnInit() {
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.regitroPublicacion.getPublicacion()
     const params = this.actRoute.snapshot.params;

@@ -129,10 +129,10 @@ const routes: Routes = [
     path: 'onboarding',
     loadChildren: () => import('./Pages/onboarding/onboarding.module').then( m => m.OnboardingPageModule ),canActivate:[LoggedOutGuard]
   },
-  {
-    path: 'test-ing',
-    loadChildren: () => import('./Pages/Estudiante-secundaria/test-ing/test-ing.module').then( m => m.TestIngPageModule)
-  },
+  // {
+  //   path: 'test-ing',
+  //   loadChildren: () => import('./Pages/Estudiante-secundaria/test-ing/test-ing.module').then( m => m.TestIngPageModule)
+  // },
   {
     path: 'contacto',
     loadChildren: () => import('./Pages/contacto/contacto.module').then( m => m.ContactoPageModule)

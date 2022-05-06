@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/Services/loading.service';
 import { MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 
 
@@ -30,6 +31,7 @@ export class LoginPage implements OnInit {
     private formBuilder:FormBuilder,
     private mensajeServices: MensajesService,
     public storage: Storage,
+    private so: ScreenOrientation,
     // private storage:StorageService,
     private router: Router,
 
@@ -42,7 +44,7 @@ export class LoginPage implements OnInit {
 
   async ngOnInit() {
 
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.formLogin=this.formBuilder.group({
       correo_electronico: new FormControl('', Validators.required),
       contrasenia: new FormControl('', Validators.required),

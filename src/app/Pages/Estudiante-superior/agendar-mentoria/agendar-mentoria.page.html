@@ -23,14 +23,11 @@
     </ion-item>
 
     <ion-card-content>
-      <ion-card-subtitle
-        >Hora:{{horario.hora_inicio}}-{{horario.hora_fin}}</ion-card-subtitle
-      >
       <ion-card-subtitle>Materia:{{horario.nombre_materia}}</ion-card-subtitle>
-      <ion-button
-        
-        slot="end"
-        (click)="getMentoria(horario.id_registro_mentoria)"
+      <ion-card-subtitle>Hora Inicio:{{horario.hora_inicio}}</ion-card-subtitle>
+      <ion-card-subtitle> Hora Fin:{{horario.hora_fin}} </ion-card-subtitle>
+
+      <ion-button slot="end" (click)="getMentoria(horario.id_registro_mentoria)"
         >AGENDAR</ion-button
       >
     </ion-card-content>

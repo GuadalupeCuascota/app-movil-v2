@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-resultado-test-aptitud',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultadoTestAptitudPage implements OnInit {
 
-  constructor() { }
+  constructor(private so: ScreenOrientation,) { }
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
   }
 
 }

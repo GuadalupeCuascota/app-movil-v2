@@ -3,17 +3,17 @@
 <div class="login-page">
   <ion-grid>
     <ion-row>
-      <ion-col size="12" sizeSm="6">
+      <ion-col size="12">
         <div id="head">
 
         <img src="../../../assets/utncbn.png" />
 
       </div>
       </ion-col>
-      <ion-col size="12" sizeSm="6">
+      <ion-col size="12" >
         <div id="header">
 
-          <img src="../../../assets/logostemfica.png" />
+          <img  src="../../../assets/logostemfica.png" />
 
         </div>
       </ion-col>
@@ -21,16 +21,7 @@
 
   </ion-grid>
 
-  <!-- <div id="head">
 
-    <img src="../../../assets/utncbn.png" />
-
-  </div>
-  <div id="header">
-
-    <img src="../../../assets/logostemfica.png" />
-
-  </div> -->
   <div class="container ">
     <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
       <h1>Iniciar Sesión </h1>
@@ -61,15 +52,15 @@
       <div class="head">
         <ion-text color="medium"  class="ion-text-right"></ion-text>
 
-         <a style="color: darkgray" routerLink="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
+         <a style="color: darkgray;font-size: 100%" routerLink="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
 
       </div>
 
      <br>
 
-      <ion-button type="submit" class="btnclass" [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión </ion-button>
+      <ion-button  color="primary" type="submit" class="btnclass" [disabled]="!formLogin.valid"  expand="block" >Iniciar Sesión </ion-button>
       <p>
-        <ion-text style=" font-weight: bold;" color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a style=" font-weight: bold; text-decoration: none;"href="/registro-usuario" >Registrate</a></ion-text>
+        <ion-text style=" font-weight: bold;font-size: 100%;" color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a style=" font-weight: bold; text-decoration: none;font-size: 100%;"href="/registro-usuario" >Registrate</a></ion-text>
       </p>
       <br>
       <p>

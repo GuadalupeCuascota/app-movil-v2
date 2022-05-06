@@ -16,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
 import { YoutubeApiService } from 'src/app/Services/youtube-api.service';
 import { ObjectUnsubscribedError } from 'rxjs';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @Component({
   selector: 'app-perfiles',
   templateUrl: './perfiles.page.html',
@@ -51,6 +51,7 @@ export class PerfilesPage implements OnInit {
     private yotubeapi: YoutubeApiService,
     private youtube: YoutubeVideoPlayer,
     private loadinServices: LoadingService,
+    private so: ScreenOrientation,
 
   ) {
     // let url ="https://www.googleapis.com/youtube/v3/playlistItems?key="+this.googleToken+"&playlistId="+this.playlistId+"&part=snippet,id&maxResults=50"
@@ -67,7 +68,7 @@ export class PerfilesPage implements OnInit {
   } //inyecto el servicio importado
 
   ngOnInit() {
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.getPerfiles();
     this.doRefresh();
     this.getPlayList();

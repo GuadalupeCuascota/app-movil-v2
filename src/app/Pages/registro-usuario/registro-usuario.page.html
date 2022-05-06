@@ -1,10 +1,12 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="login"></ion-back-button>
+    </ion-buttons>
     <ion-item color="none">
+
+
       <div id="header">
-        <!-- <ion-buttons slot="start">
-          <ion-back-button color="light" defaultHref="login"></ion-back-button>
-        </ion-buttons> -->
 
         <div class="utnlogo">
           <img src="../../../assets/utncbn.png" />
@@ -114,7 +116,7 @@
         formControlName="id_rol"
       >
         <ion-select-option *ngFor="let rol of roles" >{{rol.tipo_rol}}</ion-select-option>
-      
+
       </ion-select>
     </ion-item> -->
     <!-- <small
@@ -123,7 +125,7 @@
     >campo es requerido</small
   > -->
 
-   
+
     <ion-item>
       <ion-label class="required"> Nivel académico: </ion-label>
       <ion-select    (ionChange)="optionsFn($event)" placeholder="Seleccione" formControlName="id_rol">
@@ -187,14 +189,14 @@
       type="submit"
       color="primary"
       [disabled]="!formUsuario.valid "
-      shape="round"
+
       expand="block"
       >Registrarse</ion-button
     >
     <p>
-      <ion-text style="font-weight: bold" color="medium" class="ion-text-right"
+      <ion-text style="font-weight: bold;font-size: 100%;" color="medium" class="ion-text-right"
         >¿Ya tienes una cuenta?<a
-          style="font-weight: bold; text-decoration: none"
+          style="font-weight: 800;font-size: 100%; text-decoration: none"
           href="/login"
         >
           Iniciar Sesión</a

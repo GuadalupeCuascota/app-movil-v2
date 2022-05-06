@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "@awesome-cordova-plugins/screen-orientation": "^5.40.0",
     "@capacitor/android": "^2.4.7",
     "@capacitor/core": "^2.4.7",
     "@ionic-native/app-availability": "^5.36.0",
@@ -32,6 +33,7 @@
     "@ionic-native/image-picker": "^5.35.0",
     "@ionic-native/in-app-browser": "^5.36.0",
     "@ionic-native/photo-library": "^5.35.0",
+    "@ionic-native/screen-orientation": "^5.36.0",
     "@ionic-native/social-sharing": "^5.35.0",
     "@ionic-native/streaming-media": "^5.34.0",
     "@ionic-native/video-player": "^5.35.0",
@@ -74,6 +76,7 @@
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-photo-library": "^2.3.1",
+    "cordova-plugin-screen-orientation": "^3.0.2",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-telerik-imagepicker": "git+https://github.com/Telerik-Verified-Plugins/ImagePicker.git#2.3.3",
@@ -128,7 +131,8 @@
       "cordova-plugin-appavailability": {},
       "cordova-plugin-email-composer": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      },
+      "cordova-plugin-screen-orientation": {}
     },
     "platforms": [
       "android"

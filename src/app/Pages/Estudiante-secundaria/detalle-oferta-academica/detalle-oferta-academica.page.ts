@@ -11,7 +11,7 @@ import { ModalController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { SocialsharePage } from '../../socialshare/socialshare.page';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @Component({
   selector: 'app-detalle-oferta-academica',
   templateUrl: './detalle-oferta-academica.page.html',
@@ -25,6 +25,7 @@ export class DetalleOfertaAcademicaPage implements OnInit {
     private regitroPublicacion: RegistroPublicacionService,
     public modalCtrl: ModalController,
     public actionSheetController: ActionSheetController,
+    private so: ScreenOrientation,
     private browser: InAppBrowser,) { }
     id = 0;
     API_URI = '';
@@ -44,18 +45,19 @@ export class DetalleOfertaAcademicaPage implements OnInit {
     };
     datos: any = {};
     respuesta: any = {};
-  
+
     CimgUrl;
-  
+
 
     ngOnInit() {
+      this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
       this.datos = JSON.parse(localStorage.getItem('payload'));
       // this.regitroPublicacion.getPublicacion()
       const params = this.actRoute.snapshot.params;
       this.id = params.id;
-  
-      
-      
+
+
+
       console.log('el id es', params);
       this.regitroPublicacion.getPublicacion(params.id).subscribe((res) => {
         this.noticia = res;
@@ -68,7 +70,7 @@ export class DetalleOfertaAcademicaPage implements OnInit {
         this.id_publicacion=this.noticia.id_publicacion
         console.log(this.noticia);
       });
-  
+
       this.evento.id_usuario = this.datos.id_usuario;
       this.registroEvento
         .getEvento(this.id, this.datos.id_usuario)
@@ -107,17 +109,17 @@ export class DetalleOfertaAcademicaPage implements OnInit {
       this.registroEvento.saveEvento(this.id_publicacion, this.datos.id_usuario, this.evento).subscribe(
         (res) => {
          console.log("guardado")
-          
+
         },
         (err) => {
           console.log('no se puede guardar');
         }
       );
     }
-  
+
     async showShareOptions() {
       //modal para compartir con redes sociales seleccionadas
-     
+
       const modal = await this.modalCtrl.create({
         component: SocialsharePage,
         cssClass: 'backTransparent',
@@ -125,7 +127,7 @@ export class DetalleOfertaAcademicaPage implements OnInit {
       });
       return modal.present();
     }
-  
+
     buscar(id_publicacion) {
       this.evento.id_tipo_evento = 1;
       this.evento.id_publicacion = id_publicacion;
@@ -174,18 +176,18 @@ export class DetalleOfertaAcademicaPage implements OnInit {
           }
         );
     }
-    
+
     async presentActionSheet() {
       const actionSheet = await this.actionSheetController.create({
         header: 'Comparta contenido con personas cercanas',
         cssClass: 'my-custom-class',
-  
+
         buttons: [
           {
             text: '',
             role: 'destructive',
             icon: 'logo-whatsapp',
-  
+
             handler: () => {
               console.log('Delete clicked');
             },
@@ -222,13 +224,12 @@ export class DetalleOfertaAcademicaPage implements OnInit {
         ],
       });
       await actionSheet.present();
-  
+
       const { role } = await actionSheet.onDidDismiss();
       console.log('onDidDismiss resolved with role', role);
     }
     openUrl(url){
       this.browser.create(url,'_self')
     }
-   
+
   }
-  

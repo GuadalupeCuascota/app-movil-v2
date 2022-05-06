@@ -1,10 +1,10 @@
 <ion-content class="ion-padding">
   <ion-slides pager="true">
     <ion-slide class="ion-padding">
-      <img src="../../../assets/Profile Picture (Indian Attrie).png" class="slide-image" />
+      <img src="../../../assets/oneboarding1.jpg" class="slide-image" />
       <div class="slider-text">
-        <h2>Bienvenida a Fica Stem</h2>
-        <p>
+        <h2>Bienvenida</h2>
+        <p style="font-size: 125%;">
           Un lugar donde podras encontrar experiencias e información relevante
           que une a mujeres en la Ciencia, Tecnología, Ingeniería y Matemáticas.
         </p>
@@ -20,12 +20,13 @@
       </div>
     </ion-slide>
     <ion-slide class="ion-padding">
-      <img src="../../../assets/Notifications.png" class="slide-image" />
-      <div class="slider-text">
+      <img src="../../../assets/oneboarding2.jpg" class="slide-image" />
+      <div class="slider-text" >
         <h2>Comparte contenido</h2>
-        <p>
+        <p style="font-size: 125%;">
          Mantente siempre comunicado, compartiendo contenido en redes sociales con amigos y familiares.
         </p>
+
       </div>
 
       <div class="navigator">
@@ -38,18 +39,16 @@
       </div>
     </ion-slide>
     <ion-slide class="ion-padding">
-      <img src="../../../assets/Factory illustration.png" class="slide-image" />
+      <img src="../../../assets/oneboarding3_.jpg" class="slide-image" />
       <div class="slider-text">
         <h2>Conoce las profesiones del futuro</h2>
-        <p>
-        Elegir una profesión es una decisión clave en la vida profesional. informate y toma una de las mejores decisiones de tu vida.
+        <p style="font-size: 125%;">
+        Elegir una profesión es una decisión clave en la vida profesional, informate y toma una de las mejores decisiones.
         </p>
       </div>
+      <ion-button type="submit"   expand="block" color="primary" fill="outline"  (click)="registrarse()">REGISTRARSE</ion-button>
+      <ion-button type="submit" expand="block" color="primary"  (click)="iniciarSesion()">INICIAR SESIÓN</ion-button>
 
-
-      <ion-button type="submit"  shape="round" expand="block" color="primary" fill="outline"  (click)="registrarse()">REGISTRARSE</ion-button>
-      <ion-button type="submit" shape="round" expand="block" color="primary"  (click)="iniciarSesion()">INICIAR SESIÓN</ion-button>
-      <!-- <ion-button color="secondary">EMPEZAR</ion-button> -->
     </ion-slide>
   </ion-slides>
 </ion-content>

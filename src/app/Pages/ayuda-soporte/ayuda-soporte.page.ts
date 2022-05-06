@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-ayuda-soporte',
@@ -9,9 +10,10 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 })
 export class AyudaSoportePage implements OnInit {
 
-  constructor(private socialSharing: SocialSharing,private emailComposer: EmailComposer) { }
+  constructor(private socialSharing: SocialSharing,private emailComposer: EmailComposer,private so: ScreenOrientation,) { }
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
 
   }
   SendEmail(){

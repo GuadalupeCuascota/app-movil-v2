@@ -4,6 +4,7 @@ import { Publicacion } from 'src/app/Models/publicacion';
 import { Carreras } from 'src/app/Models/carreras-fica';
 import { RegistroPublicacionService } from '../../../Services/registro-publicacion.service';
 import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-oferta-academica',
@@ -21,23 +22,25 @@ export class OfertaAcademicaPage implements OnInit {
     private resgitroPublicacion: RegistroPublicacionService,
     private actRoute: ActivatedRoute, // recibir parametros en la ruta,
     private router: Router,
-    private registroCarreras: RegistroCarrerasService
+    private registroCarreras: RegistroCarrerasService,
+    private so: ScreenOrientation,
   ) {}
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
     this.Carrera=params.nombre_carrera;
     console.log('el id es', this.id);
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.getPublicacionesCarrera();
-    
+
     this.getPublicacionesCarrera();
   }
 
   // getCarrera() {
   //   this.registroCarreras.getCarrera(this.id).subscribe((res) => {
-      
+
   //     console.log('la res', res);
   //   });
   // }

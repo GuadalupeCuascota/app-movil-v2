@@ -21,11 +21,11 @@
     flex-direction: column;
     align-items: center;
 
-     top: -12%;
+     top: -10%;
 
     img {
       width: 60%;
-      height: 60%;
+
 
 
     }
@@ -48,12 +48,12 @@
   .container{
     h1 {
       font-weight: 700;
-      font-size: 26px;
+      font-size: 170%;
       color: #010101;
       text-align: center;
 
     }
-    height: 60vh;
+    height: 57%;
     width: 100%;
     background-color: white;
     right: 0;
@@ -61,8 +61,8 @@
     bottom: 0;
     position: fixed;
     margin:auto;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
     // border-bottom-left-radius: 40px;
     // border-bottom-right-radius: 40px;
     #form {

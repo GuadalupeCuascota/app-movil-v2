@@ -4,15 +4,16 @@ import { AgendarMentoriaService } from 'src/app/Services/agendar-mentoria.servic
 import * as moment from 'moment';
 import { AlertController } from '@ionic/angular';
 import { MensajesService } from 'src/app/Services/mensajes.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @Component({
   selector: 'app-mis-mentorias',
   templateUrl: './mis-mentorias.page.html',
   styleUrls: ['./mis-mentorias.page.scss'],
 })
 export class MisMentoriasPage implements OnInit {
- 
+
   mentoriasAgendadas:any[] = [];
-  constructor(private regitroAgendarMentoriaService: AgendarMentoriaService, private alertController: AlertController, private mensajeServices: MensajesService) {}
+  constructor(private regitroAgendarMentoriaService: AgendarMentoriaService, private alertController: AlertController, private mensajeServices: MensajesService,private so: ScreenOrientation,) {}
   datos: any = {};
   datosM: any = {
     id_estado_agen_mentoria: 3,
@@ -23,10 +24,11 @@ export class MisMentoriasPage implements OnInit {
   // time1 = moment().format('h:mm a');
   // time = moment().format('h:mm a');
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.getAgedamiento();
     this.datos = JSON.parse(localStorage.getItem('payload'));
-    
-    
+
+
   }
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any
@@ -41,21 +43,21 @@ export class MisMentoriasPage implements OnInit {
     this.regitroAgendarMentoriaService.getAgendarMentorias().subscribe(
       (res) => {
         console.log('las mentorias', res);
-        
+
         for (let aux of res) {
-        
+
           if (aux.id_usuario == this.datos.id_usuario && aux.id_estado_agen_mentoria==1) {
             this.localTime = moment(aux.fecha).format('DD/MM/YYYY');
             aux.fecha=this.localTime;
-         
+
             UsuMentoria.push(aux);
             // this.time = moment(aux.hora_inicio).format('h:mm a');
             // this.time1 = moment(aux.hora_fin).format('h:mm a');
             // aux.hora_inicio=this.time;
             // aux.hora_fin=this.time1;
-           
-          
-            
+
+
+
           }
         }
         this.mentoriasAgendadas = UsuMentoria;
@@ -119,7 +121,7 @@ export class MisMentoriasPage implements OnInit {
     )
 
   }
-  
+
 
   deleteAgendamiento(id:number,){
     this.regitroAgendarMentoriaService.deleteAgendarMentoria(id).subscribe(

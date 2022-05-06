@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import {
   StreamingMedia,
   StreamingVideoOptions,
-  
+
 } from '@ionic-native/streaming-media/ngx';
 
 import { Carreras } from 'src/app/Models/carreras-fica';
@@ -20,9 +21,10 @@ export class CarrerasFicaPage implements OnInit {
   isLoaded=false;
   carrera: Carreras;
   datos: any = {};
-  constructor(private registroCarreras: RegistroCarrerasService, private streamingMedia: StreamingMedia) { }
+  constructor(private registroCarreras: RegistroCarrerasService, private streamingMedia: StreamingMedia,private so: ScreenOrientation) { }
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
     this.getCarreras();
     this.doRefresh();
@@ -50,7 +52,7 @@ export class CarrerasFicaPage implements OnInit {
       $event.target.complete();
     }
   }
- 
+
  async playVideo(url:any) {
 
     console.log('PASS');
@@ -69,14 +71,14 @@ export class CarrerasFicaPage implements OnInit {
     this.streamingMedia.playVideo('http://192.168.100.10:3000/' + url, options);
     console.log('LA URL', 'http://192.168.100.10:3000/' + url);
   }
-  
+
   stopPlayingVideo() {
     this.streamingMedia.pauseAudio();
   }
 
- 
 
- 
+
+
   getCarreras() {
     var auxper = [];
     this.registroCarreras.getCarreras().subscribe(
@@ -96,7 +98,7 @@ export class CarrerasFicaPage implements OnInit {
       }
     );
   }
-  
+
   startAudio() {}
   stopAudio() {}
 }

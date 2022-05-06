@@ -5,6 +5,7 @@ import { IonSlides } from '@ionic/angular';
 import { testAptitud } from 'src/app/Models/testAptitud';
 import { testIng } from 'src/app/Models/testIng';
 import { TestAptitudService } from 'src/app/Services/test-aptitud.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 interface ButtonStyle {
   fill: string;
   color: string;
@@ -34,7 +35,8 @@ export class HomeTestAptitudPage implements OnInit {
   automotriz: number = 0;
   constructor(
     private router: Router,
-    private testAptitud: TestAptitudService
+    private testAptitud: TestAptitudService,
+    private so: ScreenOrientation,
   ) {}
   button1: ButtonStyle = {
     fill: 'outline',
@@ -46,6 +48,7 @@ export class HomeTestAptitudPage implements OnInit {
   };
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
     console.log("hola estudiante secundaria",this.datos)
     this.slides.slideTo(0, 100);

@@ -6,6 +6,7 @@ import { Usuario } from 'src/app/Models/usuario';
 import { LoadingService } from 'src/app/Services/loading.service';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { UsuarioService } from 'src/app/Services/usuario.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -26,12 +27,13 @@ export class MiPerfilPage implements OnInit {
     private formBuilder: FormBuilder,
     private navController:NavController,
     private router: Router,
+    private so: ScreenOrientation,
 
     ) { }
 
   async ngOnInit() {
 
-
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
 
 

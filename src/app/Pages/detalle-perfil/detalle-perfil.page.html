@@ -13,14 +13,14 @@
             <ion-icon color="primary" name="share-social-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
-       
+
       </div> -->
     </div>
     <div
       class="imag"
       *ngIf="tipo_archivo=='image/png' || tipo_archivo=='image/jpeg' "
     >
-      <ion-img [src]="API_URI"  ></ion-img>
+      <ion-img [src]="API_URI"></ion-img>
     </div>
     <div
       class="vid"
@@ -31,70 +31,45 @@
     <!-- <img [src]="API_URI" /> -->
   </div>
 
-
   <div class="profile-info">
     <div class="user-info">
       <ion-footer class="buttons">
         <ion-buttons>
-          <ion-button (click)="socialS(API_URI)" >
-            <ion-icon style="color: #66317F;"
-              slot="icon-only" name="share-social-outline"></ion-icon>
+          <ion-button (click)="socialS(API_URI)">
+            <ion-icon
+              style="color: #66317f"
+              slot="icon-only"
+              name="share-social-outline"
+            ></ion-icon>
           </ion-button>
         </ion-buttons>
-        <ion-buttons >
+        <ion-buttons>
           <ion-button (click)="buscar(id)">
-            <ion-icon style="color: #66317F;" slot="icon-only"  [name]="selectedTab" name="heart-outline"></ion-icon>
+            <ion-icon
+              style="color: #66317f"
+              slot="icon-only"
+              [name]="selectedTab"
+              name="heart-outline"
+            ></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-footer>
       <div class="basic-info">
-        <h2>{{nombre_perfil}}</h2>
-        <h3 >{{profesion}}</h3>
-        <!-- <div class="icon">
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-buttons>
-                  <ion-button>
-                    <ion-icon
-                      slot="icon-only"
-                      name="share-social-outline"
-                    ></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-col>
+        <h2 style="font-size: 125%">{{nombre_perfil}}</h2>
+        <h3 style="font-size: 115%">{{profesion}}</h3>
+      </div>
+      <br />
 
-              <ion-col>
-                <ion-buttons>
-                  <ion-button (click)="buscar(id)">
-                    <ion-icon
-                      slot="icon-only"
-                      [name]="selectedTab"
-                      name="heart-outline"
-                    ></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div> -->
-        
-      </div>
-      <br>
       <div class="about-me">
-        <h3>Acerca de mi</h3>
-         <p>{{descripcion}}</p>
+        <h3 style="font-size: 125%">Acerca de mi</h3>
+        <p style="font-size: 125%">{{descripcion}}</p>
       </div>
-      <!-- <ion-chip>
-        <ion-icon name="logo-twitter"></ion-icon>
-        <ion-label>Twitter</ion-label>
-      </ion-chip> -->
-      <ion-chip (click)="openUrl(enlaceLinkend)">
-        <ion-icon name="logo-linkedin" ></ion-icon>
-       
-        <ion-label>Linkedin</ion-label>
-      </ion-chip>
+      <div *ngIf="enlaceLinkend">
+        <ion-chip (click)="openUrl(enlaceLinkend)">
+          <ion-icon name="logo-linkedin"></ion-icon>
+          <ion-label>Linkedin</ion-label>
+        </ion-chip>
+      </div>
     </div>
-    
   </div>
 </ion-content>

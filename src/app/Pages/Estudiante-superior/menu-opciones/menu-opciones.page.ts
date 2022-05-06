@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/Services/loading.service';
 import {AutenticacionService} from '../../../Services/autenticacion.service';
 import { Storage } from '@ionic/storage';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @Component({
   selector: 'app-menu-opciones',
   templateUrl: './menu-opciones.page.html',
@@ -10,9 +11,10 @@ import { Storage } from '@ionic/storage';
 export class MenuOpcionesPage implements OnInit {
   datos: any = {};
   constructor(private autenticacion:AutenticacionService,
-    private loadinServices: LoadingService,) { }
+    private loadinServices: LoadingService,private so: ScreenOrientation,) { }
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
     console.log("hola estudiante superior",this.datos)
     console.log("HOLLL")

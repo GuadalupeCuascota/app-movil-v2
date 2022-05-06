@@ -13,18 +13,18 @@
       ></ion-back-button>
     </ion-buttons>
 
-    <ion-title>Carreras de Grado</ion-title>
+    <ion-title style="font-size: 130%;">Carreras de Grado</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content> 
+<ion-content>
 <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
   <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
 <ion-card>
-  <h2>
+  <h2 style="font-size: 135%;">
     Elegir una profesión es una decisión clave en la vida profesional y personal. Infórmate y toma una de las mejores decisiones de tu vida.
   </h2>
-  
+
 </ion-card>
 <ion-card *ngFor="let carrera of carreras">
   <img width="100%"
@@ -32,14 +32,14 @@
   />
   <ion-card-header>
     <ion-card-subtitle></ion-card-subtitle>
-    <ion-card-title>{{carrera.nombre_carrera}}</ion-card-title>
+    <ion-card-title style="font-size: 130%;">{{carrera.nombre_carrera}}</ion-card-title>
   </ion-card-header>
-  <ion-card-content>
+  <ion-card-content style="font-size: 115%;">
     {{carrera.descripcion}}
   </ion-card-content>
   <ion-item>
     <ion-button
-    
+
     type="submit"
     color="primary"
     shape="round"
@@ -63,11 +63,11 @@
 
   <ion-img  width="100%"
   height="200%" src="{{carrera.ruta_archivo_carrera}}" ></ion-img>
-  
- 
+
+
 </ion-card> -->
 
-<!-- 
+<!--
   MOSTRAR EN UN ION LIST
   <ng-container *ngIf="!isLoaded; else showList">
   <ion-spinner> </ion-spinner>
@@ -79,6 +79,6 @@
         button *ngFor="let carrera of carreras" routerLink="/oferta-academica/{{carrera.id_carrera}}/{{carrera.nombre_carrera}}">
         <ion-label>{{carrera.nombre_carrera}}</ion-label>
      </ion-item>
-    </ion-list> 
+    </ion-list>
 </ion-content>
   </ng-template> -->

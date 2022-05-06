@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TestAptitudService } from '../../../Services/test-aptitud.service';
 import { testAptitud } from 'src/app/Models/testAptitud';
 import { IonSlides } from '@ionic/angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 interface ButtonStyle {
   fill: string;
   color: string;
@@ -30,7 +31,7 @@ export class TestAptitudPage implements OnInit {
     puntos:0,
   }
 
-  constructor(private testAptitud: TestAptitudService) {}
+  constructor(private testAptitud: TestAptitudService,private so: ScreenOrientation,) {}
 
   button1: ButtonStyle = {
     fill: 'outline',
@@ -42,6 +43,7 @@ export class TestAptitudPage implements OnInit {
   };
 
   ngOnInit() {
+    this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.slides.slideTo(0, 100);
     this.slides.lockSwipeToNext(true);
     //deshabilitar el deslizar si no responde una pregunta
@@ -84,7 +86,7 @@ export class TestAptitudPage implements OnInit {
   }
   respondPoll(buttonSelect: number, question) {
   this.hasAnswered = true;
-    if (buttonSelect == 1) { 
+    if (buttonSelect == 1) {
       if (question == '7') {
         this.textil = this.textil + 20;
       }
@@ -107,7 +109,7 @@ export class TestAptitudPage implements OnInit {
         this.electricidad = this.electricidad + 20;
       }
     }
-    
+
     this.applyButtonSelectedStyle(buttonSelect);
       setTimeout(() => {
       this.hasAnswered = false;
@@ -126,9 +128,9 @@ export class TestAptitudPage implements OnInit {
     this.slides.slideTo(0, 700);
     this.slides.lockSwipes(true);
 }
- 
+
   resultado(){
-   
+
   }
 
   getTestAptitud() {
@@ -149,6 +151,6 @@ export class TestAptitudPage implements OnInit {
     this.slides.lockSwipeToNext(false);
     this.slides.slideNext();
     this.slides.lockSwipeToNext(true);
-   
+
   }
 }
