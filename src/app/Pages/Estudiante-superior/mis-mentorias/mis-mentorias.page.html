@@ -7,6 +7,9 @@
           defaultHref="menu-opciones-se/menu-principal/home-secundaria"
         ></ion-back-button>
       </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-menu-button color="light" auto-hide="false"></ion-menu-button>
+      </ion-buttons>
 
       <ion-buttons *ngIf="datos.id_rol==5" slot="start">
         <ion-back-button
@@ -14,7 +17,9 @@
           defaultHref="menu-opciones/tabs/home-superior"
         ></ion-back-button>
       </ion-buttons>
+      <div class="label-text">
       <ion-label color="light">Mis mentorias </ion-label>
+      </div>
     </ion-item>
   </ion-list>
 </ion-header>

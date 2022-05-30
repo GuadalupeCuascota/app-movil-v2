@@ -1,53 +1,123 @@
-<ion-content class="ion-padding">
+<ion-content>
   <ion-slides pager="true">
-    <ion-slide class="ion-padding">
-      <img src="../../../assets/oneboarding1.jpg" class="slide-image" />
-      <div class="slider-text">
-        <h2>Bienvenida</h2>
-        <p style="font-size: 125%;">
+    <ion-slide >
+      <div class="main-header">
+          <div class="circulo">
+          </div>
+
+         <div class="icon-back">
+          <img src="../../../assets/Imagotipo-UTN.fw.png" />
+         </div>
+
+      </div>
+      <div style="position: absolute; top: 19%;transform: translateX(-3%);">
+        <img
+        src="../../../assets/Profile Picture (Indian Attrie).png"
+      />
+      </div>
+
+      <div class="slider-text" style="margin-top: 55%;">
+        <h2>Bienvenidos a FICA STEM</h2>
+        <p style="font-size: 125%">
           Un lugar donde podras encontrar experiencias e información relevante
           que une a mujeres en la Ciencia, Tecnología, Ingeniería y Matemáticas.
         </p>
       </div>
 
       <div class="navigator">
-        <ion-button color="primary" (click)="skip()" fill="clear"
-           style="font-weight: 900; font-size: 18px;">SKIP</ion-button
+        <ion-button
+          color="primary"
+          (click)="skip()"
+          fill="clear"
+          style="font-weight: 900; font-size: 18px"
+          >SKIP</ion-button
         >
-        <ion-button color="primary" (click)="next()" fill="clear" style="font-weight: 900; font-size: 18px;"
+        <ion-button
+          color="primary"
+          (click)="next()"
+          fill="clear"
+          style="font-weight: 900; font-size: 18px"
           >NEXT</ion-button
         >
       </div>
     </ion-slide>
-    <ion-slide class="ion-padding">
-      <img src="../../../assets/oneboarding2.jpg" class="slide-image" />
-      <div class="slider-text" >
+    <ion-slide >
+      <div class="main-header">
+        <div class="circulo">
+        </div>
+        <div class="icon-back">
+          <img src="../../../assets/Imagotipo-UTN.fw.png" />
+         </div>
+      </div>
+      <div style="position: absolute; top: 19%;transform: translateX(-3%);">
+        <img
+        src="../../../assets/Notifications.png"
+      />
+      </div>
+      <div class="slider-text" style="margin-top: 55%;">
         <h2>Comparte contenido</h2>
-        <p style="font-size: 125%;">
-         Mantente siempre comunicado, compartiendo contenido en redes sociales con amigos y familiares.
+        <p style="font-size: 125%">
+          Mantente siempre comunicado, compartiendo contenido de experiencias motivadoras en redes sociales con amigos y familiares.
         </p>
-
       </div>
 
       <div class="navigator">
-        <ion-button color="primary" (click)="skip()" fill="clear"
-        style="font-weight: 900; font-size: 18px;">SKIP</ion-button
+        <ion-button
+          color="primary"
+          (click)="skip()"
+          fill="clear"
+          style="font-weight: 900; font-size: 18px"
+          >SKIP</ion-button
         >
-        <ion-button  color="primary" (click)="next()" fill="clear" style="font-weight: 900; font-size: 18px;"
+        <ion-button
+          color="primary"
+          (click)="next()"
+          fill="clear"
+          style="font-weight: 900; font-size: 18px"
           >NEXT</ion-button
         >
       </div>
     </ion-slide>
-    <ion-slide class="ion-padding">
-      <img src="../../../assets/oneboarding3_.jpg" class="slide-image" />
-      <div class="slider-text">
+    <ion-slide >
+      <div class="main-header">
+        <div class="circulo">
+        </div>
+
+         <!-- <div class="circulo1" style="float: right;">
+          </div> -->
+          <div class="icon-back">
+            <img src="../../../assets/Imagotipo-UTN.fw.png" />
+           </div>
+      </div>
+      <div style="position: absolute; top: 19%;transform: translateX(-3%);">
+        <img
+        src="../../../assets/Factory illustration.png"
+      />
+      </div>
+      <div class="slider-text" style="margin-top: 55%;">
         <h2>Conoce las profesiones del futuro</h2>
-        <p style="font-size: 125%;">
-        Elegir una profesión es una decisión clave en la vida profesional, informate y toma una de las mejores decisiones.
+        <p style="font-size: 125%">
+          Elegir una profesión es una decisión clave en la vida profesional,
+          informate y toma una de las mejores decisiones.
         </p>
       </div>
-      <ion-button type="submit"   expand="block" color="primary" fill="outline"  (click)="registrarse()">REGISTRARSE</ion-button>
-      <ion-button type="submit" expand="block" color="primary"  (click)="iniciarSesion()">INICIAR SESIÓN</ion-button>
+      <div class="buttons-slide">
+        <ion-button
+        type="submit"
+        expand="block"
+        color="primary"
+        fill="outline"
+        (click)="registrarse()"
+        >REGISTRARSE</ion-button
+      >
+      <ion-button
+        type="submit"
+        expand="block"
+        color="primary"
+        (click)="iniciarSesion()"
+        >INICIAR SESIÓN</ion-button
+      >
+      </div>
 
     </ion-slide>
   </ion-slides>

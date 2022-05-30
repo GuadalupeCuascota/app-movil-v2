@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: MenuPrincipalPage,
     children: [
-    
+
       {
         path: 'home-secundaria',
         loadChildren: () =>
@@ -38,13 +38,7 @@ const routes: Routes = [
             (m) => m.CarrerasFicaPageModule
           ),
       },
-      {
-        path: 'carreras-fica',
-        loadChildren: () =>
-          import('../../Estudiante-secundaria/carreras-fica/carreras-fica.module').then(
-            (m) => m.CarrerasFicaPageModule
-          ),
-      },
+
       {
         path: 'home-test-aptitud',
         loadChildren: () => import('../../Estudiante-secundaria/home-test-aptitud/home-test-aptitud.module').then( m => m.HomeTestAptitudPageModule)
@@ -54,7 +48,7 @@ const routes: Routes = [
         redirectTo:'home-secundaria',
         pathMatch: 'full'
       },
-     
+
     ],
   },
 ];

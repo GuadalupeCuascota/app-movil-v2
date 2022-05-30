@@ -50,31 +50,24 @@ export class HomeTestAptitudPage implements OnInit {
   ngOnInit() {
     this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
-    console.log("hola estudiante secundaria",this.datos)
     this.slides.slideTo(0, 100);
     this.slides.lockSwipeToNext(true);
-    this.slides.lockSwipeToPrev(true);
-    // deshabilitar el deslizar si no responde una pregunta
+    this.slides.lockSwipeToPrev(true);  // deshabilitar el deslizar si no responde una pregunta
     this.getTestAptitudIng();
     this.getTestAptitud();
   }
   getTestAptitudIng() {
-    console.log('pasa test');
     this.testAptitud.getTestIng().subscribe((res: any) => {
-      console.log(res);
       this.TestIng = res;
     });
   }
   getTestAptitud() {
-    console.log('pasa test');
     this.testAptitud.gettest().subscribe((res: any) => {
-      console.log(res);
       this.test = res;
     });
   }
   respondPollTest2(buttonSelect: number, question) {
-    // this.hasAnswered = true;
-    // this.hasAnswered1=true;
+
     if (buttonSelect == 1) {
       if (question == '7') {
         this.textil = this.textil + 20;
@@ -106,6 +99,7 @@ export class HomeTestAptitudPage implements OnInit {
       this.nextSlide();
     }, 500);
   }
+
   respondPoll(buttonSelect: number, question) {
     if (buttonSelect == 1) {
       this.totalQuizz = this.totalQuizz + 33;
@@ -116,6 +110,7 @@ export class HomeTestAptitudPage implements OnInit {
       this.hasAnswered1 = false;
       this.nextSlide();
     }, 500);
+
   }
   applyButtonSelectedStyle(buttonSelect: number) {
     switch (buttonSelect) {
@@ -173,7 +168,4 @@ export class HomeTestAptitudPage implements OnInit {
     this.slides.lockSwipes(true);
   }
 
-  // testVocacional(){
-  //   this.router.navigate(['/test-aptitud']);
-  // }
 }

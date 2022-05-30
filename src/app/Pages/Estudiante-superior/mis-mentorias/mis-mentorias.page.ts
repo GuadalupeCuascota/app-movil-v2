@@ -39,22 +39,24 @@ export class MisMentoriasPage implements OnInit {
   }
 
   getAgedamiento(){
+
+  console.log("MENTORIAS AGENDADASS")
     var UsuMentoria = [];
     this.regitroAgendarMentoriaService.getAgendarMentorias().subscribe(
       (res) => {
         console.log('las mentorias', res);
 
+
         for (let aux of res) {
 
-          if (aux.id_usuario == this.datos.id_usuario && aux.id_estado_agen_mentoria==1) {
+          if (aux.id_usuario == this.datos.id_usuario && aux.id_estado_agen_mentoria==1)
+           {
+
             this.localTime = moment(aux.fecha).format('DD/MM/YYYY');
             aux.fecha=this.localTime;
 
             UsuMentoria.push(aux);
-            // this.time = moment(aux.hora_inicio).format('h:mm a');
-            // this.time1 = moment(aux.hora_fin).format('h:mm a');
-            // aux.hora_inicio=this.time;
-            // aux.hora_fin=this.time1;
+
 
 
 

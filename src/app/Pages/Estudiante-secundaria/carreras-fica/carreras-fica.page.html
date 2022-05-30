@@ -1,26 +1,38 @@
+
 <ion-header class="ion-no-border">
-  <ion-toolbar color="none">
-    <ion-buttons  *ngIf="datos.id_rol==4" slot="start">
-      <ion-back-button
-        color="light"
-        defaultHref="menu-opciones-se/menu-principal/home-secundaria"
-      ></ion-back-button>
-    </ion-buttons>
+  <ion-list lines="none">
+    <ion-item color="none">
+      <ion-buttons *ngIf="datos.id_rol==4" slot="start">
+        <ion-back-button
+          color="light"
+          defaultHref="menu-opciones-se/menu-principal/home-secundaria"
+        ></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-menu-button color="light" auto-hide="false"></ion-menu-button>
+      </ion-buttons>
 
-    <ion-buttons  *ngIf="datos.id_rol==5" slot="start">
-      <ion-back-button
-        defaultHref="menu-opciones/menu-tabs1/home-superior"
-      ></ion-back-button>
-    </ion-buttons>
+      <ion-buttons *ngIf="datos.id_rol==5" slot="start">
+        <ion-back-button
+          color="light"
+          defaultHref="menu-opciones/tabs/home-superior"
+        ></ion-back-button>
+      </ion-buttons>
+      <div class="label-text">
+        <ion-label style="font-size: 100%;"color="light">Oferta grado</ion-label>
+      </div>
 
-    <ion-title style="font-size: 130%;">Carreras de Grado</ion-title>
-  </ion-toolbar>
+    </ion-item>
+  </ion-list>
 </ion-header>
 <ion-content>
 <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
   <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
-<ion-card>
+
+<ion-card style="padding: 3%;">
+  <h2 style="font-weight:800;">FACULTAD DE INGENIERÍA EN CIENCIAS APLICADAS</h2>
+
   <h2 style="font-size: 135%;">
     Elegir una profesión es una decisión clave en la vida profesional y personal. Infórmate y toma una de las mejores decisiones de tu vida.
   </h2>
@@ -32,7 +44,7 @@
   />
   <ion-card-header>
     <ion-card-subtitle></ion-card-subtitle>
-    <ion-card-title style="font-size: 130%;">{{carrera.nombre_carrera}}</ion-card-title>
+    <ion-card-title style="font-size: 130%; font-weight: 700;">{{carrera.nombre_carrera}}</ion-card-title>
   </ion-card-header>
   <ion-card-content style="font-size: 115%;">
     {{carrera.descripcion}}
@@ -42,8 +54,8 @@
 
     type="submit"
     color="primary"
-    shape="round"
     expand="block"
+    style=" border-radius: 8px;"
     routerLink="/oferta-academica/{{carrera.id_carrera}}/{{carrera.nombre_carrera}}"
     >Ver mas</ion-button>
   </ion-item>

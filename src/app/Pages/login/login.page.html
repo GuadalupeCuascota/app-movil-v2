@@ -1,72 +1,134 @@
+<ion-content>
+  <div class="main-header">
+    <div class="icon-back">
+      <img src="../../../assets/logoutnfica.png" />
+    </div>
+
+</div>
+<div class="container">
 
 
-<div class="login-page">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <div id="head">
+  <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
+    <h1>Iniciar Sesión</h1>
+    <ion-item>
+      <ion-label color="medium" position="floating">
+        Correo electrónico:</ion-label
+      >
+      <ion-input formControlName="correo_electronico"></ion-input>
+      <ion-icon slot="end" name="mail"></ion-icon>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formLogin.get('correo_electronico').hasError('required') && formLogin.get('correo_electronico').touched"
+      >Campo es requerido</small
+    >
+    <br />
+    <ion-item>
+      <ion-label color="medium" position="floating"> Contraseña:</ion-label>
+      <ion-input
+        formControlName="contrasenia"
+        [type]="showPassword ? 'text': 'password'"
+      ></ion-input>
+      <ion-icon
+        slot="end"
+        [name]="passwordIcon"
+        (click)="toggleShow()"
+      ></ion-icon>
+    </ion-item>
+    <small
+      class="error-message"
+      *ngIf="formLogin.get('contrasenia').hasError('required') && formLogin.get('contrasenia').touched"
+      >Campo es requerido</small
+    >
+    <br />
+    <div class="head">
+      <ion-text color="medium" class="ion-text-right"></ion-text>
+      <a
+        style="font-weight: bold; text-decoration: none; font-size: 100%"
+        routerLink="/recuperar-contrasenia"
+        >¿Olvidaste tu contraseña?</a
+      >
+    </div>
 
-        <img src="../../../assets/utncbn.png" />
+    <br />
 
-      </div>
-      </ion-col>
-      <ion-col size="12" >
-        <div id="header">
+    <ion-button
+      color="primary"
+      type="submit"
+      class="btnclass"
+      [disabled]="!formLogin.valid"
+      expand="block"
+      style="border-radius: 8px"
+      >Iniciar Sesión
+    </ion-button>
+    <p>
+      <ion-text
+        style="font-weight: bold; font-size: 100%"
+        color="medium"
+        class="ion-text-right"
+        >¿Todavía no tienes cuenta?
+        <a
+          style="font-weight: bold; text-decoration: none; font-size: 100%"
+          href="/registro-usuario"
+          >Registrate</a
+        ></ion-text
+      >
+    </p>
+    <br />
+    <p>
+      <a
+        style="font-weight: bold; text-decoration: none"
+        href="/ayuda-soporte"
+        >¿Necesitas ayuda?</a
+      >
+    </p>
+  </form>
 
-          <img  src="../../../assets/logostemfica.png" />
-
-        </div>
-      </ion-col>
-    </ion-row>
-
-  </ion-grid>
-
-
-  <div class="container ">
-    <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
-      <h1>Iniciar Sesión </h1>
-      <ion-item>
-        <ion-label color="medium" position="floating"> Correo electrónico:</ion-label>
-        <ion-input   formControlName="correo_electronico" ></ion-input>
-        <ion-icon
-        slot="end" name="mail"></ion-icon>
-      </ion-item>
-      <small  class="error-message" *ngIf="formLogin.get('correo_electronico').hasError('required') && formLogin.get('correo_electronico').touched" >Campo es requerido</small>
-      <br>
-      <ion-item>
-        <ion-label  color="medium" position="floating"> Contraseña:</ion-label>
-        <ion-input formControlName="contrasenia"
-          [type]="showPassword ? 'text': 'password'"
-
-        ></ion-input>
-        <ion-icon
-
-
-          slot="end"
-          [name]="passwordIcon"
-          (click)="toggleShow()"
-        ></ion-icon>
-      </ion-item>
-      <small  class="error-message" *ngIf="formLogin.get('contrasenia').hasError('required') && formLogin.get('contrasenia').touched" >Campo es requerido</small>
-      <br>
-      <div class="head">
-        <ion-text color="medium"  class="ion-text-right"></ion-text>
-
-         <a style="color: darkgray;font-size: 100%" routerLink="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
-
-      </div>
-
-     <br>
-
-      <ion-button  color="primary" type="submit" class="btnclass" [disabled]="!formLogin.valid"  expand="block" >Iniciar Sesión </ion-button>
-      <p>
-        <ion-text style=" font-weight: bold;font-size: 100%;" color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a style=" font-weight: bold; text-decoration: none;font-size: 100%;"href="/registro-usuario" >Registrate</a></ion-text>
-      </p>
-      <br>
-      <p>
-        <a style=" font-weight: bold; text-decoration: none;"href="/ayuda-soporte" >¿Necesitas ayuda?</a>
-      </p>
-    </form>
-  </div>
 </div>
 
+</ion-content>
+<ion-footer  class="ion-no-border" >
+  <div class="foot">
+    <div class="logo" (click)="socialMedia('FACEBOOK')" >
+      <img  src="../../../assets/face.png"  />
+    </div>
+    <div class="logo_t" (click)="socialMedia('TWITTER')" >
+      <img  src="../../../assets/pngwing.com.png" />
+    </div>
+
+  </div>
+
+</ion-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-footer class="myColor">
+  <div id="header">
+
+    <div class="logo-face" >
+      <ion-icon name="logo-facebook"></ion-icon>
+    </div>
+    <div class="logo-twitter" >
+      <ion-icon name="logo-twitter"></ion-icon>
+    </div>
+  </div>
+
+
+
+
+</ion-footer> -->

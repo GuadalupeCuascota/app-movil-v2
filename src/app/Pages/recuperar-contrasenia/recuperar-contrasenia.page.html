@@ -1,28 +1,54 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-list lines="none">
+    <ion-item color="none">
       <ion-buttons slot="start">
-        <ion-back-button  color="primary" defaultHref="/login"></ion-back-button>
+        <ion-back-button color="light" defaultHref="/login"></ion-back-button>
+        <ion-label color="light">Recuperar contraseña</ion-label>
       </ion-buttons>
-     
-  </ion-toolbar>
+    </ion-item>
+  </ion-list>
 </ion-header>
 
 <ion-content>
-  <div id="header">
-    <h1>Recuperar contraseña</h1>
+  <div class="icon-back">
+    <img src="../../../assets/Password reset.png" />
   </div>
 
   <form id="form" [formGroup]="formGroup" (ngSubmit)="recuperarPass()">
     <ion-item>
       <ion-label position="floating"> Ingrese su correo electrónico:</ion-label>
 
-      <ion-input  formControlName="correo_electronico" ></ion-input>
+      <ion-input formControlName="correo_electronico"></ion-input>
     </ion-item>
-    <small  class="error-message" *ngIf="formGroup.get('correo_electronico').hasError('required') && formGroup.get('correo_electronico').touched" >Campo es requerido</small>
-    
-    <br>
+    <small
+      class="error-message"
+      *ngIf="formGroup.get('correo_electronico').hasError('required') && formGroup.get('correo_electronico').touched"
+      >Campo es requerido</small
+    >
 
+    <br />
 
-    <ion-button type="submit" color="primary" shape="round"  [disabled]="!formGroup.valid" expand="block">BUSCAR</ion-button>
+    <ion-button
+      type="submit"
+      color="primary"
+      [disabled]="!formGroup.valid"
+      expand="block"
+      style="border-radius: 8px"
+      >BUSCAR</ion-button
+    >
+
+    <div class="reset-pass">
+      <ion-text
+        style="font-weight: bold; font-size: 100%"
+        color="medium"
+        class="ion-text-right"
+        >¿Todavía no tienes cuenta?
+        <a
+          style="font-weight: bold; text-decoration: none; font-size: 100%"
+          href="/registro-usuario"
+          >Registrate</a
+        ></ion-text
+      >
+    </div>
   </form>
 </ion-content>

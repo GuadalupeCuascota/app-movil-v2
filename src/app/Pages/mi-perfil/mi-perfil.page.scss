@@ -4,7 +4,7 @@ ion-header {
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
-    background: #683381;
+    background: linear-gradient(#66317F, #a870b1);
 
 
     #header {
@@ -65,13 +65,15 @@ ion-content {
     padding-right: 30px;
 
     ion-item {
-      border-radius: 40px;
+      border-radius: 8px;
       height: 50px;
-      box-shadow: 1px 1px 1px 1px rgb(83, 83, 83);
-      --highlight-height: 0px;
+      --background:rgba(255,255,255,0.5);
 
-      ion-label {
-        color: rgb(83, 83, 83);
+      box-shadow: 1px 1px 1px 1px rgb(221, 218, 221);
+      --highlight-height: 0px;
+      ion-icon{
+        font-size: 23px;
+
       }
     }
 

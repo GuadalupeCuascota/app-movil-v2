@@ -34,14 +34,12 @@ export class CarrerasFicaPage implements OnInit {
     console.log(event);
   }
   loadData(event) {
-    console.log(event, 'el evento');
     setTimeout(() => {
-      console.log('Done');
+
       event.target.complete();
 
       if (this.carreras.length == 9) {
         event.target.disabled = true;
-        console.log('es igual');
       }
     }, 500);
   }

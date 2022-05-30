@@ -8,6 +8,9 @@
           defaultHref="menu-opciones-se/menu-principal/home-secundaria"
         ></ion-back-button>
       </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-menu-button color="light" auto-hide="false"></ion-menu-button>
+      </ion-buttons>
 
       <ion-buttons *ngIf="datos.id_rol==5" slot="start">
         <ion-back-button
@@ -15,7 +18,10 @@
           defaultHref="menu-opciones/tabs/home-superior"
         ></ion-back-button>
       </ion-buttons>
-      <ion-label style="font-size: 130%;"color="light">Mujeres en STEM</ion-label>
+      <div class="label-text">
+        <ion-label style="font-size: 100%;"color="light">Mujeres en STEM</ion-label>
+      </div>
+
     </ion-item>
   </ion-list>
   <ion-segment (ionChange)="segmenntChange($event)" [value]="valueSelected">

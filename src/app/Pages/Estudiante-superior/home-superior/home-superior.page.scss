@@ -1,31 +1,32 @@
-
-ion-icon{
-  color:  rgb(167, 167, 167);
+ion-icon {
+  color: rgb(167, 167, 167);
 }
 
 ion-header {
-  // img{
-  //   margin-top: 100px;
-  //   height: 200px;
-  // }
 
-  //  background: var(--ion-color-light);
-  
+
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
-   padding-bottom: 6vh;
+    padding-bottom: 6vh;
     background: linear-gradient(#66317F, #a870b1);
-    
+
 
     ion-label {
 
       font-weight: bold;
-      font-size: 1,5rem;
+      font-size: 1, 5rem;
       text-align: center;
       color: rgb(253, 250, 250);
       margin-top: -20px;
     }
+
+    .icon-back {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .user_div {
       padding: 20px;
       width: 100%;
@@ -33,59 +34,54 @@ ion-header {
       display: flex;
       padding-top: 10px;
       justify-content: space-between;
-      
-      .first_div{
-      padding-top: 30px;
+
+      .first_div {
+        padding-top: 30px;
 
 
-        .bienvenida{
+        .bienvenida {
           font-size: 18px;
           font-weight: 500;
         }
+
         .nombres {
-          
           font-size: 20px;
           color: #fdfdfd;
-          
         }
       }
-      
-      .secd_div{
-        img {
-          width: 60%;
-          
-        }
+
+      .secd_div {
+        margin-top: 4%;
+        padding-top: 3px;
       }
-      
-    
+
     }
-    
   }
 }
 
 ion-card {
-  
+
   text-align: center;
   height: 25vh;
   border-radius: 10px;
   background: var(--ion-color-white);
+
   img {
     width: 60%;
   }
 
-  ion-icon{
-    
+  ion-icon {
+
     font-size: 50px;
-   
-    
+
+
   }
- 
+
 
   ion-label {
     font-weight: bold;
     font-size: 1rem;
     color: var(--ion-color-dark)
-    
   }
 
 }

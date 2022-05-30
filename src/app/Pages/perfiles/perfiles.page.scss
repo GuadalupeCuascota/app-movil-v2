@@ -8,11 +8,16 @@ ion-header {
     background: linear-gradient(#66317F, #a870b1);
 
     //padding-bottom: 1vh; ancho del ion list
-    ion-label {
-      font-weight: bold; //negrita
-      font-size: 1.2rem; //tamaño letra
-      letter-spacing: 0.1px;
+    .label-text{
+      margin-left: auto;
+      margin-right: auto;
+      ion-label {
+        font-weight: bold; //negrita
+        font-size: 1.2rem; //tamaño letra
+        letter-spacing: 0.1px;
+      }
     }
+
   }
 
 

@@ -145,7 +145,7 @@ imageURI:any;
   console.log("url new",this.url)
     this.fileTransfer.upload(this.url, 'http://192.168.100.45:3000/uploads/', options)
      .then((data) => {
-      console.log("data",data);
+
       this.respData = JSON.parse(data.response);
       console.log("respData",this.respData);
       this.fileUrl = this.respData.fileUrl;

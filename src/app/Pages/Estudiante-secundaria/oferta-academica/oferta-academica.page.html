@@ -6,18 +6,13 @@
         defaultHref="carreras-fica"
       ></ion-back-button>
     </ion-buttons>
-    <ion-label>{{Carrera}}</ion-label>
+    <div class="label-text">
+      <ion-label style="font-size: 100%;"color="light">{{Carrera}}</ion-label>
+    </div>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-segment (ionChange)="segmenntChange($event)" [value]="valueSelected">
-  <ion-segment-button value="noticias">
-    <ion-label>Noticias </ion-label>
-  </ion-segment-button>
-  <!-- <ion-segment-button value="planEstudio">
-    <ion-label>Plan de estudios</ion-label>
-  </ion-segment-button> -->
-</ion-segment>
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>

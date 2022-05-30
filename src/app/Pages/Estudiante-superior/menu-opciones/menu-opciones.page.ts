@@ -16,8 +16,6 @@ export class MenuOpcionesPage implements OnInit {
   ngOnInit() {
     this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
-    console.log("hola estudiante superior",this.datos)
-    console.log("HOLLL")
   }
   async logout(){
     const loading = await this.loadinServices.presentLoading("Cargando...");

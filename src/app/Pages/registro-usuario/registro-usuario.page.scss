@@ -1,22 +1,10 @@
-.error-message {
-  color: var(--ion-color-danger);
-  padding-left: 30px;
-}
-.required:after {
-  content: "*";
-  color: red;
-}
-// .required::after {
-//   content: "*";
-//   color: red;
-// }
 ion-header {
   background: var(--ion-color-light);
 
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
-    background: linear-gradient(#66317F, #a870b1);;
+    background: linear-gradient(#66317F, #a870b1);
 
 
     #header {
@@ -26,7 +14,6 @@ ion-header {
       // margin-right: 21%;
       display: flex;
       justify-content: space-between;
-
 
       .utnlogo {
         width: 30%;
@@ -52,82 +39,56 @@ ion-header {
 
 }
 
-h1 {
-  font-weight: 700;
-  font-size: 180%;
-  color: #010101;
-  text-align: center;
+ion-content {
+  .error-message {
+    color: var(--ion-color-danger);
+    padding-left: 30px;
+  }
 
-}
+  .required:after {
+    content: "*";
+    color: red;
+  }
 
-#form {
-  margin-top: 15px;
-  padding-left: 30px;
-  padding-right: 30px;
+  h1 {
+    font-weight: 700;
+    font-size: 180%;
+    color: #010101;
+    text-align: center;
 
-  ion-item {
-    border-radius: 40px;
-    height: 50px;
-    box-shadow: 1px 1px 1px 1px rgb(83, 83, 83);
-    --highlight-height: 0px;
+  }
 
-    ion-label {
-      color: rgb(83, 83, 83);
+  #form {
+    margin-top: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    ion-item {
+      border-radius: 5%;
+      height: 50px;
+      --background: rgba(255, 255, 255, 0.5);
+      box-shadow: 1px 1px 1px 1px rgb(221, 218, 221);
+      --highlight-height: 0px;
+
+      ion-icon {
+        font-size: 23px;
+
+      }
+    }
+
+    ion-text {
+      font-size: 0.9rem;
+
+    }
+
+    p {
+      text-align: center;
+    }
+
+    ion-button {
+      height: 50px;
     }
   }
 
-  ion-text {
-    font-size: 0.9rem;
 
-  }
-
-  p {
-    text-align: center;
-  }
-
-  ion-button {
-    height: 50px;
-  }
 }
-
-.ion-no-border {
-  display: flex;
-  justify-content: space-between;
-
-  .utnlogo {
-    width: 10%;
-    height: 15%;
-  }
-
-  .ficastemlogo {
-    width: 10%;
-    height: 15%;
-  }
-}
-
-// .registro-page{
-// padding: 6% 0 0;
-//  background: #7B4593;
-//  background-repeat: no-repeat center center fixed;
-//  min-height: 50vh;
-//  background-size:100%;
-//  .buttons{
-//   display: flex;
-//   justify-content: space-between;
-
-// }
-//  .container{
-//   height: 90%;
-//   width: 100%;
-//   background-color: white;
-//   bottom: 0;
-//   position: absolute;
-//   border-top-left-radius: 25px;
-//   border-top-right-radius: 25px;
-
-
-
-//  }
-
-
-// }

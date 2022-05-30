@@ -54,12 +54,10 @@ export class ContactoPage implements OnInit {
     this.appAvailability.check(app)
       .then(res => {
 
-        console.log("EXISTE")
         const fbUrl = 'fb://facewebmodal/f?href=' + url;
         this.openInApp(fbUrl);
       }
       ).catch(() => {
-        console.log("NO EXISTE")
         this.openInApp('https://www.facebook.com/' + name);
       });
   }

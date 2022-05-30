@@ -7,16 +7,8 @@ const routes: Routes = [
   {
     path: '',
     component: HomeSecundariaPage,
-    // children: [
-    //   {
-    //     path: 'perfiles',
-    //     loadChildren: () =>
-    //       import(
-    //         '../../perfiles/perfiles.module'
-    //       ).then((m) => m.PerfilesPageModule)
-    //       },
-    //     ]
-    
+
+
   },
 ];
 

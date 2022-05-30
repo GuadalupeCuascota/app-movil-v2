@@ -41,27 +41,26 @@ export class CambiarContraseniaPage implements OnInit {
     this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
-    console.log('el id', this.id);
+
     this.formGroup = this.formBuilder.group({
       contrasenia: new FormControl('', Validators.required),
       contraseniaConf: new FormControl('', Validators.required),
     });
   }
   guardarCambios() {
-    console.log('guardar');
+
     this.contraN.contrasenia = this.formGroup.controls['contrasenia'].value;
     this.contraseniaConf = this.formGroup.controls['contraseniaConf'].value;
-    console.log("arreglo",this.contraN)
-    console.log("id",this.id)
+
     if (this.contraN.contrasenia == this.contraseniaConf) {
-      console.log('pasa');
+
       this.usuarioService.RestablecerPass(this.id, this.contraN).subscribe(
         (res) => {
           this.mensajeServices.presentToast('contraseña restaurada');
           this.router.navigate(['/login']);
         },
         (err) => {
-          console.log(err);
+
         }
       );
     } else {

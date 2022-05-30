@@ -86,18 +86,14 @@ export class RegistroTutoriasPage implements OnInit {
     this.doRefresh();
     this.getMaterias();
     this.getMentorasRegistro();
-    // this.getRegistroMentorias();
     this.getSolicitudesMentoria();
     this.datos = JSON.parse(localStorage.getItem('payload'));
-    console.log('DATOS', this.datos);
-    // this.getMateriasCarrera();
     this.formSolicitudM = this.formBuilder.group({
       id_materia: new FormControl('', Validators.required),
       id_tema_materia: new FormControl('', Validators.required),
     });
 
     this.solicitudM = new SolicitudMentoria();
-
     this.formGroup = this.formBuilder.group({
       nombre_mentor: new FormControl('', Validators.required),
     });
@@ -170,24 +166,20 @@ export class RegistroTutoriasPage implements OnInit {
     this.router.navigate(['agendar-mentoria/' + id]);
   }
 
-  getMaterias() {
+  getMaterias() {  ///obtener materias disponibles a ser agendadas
     var UsuMat = [];
     this.registroMateria.getMaterias().subscribe(
       (res) => {
         for (let mat of res) {
-
           if (this.datos.id_carrera == mat.id_carrera && mat.id_estado_materia== 1 ) {
-
             UsuMat.push(mat)
             this.materias = res;
-            
           }
           this.materias=UsuMat
         }
-        console.log('las materias es', res);
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }
@@ -225,13 +217,11 @@ export class RegistroTutoriasPage implements OnInit {
     this.regitroMentoriasService.getMentorasRegistro().subscribe(
       (res) => {
 
-        console.log("mentoras",res)
         for (let usu1 of res) {
           if (usu1.id_carrera == this.datos.id_carrera ||usu1.id_carrera==12) {
             UsuMentoria.push(usu1);
           }
         }
-
         if (UsuMentoria.length > 0) {
           this.registroMentorias = UsuMentoria;
         } else {
@@ -244,33 +234,6 @@ export class RegistroTutoriasPage implements OnInit {
       }
     );
   }
-  // getRegistroMentorias() {
-
-  //   var UsuMentoria = [];
-  //   this.regitroMentoriasService.getRegistroMentorias().subscribe(
-  //     (res) => {
-  //       console.log('las mentorias', res);
-  //       for (let usu1 of res) {
-  //         this.localTime = moment(usu1.fecha).format('DD/MM/YYYY');
-  //         if (usu1.carrera == this.datos.carrera) {
-  //           usu1.fecha = this.localTime;
-  //           UsuMentoria.push(usu1);
-  //         }
-  //       }
-
-  //       if (UsuMentoria.length > 0) {
-  //         this.registroMentorias = UsuMentoria;
-  //       } else {
-  //         this.mensaje = 'No existe mentorias disponibles';
-  //         this.altert = true;
-  //       }
-
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
 
   async presentAlert() {
     const alert = await this.alertController.create({

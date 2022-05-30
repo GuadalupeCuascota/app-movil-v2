@@ -1,13 +1,12 @@
+
 <ion-header class="ion-no-border">
   <ion-list lines="none">
     <ion-buttons slot="start">
       <ion-back-button color="light" defaultHref="login"></ion-back-button>
     </ion-buttons>
+
     <ion-item color="none">
-
-
       <div id="header">
-
         <div class="utnlogo">
           <img src="../../../assets/utncbn.png" />
         </div>
@@ -16,7 +15,6 @@
         </div>
       </div>
     </ion-item>
-    <!-- <ion-item color="none"> </ion-item> -->
   </ion-list>
 </ion-header>
 
@@ -31,7 +29,7 @@
       <ion-label class="required" position="floating"> Nombre:</ion-label>
       <ion-input
         formControlName="nombre"
-        placeholder="Ingrese nombre"
+        placeholder="(Ejemplo: Maria)"
       ></ion-input>
     </ion-item>
     <small
@@ -50,7 +48,7 @@
       <ion-label class="required" position="floating"> Apellido:</ion-label>
       <ion-input
         formControlName="apellido"
-        placeholder="Ingrese apellido"
+        placeholder="(Ejemplo: Robles)"
       ></ion-input>
     </ion-item>
     <small
@@ -70,7 +68,7 @@
       >
       <ion-input
         formControlName="correo_electronico"
-        placeholder="Ingrese email"
+        placeholder="(Ejemplo:info@gmail.com)"
       ></ion-input>
     </ion-item>
     <small
@@ -89,7 +87,7 @@
       <ion-input
         [type]="showPassword ? 'text': 'password'"
         formControlName="contrasenia"
-        placeholder="Ingrese contraseña"
+        placeholder="(Ejemplo: mínimo 8 caracteres)"
       ></ion-input>
       <ion-icon
         slot="end"
@@ -125,11 +123,14 @@
     >campo es requerido</small
   > -->
 
-
     <ion-item>
       <ion-label class="required"> Nivel académico: </ion-label>
-      <ion-select    (ionChange)="optionsFn($event)" placeholder="Seleccione" formControlName="id_rol">
-        <ion-select-option  *ngFor="let rol of roles"  value="{{rol.id_rol}}"
+      <ion-select
+        (ionChange)="optionsFn($event)"
+        placeholder="Seleccione"
+        formControlName="id_rol"
+      >
+        <ion-select-option *ngFor="let rol of roles" value="{{rol.id_rol}}"
           >{{rol.tipo_rol}}</ion-select-option
         >
       </ion-select>
@@ -142,7 +143,11 @@
     <br />
     <ion-item *ngIf="estado==false">
       <ion-label class="required"> Carrera: </ion-label>
-      <ion-select value=""  placeholder="Seleccione" formControlName="nombre_carrera">
+      <ion-select
+        value=""
+        placeholder="Seleccione"
+        formControlName="nombre_carrera"
+      >
         <ion-select-option *ngFor="let carrera of carreras"
           >{{carrera.nombre_carrera}}</ion-select-option
         >
@@ -160,7 +165,7 @@
       >
       <ion-input
         formControlName="unidad_educativa"
-        placeholder="Ingrese unidad educativa"
+        placeholder="(Ejemplo: U.E Institucional)"
       ></ion-input>
     </ion-item>
     <small
@@ -183,20 +188,22 @@
         Aceptar términos y condiciones</a
       >
     </ion-label>
-    <br>
-    <br>
+    <br />
+    <br />
     <ion-button
       type="submit"
       color="primary"
       [disabled]="!formUsuario.valid "
-
       expand="block"
       >Registrarse</ion-button
     >
     <p>
-      <ion-text style="font-weight: bold;font-size: 100%;" color="medium" class="ion-text-right"
+      <ion-text
+        style="font-weight: bold; font-size: 100%"
+        color="medium"
+        class="ion-text-right"
         >¿Ya tienes una cuenta?<a
-          style="font-weight: 800;font-size: 100%; text-decoration: none"
+          style="font-weight: 700; font-size: 100%; text-decoration: none"
           href="/login"
         >
           Iniciar Sesión</a

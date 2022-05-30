@@ -53,14 +53,11 @@ export class DetallePerfilPage implements OnInit {
     // this.regitroPublicacion.getPublicacion()
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
-    console.log('el id es', params);
+
     this.regitroPublicacion.getPublicacion(params.id).subscribe((res) => {
       this.perfil = res;
-      console.log('perfil', this.perfil);
-      console.log('la noticia detalle', this.perfil);
       this.API_URI = this.perfil.ruta_archivo;
       this.descripcion = this.perfil.descripcion;
-      console.log('des', this.descripcion);
       this.profesion = this.perfil.profesion;
       this.tipo_archivo = this.perfil.tipo_archivo;
       this.nombre_perfil = this.perfil.nombre_perfil;
@@ -73,13 +70,10 @@ export class DetallePerfilPage implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.respuesta = res;
-          console.log('res', this.respuesta.text);
           if (this.respuesta.text == 'ya existe') {
-            console.log('pasa heart');
             this.selectedTab = 'heart';
           } else {
             if (this.respuesta.text == 'No existe') {
-              console.log('pasa heart out');
               this.selectedTab = 'heart-outline';
             }
           }
@@ -97,7 +91,6 @@ export class DetallePerfilPage implements OnInit {
         (res) => {
           if (res) {
             this.respuesta = res;
-            console.log(this.respuesta.text);
             if (this.respuesta.text == 'ya existe') {
               this.selectedTab = 'heart-outline';
               this.registroEvento
@@ -106,11 +99,9 @@ export class DetallePerfilPage implements OnInit {
                   (res) => {
                     this.selectedTab = 'heart-outline';
                     if (res) {
-                      console.log('borrado');
                     }
                   },
                   () => {
-                    console.log('error');
                   }
                 );
             } else {
@@ -120,18 +111,16 @@ export class DetallePerfilPage implements OnInit {
                   (res) => {
                     if (res) {
                       this.selectedTab = 'heart';
-                      console.log('like');
                     }
                   },
                   () => {
-                    console.log('error');
+
                   }
                 );
             }
           }
         },
         (err) => {
-          console.log('hubo un error');
         }
       );
   }
@@ -143,10 +132,8 @@ export class DetallePerfilPage implements OnInit {
       url: imgUrl,
     };
     var onSuccess = function (result) {
-      console.log('Guardado Completado' + result);
     };
     var onError = function (msg) {
-      console.log('Guardado Completado' + msg);
     };
     this.socialSharing.shareWithOptions(options);
   }

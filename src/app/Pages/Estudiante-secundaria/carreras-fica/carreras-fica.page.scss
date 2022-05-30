@@ -1,15 +1,25 @@
 ion-header {
-    ion-toolbar{
-        background: var(--ion-color-dark);
-        border-radius: 0 0 20px 20px;
-        background: linear-gradient(#66317F, #a870b1);
-        ion-title{
-            font-weight: bold;
-            font-size: 1,5rem;
-            color: rgb(253, 250, 250);
-            
-        }
+  background: var(--ion-color-light);
+
+  ion-list {
+    background: var(--ion-color-primary);
+    border-radius: 0 0 20px 20px;
+    background: linear-gradient(#66317F, #a870b1);
+    //padding-bottom: 1vh; ancho del ion list
+    .label-text{
+      margin-left: auto;
+      margin-right: auto;
+      ion-label {
+        font-weight: bold; //negrita
+        font-size: 1.2rem; //tamaño letra
+        letter-spacing: 0.1px;
+
+      }
     }
+
+  }
+
+
 }
 h2{
     margin: 0 0 10px 0;

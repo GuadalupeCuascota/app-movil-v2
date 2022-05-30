@@ -1,25 +1,47 @@
+ion-header {
+  background: var(--ion-color-light);
+
+  ion-list {
+    background: var(--ion-color-primary);
+    border-radius: 0 0 20px 20px;
+    background: linear-gradient(#66317F, #a870b1);
+    //padding-bottom: 1vh; ancho del ion list
+    .label-text{
+      margin-left: auto;
+      margin-right: auto;
+
+      ion-label {
+        font-weight: bold; //negrita
+        font-size: 1.2rem; //tamaño letra
+        letter-spacing: 0.1px;
+      }
+
+    }
+
+  }
+
+
+}
 ion-content {
   ion-label {
 
     font-weight: bold;
     font-size: 1,5rem;
     text-align: center;
-   
+
     margin-top: -20px;
   }
   ion-button {
-    margin-top: 30%
+    margin-top: 15%
   }
   .list-item {
     margin-left: 4%;
     margin-right: 4%;
-    ion-list{
-      background-color: #89838f;
-    }
+
     .menssage{
-      margin-top: 190px;
+      margin-top:5%;
       ion-button {
-          margin-top: 30%
+          margin-top: 25%
         }
     }
   }
@@ -36,64 +58,4 @@ ion-content {
     }
 
 
-  // h3 {
-  //   font-weight: 700;
-  //   font-size: 26px;
-  //   color: #010101;
-  // }
-  // h4 {
-  //   font-weight: 700;
-  //   font-size: 26px;
-  //   color: #010101;
-  // }
-
-  // ion-button {
-  //   margin-top: 190px
-  // }
-
-  // ion-list {
-
-
-  //   border-radius: 20px 20px 20px 20px;
-  //   padding-bottom: 10vh;
-  //   background: linear-gradient(150deg, #a630c4 10%, #f0c1f0 100%);
-
-
-  //   ion-label {
-
-  //     font-weight: bold;
-  //     font-size: 1, 5rem;
-  //     text-align: center;
-  //     color: rgb(13, 13, 116);
-  //     margin-top: -20px;
-  //   }
-
-  //   // .user_div {
-
-  //   //   padding-top: 35px;
-  //   //   margin-left: 10px;
-
-  //   //   .first_div {
-
-  //   //     .titulo {
-  //   //       font-size: 18px;
-  //   //       font-weight: 800;
-  //   //     }
-
-
-  //   //   }
-
-  //   //   .second_div {
-  //   //     .descripcion {
-  //   //       font-weight: 500;
-  //   //       font-size: 20px;
-  //   //       color: #fdfdfd;
-
-  //   //     }
-  //   //   }
-
-
-  //   // }
-
-  // }
 }

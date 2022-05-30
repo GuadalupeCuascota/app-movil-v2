@@ -1,25 +1,23 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
-    <ion-buttons slot="start">
-      <ion-menu-button color="light" auto-hide="false"></ion-menu-button>
-    </ion-buttons>
-
+    <div class="icon-back">
+      <img src="../../../assets/logoutnfica.png" />
+    </div>
     <div class="user_div">
       <div class="first_div">
-        <ion-label style="font-size: 135%;" class="bienvenida">
+        <ion-label style="font-size: 135%" class="bienvenida">
           Bienvenida
-        </ion-label> <br>
-        <ion-label  style="font-size: 145%;"  class="nombres">
+        </ion-label>
+        <br />
+        <ion-label style="font-size: 145%" class="nombres">
           {{datos.nombre}} {{datos.apellido}}
         </ion-label>
-
       </div>
       <div class="secd_div">
-        <!-- <img  src="../../../../assets/muj.png" /> -->
-
+        <ion-buttons slot="end">
+          <ion-menu-button color="light" auto-hide="false"></ion-menu-button>
+        </ion-buttons>
       </div>
-
-
     </div>
   </ion-list>
 </ion-header>
@@ -27,7 +25,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-6 >
+      <ion-col col-6>
         <ion-card routerLink="/menu-opciones/tabs/perfiles">
           <img src="../../../../assets/businesswoman.png" />
           <!-- <ion-text>
@@ -35,7 +33,7 @@
           </ion-text> -->
           <!-- <ion-icon color="secondary" name="people"></ion-icon> -->
           <ion-card-content>
-            <ion-label style="font-size: 135%;">Mujeres en STEM </ion-label>
+            <ion-label style="font-size: 135%">Mujeres en STEM </ion-label>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -45,7 +43,7 @@
           <img src="../../../../assets/newspaper.png" />
 
           <ion-card-content>
-            <ion-label style="font-size: 135%;">Noticias y eventos </ion-label>
+            <ion-label style="font-size: 135%">Noticias y eventos </ion-label>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -56,7 +54,7 @@
           <img src="../../../../assets/activities.png" />
           <!-- <ion-icon color="secondary" name="create"></ion-icon> -->
           <ion-card-content>
-            <ion-label style="font-size: 135%;">Agendar mentorías</ion-label>
+            <ion-label style="font-size: 135%">Agendar mentorías</ion-label>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -65,7 +63,7 @@
           <img src="../../../../assets/calendar_purple.png" />
           <!-- <ion-icon color="secondary" name="calendar-number"></ion-icon> -->
           <ion-card-content>
-            <ion-label style="font-size: 135%;">Mis mentorias</ion-label>
+            <ion-label style="font-size: 135%">Mis mentorias</ion-label>
           </ion-card-content>
         </ion-card>
       </ion-col>

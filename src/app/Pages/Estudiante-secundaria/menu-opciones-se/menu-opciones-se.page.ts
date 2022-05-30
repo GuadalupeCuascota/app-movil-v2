@@ -17,7 +17,6 @@ export class MenuOpcionesSePage implements OnInit {
   ngOnInit() {
 
     this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
-    console.log("PRIMERO")
     this.datos=JSON.parse(localStorage.getItem('payload'));
 
   }
