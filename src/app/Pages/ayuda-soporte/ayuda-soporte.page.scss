@@ -1,28 +1,68 @@
 ion-header {
     background: var(--ion-color-light);
-  
+
     ion-list {
       background: var(--ion-color-primary);
       border-radius: 0 0 20px 20px;
       background:#683381;
-  
-      
+
+
       #header {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-right: 21%;
-        
+
         img {
           width: 30%;
           height: 30%;
-          
-         
+
+
         }
-       
+
       }
-      
+
     }
-  
-    
+
+
+  }
+
+  ion-footer {
+    height: 15%;
+    background: linear-gradient(#66317F, #a870b1);
+    border-top-left-radius: 80%;
+
+    #header {
+      display: flex;
+      justify-content: space-between;
+
+      .iconos {
+        margin-left: 8%;
+        margin-top: 14%;
+        color: #ffffff;
+
+        ion-icon{
+          font-size: 150%;
+        }
+
+        ion-label {
+          font-weight: 600;
+          line-height: 1.5rem;
+          margin-left: 10px;
+
+        }
+      }
+
+      .ficastemlogo {
+        width: 25%;
+        height: 25%;
+        margin-right: 8%;
+        margin-top: 5%;
+      }
+    }
+
+    .logo-face , .logo-twitter {
+      display: flex;
+      align-items: center;
+    }
   }

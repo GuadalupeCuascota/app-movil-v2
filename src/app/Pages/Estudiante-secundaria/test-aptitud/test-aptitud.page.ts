@@ -48,13 +48,12 @@ export class TestAptitudPage implements OnInit {
     this.slides.lockSwipeToNext(true);
     //deshabilitar el deslizar si no responde una pregunta
     this.getTestAptitud();
-    // this.test = this.testAptitud.getTest();
-    // console.log('test:', this.test);
+
   }
 
   public optionsFn(event) {
     //here item is an object
-    console.log(event);
+
   }
   resetButtonStyles() {
     this.button1 = {
@@ -134,14 +133,14 @@ export class TestAptitudPage implements OnInit {
   }
 
   getTestAptitud() {
-    console.log('pasa test');
+
     this.testAptitud.gettest().subscribe((res: any) => {
-      console.log(res);
+
       this.test = res;
     });
   }
   siguiente() {
-    console.log(this.test.length);
+
     this.const = this.const + 1;
     if (this.const < this.test.length) {
     }

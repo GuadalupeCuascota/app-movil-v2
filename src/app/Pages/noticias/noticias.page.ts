@@ -62,21 +62,27 @@ export class NoticiasPage implements OnInit {
   }
 
   loadData(event) {
-    console.log(event, 'el evento');
+
     setTimeout(() => {
-      console.log('Done');
+
       event.target.complete();
 
       if (this.noticias.length == 9) {
         event.target.disabled = true;
-        console.log('es igual');
+
       }
     }, 500);
   }
   detalle(id: number) {
-    console.log('la publicacion', id);
-    this.router.navigate(['/detalle-noticia/', id]);
-    // this.navCtrl.navigateForward('/detalle-noticia/,id');
+
+    if (this.datos.id_rol == 5) {
+      this.router.navigate(['/tabs/detalle-noticia/', id]);
+    } else {
+      if (this.datos.id_rol == 4) {
+        this.router.navigate(['/menu-principal/detalle-noticia/', id]);
+      }
+    }
+
   }
   async getNoticias() {
     const loading = await this.loadinServices.presentLoading("Cargando...");
@@ -84,7 +90,7 @@ export class NoticiasPage implements OnInit {
     var auxnot = [];
     this.regitroPublicacion.getpublicaciones().subscribe(
       (res) => {
-        console.log('el arreglo', res);
+
         for (let aux of res) {
           if (aux.id_tipo_publicacion == 2) {
             auxnot.push(aux);
@@ -92,10 +98,10 @@ export class NoticiasPage implements OnInit {
         }
 
         this.noticias = auxnot;
-        console.log('noticias', this.noticias);
+
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }
@@ -104,22 +110,5 @@ export class NoticiasPage implements OnInit {
   onclick(){
     this.router.navigate(['/publicar-contenido']);
   }
-  // Meinteresa(id_publicacio) {
-  //   this.selectedTab = 'heart';
-  //   console.log('el id de la not', id_publicacio);
-  //   this.evento.id_tipo_evento = 1;
-  //   this.evento.id_publicacion = id_publicacio;
-  //   this.evento.id_usuario = this.datos.id_usuario;
-  //   this.registroEvento.saveEvento(this.evento).subscribe(
-  //     (res) => {
-  //       if (res) {
-  //         console.log('usuario guardado');
-  //       }
-  //     },
-  //     () => {
-  //       console.log('erro');
 
-  //     }
-  //   );
-  // }
 }

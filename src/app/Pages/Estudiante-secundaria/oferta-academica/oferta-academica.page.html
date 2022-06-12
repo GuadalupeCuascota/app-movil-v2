@@ -25,9 +25,10 @@
         width="100%"
         preload="auto"
         muted="false"
-        src="{{oferta.ruta_archivo}}"
-        controls
-      ></video>
+        controls  
+      >
+      <source  src="{{oferta.ruta_archivo}}" type="video/mp4">
+    </video>
       <div class="img">
         <ion-img
           *ngIf="oferta.tipo_archivo=='image/png' || oferta.tipo_archivo=='image/jpeg' "

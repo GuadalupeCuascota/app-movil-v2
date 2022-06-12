@@ -1,16 +1,17 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
-    <div class="icon-back">
-      <img src="../../../assets/logoutnfica.png" />
+    <div id="header">
+      <div class="utnlogo">
+        <img src="../../../../assets/utnlogo.png" />
+      </div>
+      <div class="ficastemlogo">
+        <img src="../../../../assets/FICASTEM.png" />
+      </div>
     </div>
     <div class="user_div">
       <div class="first_div">
-        <ion-label style="font-size: 135%" class="bienvenida">
-          Bienvenida
-        </ion-label>
-        <br />
-        <ion-label style="font-size: 145%" class="nombres">
-          {{datos.nombre}} {{datos.apellido}}
+        <ion-label  class="bienvenida">
+         Hola {{datos.nombre}}
         </ion-label>
       </div>
       <div class="secd_div">

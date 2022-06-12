@@ -31,33 +31,28 @@ export class OfertaAcademicaPage implements OnInit {
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
     this.Carrera=params.nombre_carrera;
-    console.log('el id es', this.id);
+
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.getPublicacionesCarrera();
 
     this.getPublicacionesCarrera();
   }
 
-  // getCarrera() {
-  //   this.registroCarreras.getCarrera(this.id).subscribe((res) => {
 
-  //     console.log('la res', res);
-  //   });
-  // }
   segmenntChange(event: any) {
     this.valueSelected = event.detail.value;
-    console.log(this.valueSelected);
+
   }
   getPublicacionesCarrera() {
-    console.log('pasa c');
+
     this.resgitroPublicacion
       .getPublicacionesCarrera(this.id)
       .subscribe((res: any) => {
-        console.log(res);
+
 
         for (let n of res) {
           this.Carrera = n.nombre_carrera;
-          console.log('la carrera', this.Carrera);
+
         }
         this.ofertaAcademica = res;
       });
@@ -70,21 +65,9 @@ export class OfertaAcademicaPage implements OnInit {
     }
   }
   detalle(id: number) {
-    console.log('la publicacion', id);
-    this.router.navigate(['/detalle-oferta-academica/', id]);
-    // this.navCtrl.navigateForward('/detalle-noticia/,id');
+
+    this.router.navigate(['/menu-principal/detalle-oferta-academica/', id]);
   }
 
-  //   loadData(event) {
-  //     console.log(event,"el evento")
-  //    setTimeout(() => {
-  //      console.log('Done');
-  //      event.target.complete();
 
-  //      if (this.ofertaAcademica.length ==9) {
-  //        event.target.disabled = true;
-  //        console.log("es igual")
-  //      }
-  //    }, 500);
-  //  }
 }

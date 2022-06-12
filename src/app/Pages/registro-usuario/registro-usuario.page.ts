@@ -102,21 +102,23 @@ export class RegistroUsuarioPage implements OnInit {
     this.usuarioService.getUsuarios().subscribe(
       (res) => {
         this.usuarios = res;
-        console.log(this.usuarios);
+
       },
       (err) => console.log(err)
     );
   }
   public optionsFn(event) {
-    console.log("el evento ",event.target.value)
+
 
     this.usuario.unidad_educativa=null
     this.formUsuario.controls['unidad_educativa'].setValue(this.usuario.unidad_educativa);
+    this.usuario.nombre_carrera=null;
+    this.formUsuario.controls['nombre_carrera'].setValue(this.usuario.nombre_carrera);
     //here item is an object
 
     if (event.target.value == 4) {
       this.estado = true;
-      this.formUsuario.patchValue({id_carrera: true });
+      this.formUsuario.patchValue({nombre_carrera: true });
     } else {
       if(event.target.value == 5){
         this.estado = false;
@@ -129,7 +131,7 @@ export class RegistroUsuarioPage implements OnInit {
     var auxper = [];
     this.registroCarreraService.getCarreras().subscribe(
       (res) => {
-        console.log('la ress', res);
+
         for (let aux of res) {
           if (aux.id_carrera != 1 && aux.id_carrera!=12) {
             auxper.push(aux);
@@ -139,7 +141,7 @@ export class RegistroUsuarioPage implements OnInit {
         this.isLoaded = true;
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }
@@ -151,14 +153,7 @@ export class RegistroUsuarioPage implements OnInit {
       message:
         'La Universidad Técnica del Norte en cumplimiento con la ley, garantiza que lo datos que usted entregue en el presente formulario serán de uso exclusivo de nuestra entidad con fines academicos. Debe saber que sus contestaciones son totalmente privadas.',
       buttons: [
-        // {
-        //   text: 'Cancelar',
-        //   role: 'cancel',
-        //   cssClass: 'secondary',
-        //   handler: (blah) => {
-        //     console.log('Cancelar');
-        //   },
-        // },
+
         {
           text: 'OK',
           role: 'confirmar',
@@ -172,7 +167,7 @@ export class RegistroUsuarioPage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+
   }
   async saveUsuarios() {
     const loading = await this.loadinServices.presentLoading('Cargando...');

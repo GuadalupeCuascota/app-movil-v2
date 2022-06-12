@@ -1,31 +1,51 @@
+ion-header {
+  background: var(--ion-color-light);
+
+  ion-list {
+    background: var(--ion-color-primary);
+    border-radius: 0 0 18px 18px;
+   background: linear-gradient(#66317F, #a870b1);;
+
+    ion-label {
+      font-weight: bold; //negrita
+      font-size: 1rem; //tamaño letra
+      letter-spacing: 0.1px;
+    }
+  }
+
+
+}
+
 ion-toolbar{
     ion-buttons{
       text-transform: initial;
     }
   }
   ion-content {
-   
+
     #header {
       display: flex;
       flex-direction: column;
       align-items: center;
-  
+
       h1 {
         font-weight: 700;
         font-size: 26px;
         color: #010101;
       }
     }
-  
+
     #form {
       margin-top: 15px;
       padding-left: 30px;
       padding-right: 30px;
-  
+
       ion-item {
-        border-radius: 40px;
+        border-radius: 8px;
         height: 50px;
-        box-shadow: 1px 1px 1px 1px rgb(83, 83, 83);
+        --background:rgba(255,255,255,0.5);
+
+        box-shadow: 1px 1px 1px 1px rgb(221, 218, 221);
         --highlight-height: 0px;
         ion-label{
           color: rgb(83, 83, 83);
@@ -33,7 +53,7 @@ ion-toolbar{
       }
       ion-text{
        font-size:0.9rem;
-       
+
       }
       p {
         text-align: center;
@@ -41,5 +61,44 @@ ion-toolbar{
       ion-button {
         height: 50px;
       }
+    }
+  }
+  ion-footer {
+    height: 15%;
+    background: linear-gradient(#66317F, #a870b1);
+    border-top-left-radius: 80%;
+
+    #header {
+      display: flex;
+      justify-content: space-between;
+
+      .iconos {
+        margin-left: 8%;
+        margin-top: 14%;
+        color: #ffffff;
+
+        ion-icon{
+          font-size: 150%;
+        }
+
+        ion-label {
+          font-weight: 600;
+          line-height: 1.5rem;
+          margin-left: 10px;
+
+        }
+      }
+
+      .ficastemlogo {
+        width: 25%;
+        height: 25%;
+        margin-right: 8%;
+        margin-top: 5%;
+      }
+    }
+
+    .logo-face , .logo-twitter {
+      display: flex;
+      align-items: center;
     }
   }

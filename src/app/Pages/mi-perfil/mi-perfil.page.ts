@@ -51,7 +51,6 @@ export class MiPerfilPage implements OnInit {
     if(params && params.id){
       this.usuarioService.getUsuario(params.id).subscribe(res => {
       this.usuario=res;
-      console.log("el usu",this.usuario)
       this.formGroup.controls['nombre'].setValue(this.usuario.nombre);
       this.formGroup.controls['apellido'].setValue(this.usuario.apellido);
       this.formGroup.controls['correo_electronico'].setValue(this.usuario.correo_electronico);
@@ -103,8 +102,7 @@ export class MiPerfilPage implements OnInit {
       loading.dismiss();
       if (res) {
         this.mensajeServices.presentToast("Usuario actualizado");
-        // this.navController.back();
-        console.log("usuario guardado")
+
       }
 
     },

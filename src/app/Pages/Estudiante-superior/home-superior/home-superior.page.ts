@@ -15,6 +15,6 @@ export class HomeSuperiorPage implements OnInit {
   ngOnInit() {
     this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
-    console.log("hola estudiante secundaria",this.datos)
+
   }
 }

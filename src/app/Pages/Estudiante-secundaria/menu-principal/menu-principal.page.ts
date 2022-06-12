@@ -20,21 +20,17 @@ export class MenuPrincipalPage implements OnInit {
   ngOnInit() {
     this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.datos=JSON.parse(localStorage.getItem('payload'));
-    console.log("pasa aqui el usuario",this.datos)
+
 
   }
   setCurrentTab(){
     this.selectedTab=this.tabs.getSelected();
-    console.log("ES",this.selectedTab)
+
   }
 
   openMenu(){
 
  this.datos=JSON.parse(localStorage.getItem('payload'));
- console.log("pasa aqui el usuario",this.datos)
- console.log("Openmenu ")
-
-
 //  this.menuCtrl.enable(true);
  this.menuCtrl.toggle("first")
 

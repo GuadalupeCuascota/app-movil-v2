@@ -40,11 +40,11 @@ export class MisMentoriasPage implements OnInit {
 
   getAgedamiento(){
 
-  console.log("MENTORIAS AGENDADASS")
+
     var UsuMentoria = [];
     this.regitroAgendarMentoriaService.getAgendarMentorias().subscribe(
       (res) => {
-        console.log('las mentorias', res);
+
 
 
         for (let aux of res) {
@@ -63,15 +63,15 @@ export class MisMentoriasPage implements OnInit {
           }
         }
         this.mentoriasAgendadas = UsuMentoria;
-        console.log('generado', this.mentoriasAgendadas);
+
       },
       (err) => {
-        console.log("el error",err);
+
       }
     );
   }
   async presentAlert(id,id_registro_mentoria) {
-    console.log("el id",id)
+
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Anular solicitud de agendamiento',
@@ -83,14 +83,14 @@ export class MisMentoriasPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Cancelar');
+
           },
         },
         {
           text: 'Confirmar',
           role: 'confirmar',
           handler: () => {
-            console.log('Confirmar');
+
             this.cancelarAgendamiento(id,id_registro_mentoria)
           },
         },
@@ -100,15 +100,13 @@ export class MisMentoriasPage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+
   }
   cancelarAgendamiento(id:number, id_registro_mentoria:number){
 
-    console.log("el id",id)
-    console.log("el id registro",id_registro_mentoria)
     this.datosM.id_registro_mentoria=id_registro_mentoria
     this.datosM.id_usuario=this.datos.id_usuario
-    console.log("el id usuario",this.datosM.id_usuario)
+
     this.regitroAgendarMentoriaService.cancelarMentoria(id,this.datosM).subscribe(
       (res) => {
         this.mensajeServices.presentToast('Mentoria anulada correctamente');
@@ -116,7 +114,7 @@ export class MisMentoriasPage implements OnInit {
 
       },
       (err)=>{
-        console.log(err)
+
       this.mensajeServices.presentAlert('',err.error.text)
       }
 
@@ -133,7 +131,7 @@ export class MisMentoriasPage implements OnInit {
 
       },
       (err)=>{
-      console.log(err)
+
       }
     )
 

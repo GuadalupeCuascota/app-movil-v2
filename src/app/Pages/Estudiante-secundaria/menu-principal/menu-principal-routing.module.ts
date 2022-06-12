@@ -48,6 +48,31 @@ const routes: Routes = [
         redirectTo:'home-secundaria',
         pathMatch: 'full'
       },
+      {
+        path: 'detalle-perfil/:id',
+        loadChildren: () => import('../../detalle-perfil/detalle-perfil.module').then( m => m.DetallePerfilPageModule)
+      },
+      {
+        path: 'detalle-noticia/:id',
+        loadChildren: () => import('../../detalle-noticia/detalle-noticia.module').then( m => m.DetalleNoticiaPageModule)
+      },
+      {
+        path: 'mi-perfil/:id',
+        loadChildren: () => import('../../mi-perfil/mi-perfil.module').then( m => m.MiPerfilPageModule)
+      },
+      {
+        path: 'contacto',
+        loadChildren: () => import('../../contacto/contacto.module').then( m => m.ContactoPageModule)
+      },
+      {
+        path: 'detalle-oferta-academica/:id',
+        loadChildren: () => import('../../Estudiante-secundaria/detalle-oferta-academica/detalle-oferta-academica.module').then( m => m.DetalleOfertaAcademicaPageModule)
+      },
+      {
+        path: 'oferta-academica/:id/:nombre_carrera',
+        loadChildren: () => import('../../Estudiante-secundaria/oferta-academica/oferta-academica.module').then( m => m.OfertaAcademicaPageModule)
+      },
+
 
     ],
   },

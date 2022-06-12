@@ -8,11 +8,11 @@
       <div class="menu-content">
         <ion-list>
           <ion-menu-toggle auto-hide="true">
-            <ion-item routerLink="/mi-perfil/{{datos.id_usuario}}">
+            <ion-item routerLink="/tabs/mi-perfil/{{datos.id_usuario}}">
               <ion-icon  color="primary" name="person" slot="start"></ion-icon>
               <label style="font-size: 130%;">Mi perfil</label>
             </ion-item>
-            <ion-item routerLink="/contacto">
+            <ion-item routerLink="/tabs/contacto">
               <ion-icon color="primary" name="chatbubbles" slot="start"></ion-icon>
               <label style="font-size: 130%;">Contáctanos</label>
 
@@ -21,15 +21,23 @@
             <ion-item  (click)="logout()" routerDirection="login">
               <ion-icon color="primary" name="exit" slot="start"></ion-icon>
               <label style="font-size: 130%;" >Cerrar sesión</label>
+            </ion-item>
+
+            <ion-item color="light">
+
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon (click)="socialMedia('FACEBOOK')" style="color: rgb(66 103 178) ; font-size: 33px;" name="logo-facebook"></ion-icon>
+              <ion-icon  (click)="socialMedia('TWITTER')" style="color: rgb(29 161 242); margin-left: 5% ;font-size: 33px;" name="logo-twitter"></ion-icon>
 
             </ion-item>
           </ion-menu-toggle>
 
-          <br>
-          <br>
+
 
 
           </ion-list>
+
 
       </div>
 

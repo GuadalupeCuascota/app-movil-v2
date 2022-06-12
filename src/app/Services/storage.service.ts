@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage-angular';
 export class StorageService {
   private _storage: Storage | null = null;
 
-  constructor(private storage: Storage) { 
+  constructor(private storage: Storage) {
     this.init();
   }
   async init() {
@@ -22,7 +22,7 @@ export class StorageService {
     this._storage?.set(key, value);
   }
   async logout(){
-    console.log("LOGOUT")
+
     this._storage?.clear();
   }
 }

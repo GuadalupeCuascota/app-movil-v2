@@ -16,7 +16,7 @@ export class MenuTabs1Page implements OnInit {
   }
   setCurrentTab(){
     this.selectedTab=this.tabs.getSelected();
-    console.log("ES",this.selectedTab)
+
   }
 
 

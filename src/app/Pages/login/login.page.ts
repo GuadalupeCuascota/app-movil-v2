@@ -90,12 +90,10 @@ export class LoginPage implements OnInit {
           const id_rol = this.resp.payload.id_rol;
           const nivel_academico = this.resp.payload.nivel_academico;
           if (id_rol == 4 ){
-            console.log("estudiante secundaria")
             this.router.navigate(['/menu-opciones-se/menu-principal']);
 
           }
             if (id_rol == 5){
-              console.log("pasa aqui estudiante superior")
               this.router.navigate(['/menu-opciones/tabs']);
           }
 

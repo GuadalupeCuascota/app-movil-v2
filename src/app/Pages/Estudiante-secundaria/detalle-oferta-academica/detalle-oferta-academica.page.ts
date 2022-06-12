@@ -56,19 +56,16 @@ export class DetalleOfertaAcademicaPage implements OnInit {
       const params = this.actRoute.snapshot.params;
       this.id = params.id;
 
-
-
-      console.log('el id es', params);
       this.regitroPublicacion.getPublicacion(params.id).subscribe((res) => {
         this.noticia = res;
-        console.log('la noticia detalle', this.noticia);
+
         this.API_URI = this.noticia.ruta_archivo;
         this.descripcion = this.noticia.descripcion;
         this.enlace = this.noticia.enlace;
         this.tipo_archivo = this.noticia.tipo_archivo;
         this.titulo = this.noticia.titulo;
         this.id_publicacion=this.noticia.id_publicacion
-        console.log(this.noticia);
+
       });
 
       this.evento.id_usuario = this.datos.id_usuario;
@@ -76,14 +73,12 @@ export class DetalleOfertaAcademicaPage implements OnInit {
         .getEvento(this.id, this.datos.id_usuario)
         .subscribe((res) => {
           if (res) {
-            this.respuesta = res;
-            console.log('res', this.respuesta.text);
             if (this.respuesta.text == 'ya existe') {
-              console.log('pasa heart');
+
               this.selectedTab = 'heart';
             } else {
               if (this.respuesta.text == 'No existe') {
-                console.log('pasa heart out');
+
                 this.selectedTab = 'heart-outline';
               }
             }
@@ -100,19 +95,19 @@ export class DetalleOfertaAcademicaPage implements OnInit {
         url: imgUrl,
       };
       var onSuccess=function(result){
-        console.log("Guardado Completado"+result);
+
       };
       var onError=function(msg){
-        console.log("Guardado Completado"+msg);
+
       };
       this.socialSharing.shareWithOptions(options);
       this.registroEvento.saveEvento(this.id_publicacion, this.datos.id_usuario, this.evento).subscribe(
         (res) => {
-         console.log("guardado")
+
 
         },
         (err) => {
-          console.log('no se puede guardar');
+
         }
       );
     }
@@ -138,7 +133,7 @@ export class DetalleOfertaAcademicaPage implements OnInit {
           (res) => {
             if (res) {
               this.respuesta = res;
-              console.log(this.respuesta.text);
+
               if (this.respuesta.text == 'ya existe') {
                 this.selectedTab = 'heart-outline';
                 this.registroEvento
@@ -147,11 +142,11 @@ export class DetalleOfertaAcademicaPage implements OnInit {
                     (res) => {
                       this.selectedTab = 'heart-outline';
                       if (res) {
-                        console.log('borrado');
+
                       }
                     },
                     () => {
-                      console.log('error');
+
                     }
                   );
               } else {
@@ -161,18 +156,18 @@ export class DetalleOfertaAcademicaPage implements OnInit {
                     (res) => {
                       if (res) {
                         this.selectedTab = 'heart';
-                        console.log('like');
+
                       }
                     },
                     () => {
-                      console.log('error');
+
                     }
                   );
               }
             }
           },
           (err) => {
-            console.log('hubo un error');
+
           }
         );
     }
@@ -189,28 +184,28 @@ export class DetalleOfertaAcademicaPage implements OnInit {
             icon: 'logo-whatsapp',
 
             handler: () => {
-              console.log('Delete clicked');
+
             },
           },
           {
             text: 'Share',
             icon: 'logo-facebook',
             handler: () => {
-              console.log('Share clicked');
+
             },
           },
           {
             text: 'Play (open modal)',
             icon: 'logo-twitter',
             handler: () => {
-              console.log('Play clicked');
+
             },
           },
           {
             text: 'Favorite',
             icon: 'heart',
             handler: () => {
-              console.log('Favorite clicked');
+
             },
           },
           {
@@ -218,7 +213,7 @@ export class DetalleOfertaAcademicaPage implements OnInit {
             icon: 'close',
             role: 'logo-instagram',
             handler: () => {
-              console.log('Cancel clicked');
+
             },
           },
         ],
@@ -226,7 +221,7 @@ export class DetalleOfertaAcademicaPage implements OnInit {
       await actionSheet.present();
 
       const { role } = await actionSheet.onDidDismiss();
-      console.log('onDidDismiss resolved with role', role);
+
     }
     openUrl(url){
       this.browser.create(url,'_self')

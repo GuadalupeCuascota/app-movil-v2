@@ -101,10 +101,10 @@ export class DetalleNoticiaPage implements OnInit {
       url: imgUrl,
     };
     var onSuccess=function(result){
-      console.log("Guardado Completado"+result);
+
     };
     var onError=function(msg){
-      console.log("Guardado Completado"+msg);
+
     };
     this.socialSharing.shareWithOptions(options);
     this.registroEvento.saveEvento(this.id_publicacion, this.datos.id_usuario, this.evento).subscribe(

@@ -1,44 +1,58 @@
 ion-icon {
   color: rgb(167, 167, 167);
 }
-
 ion-header {
+
 
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
-    padding-bottom: 6vh;
+    padding-bottom: 3vh;
     background: linear-gradient(#66317F, #a870b1);
 
-    ion-label {
 
-      font-weight: bold;
-      font-size: 1, 5rem;
-      text-align: center;
-      color: rgb(253, 250, 250);
-      margin-top: -20px;
-    }
 
-    .icon-back {
+
+    #header {
+
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: space-between;
+      margin-top: 3%;
+      .utnlogo {
+        width: 30%;
+        height: 24%;
+
+        margin-left: 16%;
+
+      }
+
+      .ficastemlogo {
+
+        width: 18%;
+        height: 18%;
+        margin-right: 16%;
+
+      }
+
+
     }
 
-    #user_div {
+    .user_div {
       padding: 20px;
       width: 100%;
       height: 60px;
       display: flex;
-      padding-top: 10px;
+      padding-top: 2px;
       justify-content: space-between;
 
       .first_div {
         padding-top: 30px;
 
+
         .bienvenida {
-          font-size: 18px;
-          font-weight: 500;
+          font-size: 135%;
+          font-weight: 600;
+          color: rgb(253, 250, 250);
         }
 
         .nombres {
@@ -52,11 +66,10 @@ ion-header {
         padding-top: 3px;
       }
 
-
     }
-
   }
 }
+
 
 ion-card {
 

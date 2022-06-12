@@ -1,4 +1,103 @@
+<ion-header class="ion-no-border">
+  <div class="circulo"></div>
+  <div class="icon-back">
+    <img src="../../../assets/Imagotipo-UTN.fw.png" />
+  </div>
+</ion-header>
 <ion-content>
+  <ion-slides pager="true">
+    <ion-slide>
+      <img src="../../../assets/Profile Picture (Indian Attrie).png" />
+      <div class="slider-text">
+        <h2>Bienvenidos a FICA STEM</h2>
+        <p>
+          Un lugar donde podras encontrar experiencias e información relevante
+          que une a mujeres en la Ciencia, Tecnología, Ingeniería y Matemáticas.
+        </p>
+      </div>
+
+      <div class="navigator">
+        <ion-button
+          color="primary"
+          (click)="skip()"
+          fill="clear"
+          style="font-weight: 900; font-size: 18px"
+          >SKIP</ion-button
+        >
+        <ion-button
+          color="primary"
+          (click)="next()"
+          fill="clear"
+          style="font-weight: 900; font-size: 18px"
+          >NEXT</ion-button
+        >
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img src="../../../assets/Notifications.png" />
+      </div>
+      <div class="slider-text">
+        <h2>Comparte contenido</h2>
+        <p>
+          Mantente siempre comunicado, compartiendo contenido de experiencias
+          motivadoras en redes sociales con amigos y familiares.
+        </p>
+      </div>
+
+      <div class="navigator">
+        <ion-button
+          color="primary"
+          (click)="skip()"
+          fill="clear"
+          style="font-weight: bold; font-size: 18px"
+          >SKIP</ion-button
+        >
+        <ion-button
+          color="primary"
+          (click)="next()"
+          fill="clear"
+          style="font-weight: bold; font-size: 18px"
+          >NEXT</ion-button
+        >
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img src="../../../assets/Factory illustration.png" />
+      </div>
+      <div class="slider-text">
+        <h2>Conoce las profesiones del futuro</h2>
+        <p>
+          Elegir una profesión es una decisión clave en la vida profesional,
+          informate y toma una de las mejores decisiones.
+        </p>
+      </div>
+      <div class="buttons-slide">
+        <ion-button
+          type="submit"
+          expand="block"
+          color="primary"
+          fill="outline"
+          (click)="registrarse()"
+          style="height: 44px;"
+          >REGISTRARSE</ion-button
+        >
+        <ion-button
+          type="submit"
+          expand="block"
+          color="primary"
+          (click)="iniciarSesion()"
+          style="height: 44px;"
+          >INICIAR SESIÓN</ion-button
+        >
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+
+<!-- <ion-content>
   <ion-slides pager="true">
     <ion-slide >
       <div class="main-header">
@@ -17,7 +116,7 @@
       </div>
 
       <div class="slider-text" style="margin-top: 55%;">
-        <h2>Bienvenidos a FICA STEM</h2>
+        <h2>Bienvenidos a FICA STEMss</h2>
         <p style="font-size: 125%">
           Un lugar donde podras encontrar experiencias e información relevante
           que une a mujeres en la Ciencia, Tecnología, Ingeniería y Matemáticas.
@@ -83,8 +182,7 @@
         <div class="circulo">
         </div>
 
-         <!-- <div class="circulo1" style="float: right;">
-          </div> -->
+
           <div class="icon-back">
             <img src="../../../assets/Imagotipo-UTN.fw.png" />
            </div>
@@ -121,4 +219,4 @@
 
     </ion-slide>
   </ion-slides>
-</ion-content>
+</ion-content> -->

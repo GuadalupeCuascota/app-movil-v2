@@ -31,7 +31,7 @@ export class CarrerasFicaPage implements OnInit {
   }
   buscar(event) {
     this.textoBuscar = event.detail.value;
-    console.log(event);
+
   }
   loadData(event) {
     setTimeout(() => {
@@ -52,14 +52,12 @@ export class CarrerasFicaPage implements OnInit {
   }
 
  async playVideo(url:any) {
-
-    console.log('PASS');
     var options:StreamingVideoOptions = {
       successCallback: () => {
-        console.log('Video played');
+
       },
       errorCallback: (e) => {
-        console.log('Error streaming');
+
       },
       orientation: 'portrait', //fuerza una orientacion del video
       controls: true, //el video debe tener controles
@@ -67,7 +65,6 @@ export class CarrerasFicaPage implements OnInit {
     };
 
     this.streamingMedia.playVideo('http://192.168.100.10:3000/' + url, options);
-    console.log('LA URL', 'http://192.168.100.10:3000/' + url);
   }
 
   stopPlayingVideo() {
@@ -87,12 +84,12 @@ export class CarrerasFicaPage implements OnInit {
           }
         }
         this.carreras =auxper;
-        console.log("las carreras",this.carreras)
+
         this.isLoaded=true;
 
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }

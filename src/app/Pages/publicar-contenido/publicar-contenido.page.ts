@@ -77,7 +77,7 @@ imageURI:any;
 
         this.url = nativepath;
 
-      console.log("la url",this.url)
+
       this.upload();
       },(err)=>{
         alert(JSON.stringify(err))
@@ -97,19 +97,19 @@ imageURI:any;
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      console.log("umg",imageData)
+
       this.url = imageData;
       this.upload()
     }, (err) => {
-      console.log(err);
+
 
     });
   }
   getFormData(){
     this.fileChooser.open().then((uri)=>{
-      console.log(uri)
+
       this.file.resolveLocalFilesystemUrl(uri).then((nativepath)=>{
-     console.log("path",nativepath);
+
 
 
 
@@ -121,7 +121,7 @@ imageURI:any;
   this.imgRes = {};
   this.filePath.resolveNativePath(uri).then((nativepath)=>{
   this.url=nativepath
-    console.log("ruta",nativepath);
+
     this.upload()
 
   },(err)=>{
@@ -135,28 +135,28 @@ imageURI:any;
   }
 
   upload() {
-    console.log("pasa upload")
+
     let options: FileUploadOptions = {
        fileKey: 'file',
        fileName: 'name.jpg',
        headers: {}
 
     }
-  console.log("url new",this.url)
+
     this.fileTransfer.upload(this.url, 'http://192.168.100.45:3000/uploads/', options)
      .then((data) => {
 
       this.respData = JSON.parse(data.response);
-      console.log("respData",this.respData);
+
       this.fileUrl = this.respData.fileUrl;
        // success
      }, (err) => {
-       console.log(err)
+
      })
   }
 
   savePublicacion() {
-    console.log('save');
+
     try {
       const fd = new FormData();
       fd.append('titulo', this.formGroup.controls['titulo'].value);
@@ -169,51 +169,18 @@ imageURI:any;
 
       this.regitroPublicacion.savePublicacion(fd).subscribe(
         (res) => {
-          console.log('respuesta', res);
+
         },
         (err) => {
-          console.log('err', err);
+
         }
       );
     } catch {
-      console.log('error');
+
     }
   }
 
 
 
 }
-//fotoLibrary(){
-  //   this.photoLibrary.requestAuthorization().then(() => {
-  //     console.log("permisos")
-  //     this.photoLibrary.getLibrary().subscribe({
-  //       next: library => {
-  //         console.log("li",library)
-
-  //       },
-  //       error: err => { console.log('could not get photos'); },
-  //       complete: () => { console.log('done getting photos'); }
-  //     });
-  //   })
-  //   .catch(err => console.log('permissions weren\'t granted'));
-  // }
-
-  /////// METODO II/////////////
-  // pickerimg(){
-  //   var options: ImagePickerOptions={
-  //     maximumImagesCount:2,
-  //     width:100,
-  //     height:100
-
-  //   }
-  //   this.imagPicker.getPictures(options).then((results)=>{
-  //     for (var i=0; i< results.length;i++) {
-  //       let filename=results[i].substring(results[i].lastIndexOf('/')+1);
-  //       let path=results[i].substring(0,results[i].lastIndexOf('/')+1);
-  //       this.file.readAsDataURL(path,filename).then((base64String)=>{
-  //        this.imagenes.push(base64String )
-  //       })
-  //     }
-  //   })
-  // }
 

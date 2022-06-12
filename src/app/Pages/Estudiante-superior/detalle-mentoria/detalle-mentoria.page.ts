@@ -70,14 +70,14 @@ export class DetalleMentoriaPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Cancelar');
+
           },
         },
         {
           text: 'Confirmar',
           role: 'confirmar',
           handler: () => {
-            console.log('Confirmar');
+
             this.detalle(this.id_registro_mentoria);
           },
         },
@@ -87,7 +87,7 @@ export class DetalleMentoriaPage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+
   }
   async ngOnInit() {
     this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
@@ -98,7 +98,7 @@ export class DetalleMentoriaPage implements OnInit {
     if (params && params.id) {
       this.regitroMentoriasService.getRegistroMentoria(params.id).subscribe(
         (res) => {
-          console.log('registro', res);
+
           this.registroM = res;
 
           this.localTime = moment(this.registroM.fecha).format('DD/MM/YYYY');
@@ -110,7 +110,7 @@ export class DetalleMentoriaPage implements OnInit {
           this.hora_fin=this.registroM.hora_fin;
           this.tipo = this.registroM.tipo_mentoria;
           this.id_registro_mentoria = this.registroM.id_registro_mentoria;
-          console.log('t', this.nombre);
+
         },
         () => {}
       );
@@ -119,16 +119,13 @@ export class DetalleMentoriaPage implements OnInit {
   }
 
   async detalle(id: number) {
-    console.log('id_registro_mentoria ', id);
+
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
     this.datos = JSON.parse(localStorage.getItem('payload'));
-    console.log(this.datos.id_usuario);
-    console.log(id);
+
     this.agendarMentoria.id_registro_mentoria = id;
     this.agendarMentoria.id_usuario = this.datos.id_usuario;
-
-    console.log('el registro', this.agendarMentoria);
     this.regitroAgendarMentoriaService
       .saveAgendarMentoria(this.agendarMentoria)
       .subscribe(

@@ -100,11 +100,11 @@ export class RegistroTutoriasPage implements OnInit {
   }
   segmenntChange(event: any) {
     this.valueSelected = event.detail.value;
-    console.log(this.valueSelected);
+
   }
 
   async presentAlertSolicitudMentoria(id: number) {
-    console.log('solicitud mentoria', id);
+
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Eliminar',
@@ -116,14 +116,14 @@ export class RegistroTutoriasPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Cancelar');
+
           },
         },
         {
           text: 'Confirmar',
           role: 'confirmar',
           handler: () => {
-            console.log('Confirmar');
+
             this.deleteSolicitud(id);
           },
         },
@@ -133,7 +133,6 @@ export class RegistroTutoriasPage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
   doRefresh($event?: any) {
@@ -148,9 +147,9 @@ export class RegistroTutoriasPage implements OnInit {
   }
 
   loadData(event) {
-    console.log(event, 'el evento');
+
     setTimeout(() => {
-      console.log('Done');
+
       event.target.complete();
       if (this.registroMentorias.length == 9) {
         event.target.disabled = true;
@@ -160,10 +159,10 @@ export class RegistroTutoriasPage implements OnInit {
 
   buscarDisponibilidad() {
     const id = this.option_selected;
-
     this.option_selected;
-    console.log('el id', this.option_selected);
-    this.router.navigate(['agendar-mentoria/' + id]);
+
+    this.router.navigate(['/tabs/agendar-mentoria/' + id]);
+
   }
 
   getMaterias() {  ///obtener materias disponibles a ser agendadas
@@ -191,7 +190,7 @@ export class RegistroTutoriasPage implements OnInit {
         this.getSolicitudesMentoria();
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }
@@ -202,14 +201,14 @@ export class RegistroTutoriasPage implements OnInit {
         this.materiasC = res;
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }
   selectRes(event: any) {
-    console.log(event);
+
     this.option_selected = event.detail.value;
-    console.log('la opcion', this.option_selected);
+
   }
   getMentorasRegistro() {
 
@@ -230,7 +229,7 @@ export class RegistroTutoriasPage implements OnInit {
         }
       },
       (err) => {
-        console.log(err);
+
       }
     );
   }
@@ -247,14 +246,14 @@ export class RegistroTutoriasPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Cancelar');
+
           },
         },
         {
           text: 'Confirmar',
           role: 'confirmar',
           handler: () => {
-            console.log('Confirmar');
+
             this.detalle(this.registroM.id_registro_mentoria);
             this.getSolicitudesMentoria();
           },
@@ -265,35 +264,29 @@ export class RegistroTutoriasPage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+
   }
 
   async getMentoria(id: number) {
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
-    console.log('id_registro_mentoria ', id);
+
     this.regitroMentoriasService.getRegistroMentoria(id).subscribe(
       (res) => {
         this.registroM = res;
         this.localTime = moment(this.registroM.fecha).format('DD/MM/YYYY');
-        console.log('el registro', this.registroM);
-
         this.presentAlert();
       },
       () => {}
     );
   }
   async detalle(id: number) {
-    console.log('id_registro_mentoria ', id);
+
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
     this.datos = JSON.parse(localStorage.getItem('payload'));
-    console.log(this.datos.id_usuario);
-    console.log(id);
     this.agendarMentoria.id_registro_mentoria = id;
     this.agendarMentoria.id_usuario = this.datos.id_usuario;
-
-    console.log('el registro', this.agendarMentoria);
     this.regitroAgendarMentoriaService
       .saveAgendarMentoria(this.agendarMentoria)
       .subscribe(
@@ -353,28 +346,28 @@ export class RegistroTutoriasPage implements OnInit {
             this.solicitudesEst = res;
           }
 
-          console.log('obtiene respuesta', res);
+
         },
         (err: any) => {
           this.solicitudesEst = this.AnySolicitudes;
-          console.log('no obtiene respuesta', err);
+
         }
       );
   }
 
   async getTemaMateria(id: number) {
-    console.log('id_registro_mentoria ', id);
+
     this.registroTemaMateria.getTemasMateria(id).subscribe(
       (res) => {
         this.tema = res;
-        console.log('el tema segun la materia', this.tema);
+
       },
       (err) => {}
     );
   }
 
   public optionsFn(event) {
-    console.log('EL EVENTO ES', event.target.value);
+
     const id = event.target.value;
     this.getTemaMateria(id);
   }

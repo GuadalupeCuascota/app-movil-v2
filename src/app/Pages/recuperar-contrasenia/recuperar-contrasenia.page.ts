@@ -40,11 +40,11 @@ export class RecuperarContraseniaPage implements OnInit {
   }
   recuperarPass() {
     this.correo_electronico = this.formGroup.controls['correo_electronico'].value;
-    console.log('el correo enviado', this.correo_electronico);
+
     this.usuarioService.RecuperarPass(this.correo_electronico).subscribe(
         (res) => {
           this.respuesta = res;
-            console.log(this.respuesta.text);
+
 
             if (this.respuesta.text == 'Dato encontrado') {
               this.router.navigate(['/cambiar-contrasenia/'+this.correo_electronico]);

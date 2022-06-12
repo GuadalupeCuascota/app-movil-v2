@@ -12,13 +12,13 @@ const routes: Routes = [
     path: '',
     component: PerfilesPage,
     children: [
-      {
-        path: 'detalle-perfil/:id',
-        loadChildren: () =>
-          import('../detalle-perfil/detalle-perfil.module').then(
-            (m) => m.DetallePerfilPageModule
-          ),
-      },
+      // {
+      //   path: 'detalle-perfil/:id',
+      //   loadChildren: () =>
+      //     import('../detalle-perfil/detalle-perfil.module').then(
+      //       (m) => m.DetallePerfilPageModule
+      //     ),
+      // },
     ],
   },
 ];
