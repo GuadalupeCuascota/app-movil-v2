@@ -90,7 +90,6 @@ export class NoticiasPage implements OnInit {
     var auxnot = [];
     this.regitroPublicacion.getpublicaciones().subscribe(
       (res) => {
-
         for (let aux of res) {
           if (aux.id_tipo_publicacion == 2) {
             auxnot.push(aux);

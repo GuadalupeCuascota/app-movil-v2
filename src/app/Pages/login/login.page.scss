@@ -82,14 +82,15 @@ ion-footer {
   height: 15%;
   background: linear-gradient(#66317F, #a870b1);
   border-top-left-radius: 80%;
+  padding-bottom: 20px;
 
   #header {
     display: flex;
     justify-content: space-between;
 
     .iconos {
-      margin-left: 8%;
-      margin-top: 14%;
+
+      margin: 9% 0 0 14%;
       color: #ffffff;
 
       ion-icon{
@@ -105,15 +106,17 @@ ion-footer {
     }
 
     .ficastemlogo {
-      width: 25%;
-      height: 25%;
+      width: 20%;
+      height: 20%;
       margin-right: 8%;
-      margin-top: 5%;
+      margin-top: 3%;
     }
   }
 
   .logo-face , .logo-twitter {
+
     display: flex;
     align-items: center;
+
   }
 }

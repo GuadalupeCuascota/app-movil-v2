@@ -217,9 +217,9 @@ export class RegistroTutoriasPage implements OnInit {
       (res) => {
 
         for (let usu1 of res) {
-          if (usu1.id_carrera == this.datos.id_carrera ||usu1.id_carrera==12) {
+          // if (usu1.id_carrera == this.datos.id_carrera ||usu1.id_carrera==12) {
             UsuMentoria.push(usu1);
-          }
+
         }
         if (UsuMentoria.length > 0) {
           this.registroMentorias = UsuMentoria;
@@ -337,7 +337,6 @@ export class RegistroTutoriasPage implements OnInit {
   async getSolicitudesMentoria() {
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
-
     this.solicitudMentoriaSerive
       .getSolicitudMentoria(this.datos.id_usuario)
       .subscribe(
@@ -345,8 +344,6 @@ export class RegistroTutoriasPage implements OnInit {
           for (let aux of res) {
             this.solicitudesEst = res;
           }
-
-
         },
         (err: any) => {
           this.solicitudesEst = this.AnySolicitudes;
