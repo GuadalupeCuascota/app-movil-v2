@@ -67,6 +67,7 @@ export class AgendarMentoriaPage implements OnInit {
       .getRegistrohorarioMentoria(this.params)
       .subscribe(
         (res: any) => {
+          console.log("hr",res)
           for (let horario of res) {
             if (
               horario.id_estado_mentoria == 1 ||

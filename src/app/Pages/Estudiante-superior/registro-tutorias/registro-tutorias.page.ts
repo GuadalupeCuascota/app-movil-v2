@@ -170,7 +170,9 @@ export class RegistroTutoriasPage implements OnInit {
     this.registroMateria.getMaterias().subscribe(
       (res) => {
         for (let mat of res) {
-          if (this.datos.id_carrera == mat.id_carrera && mat.id_estado_materia== 1 ) {
+
+          // if (this.datos.id_carrera == mat.id_carrera && mat.id_estado_materia== 1 ) {
+            if (mat.id_estado_materia== 1 ) {
             UsuMat.push(mat)
             this.materias = res;
           }

@@ -84,6 +84,7 @@ export class CarrerasFicaPage implements OnInit {
           }
         }
         this.carreras =auxper;
+        console.log("carrerasq",this.carreras)
 
         this.isLoaded=true;
 

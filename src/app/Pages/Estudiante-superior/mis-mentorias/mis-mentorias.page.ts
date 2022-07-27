@@ -11,14 +11,18 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
   styleUrls: ['./mis-mentorias.page.scss'],
 })
 export class MisMentoriasPage implements OnInit {
-
-  mentoriasAgendadas:any[] = [];
-  constructor(private regitroAgendarMentoriaService: AgendarMentoriaService, private alertController: AlertController, private mensajeServices: MensajesService,private so: ScreenOrientation,) {}
+  mentoriasAgendadas: any[] = [];
+  constructor(
+    private regitroAgendarMentoriaService: AgendarMentoriaService,
+    private alertController: AlertController,
+    private mensajeServices: MensajesService,
+    private so: ScreenOrientation
+  ) {}
   datos: any = {};
   datosM: any = {
     id_estado_agen_mentoria: 3,
     id_usuario: 0,
-    id_registro_mentoria:0
+    id_registro_mentoria: 0,
   };
   localTime = moment().format();
   // time1 = moment().format('h:mm a');
@@ -27,8 +31,6 @@ export class MisMentoriasPage implements OnInit {
     this.so.lock(this.so.ORIENTATIONS.PORTRAIT);
     this.getAgedamiento();
     this.datos = JSON.parse(localStorage.getItem('payload'));
-
-
   }
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any
@@ -38,40 +40,27 @@ export class MisMentoriasPage implements OnInit {
     }
   }
 
-  getAgedamiento(){
-
-
+  getAgedamiento() {
     var UsuMentoria = [];
     this.regitroAgendarMentoriaService.getAgendarMentorias().subscribe(
       (res) => {
-
-
-
         for (let aux of res) {
-
-          if (aux.id_usuario == this.datos.id_usuario && aux.id_estado_agen_mentoria==1)
-           {
-
+          if (
+            aux.id_usuario == this.datos.id_usuario &&
+            aux.id_estado_agen_mentoria == 1
+          ) {
             this.localTime = moment(aux.fecha).format('DD/MM/YYYY');
-            aux.fecha=this.localTime;
-
+            aux.fecha = this.localTime;
             UsuMentoria.push(aux);
-
-
-
-
           }
         }
         this.mentoriasAgendadas = UsuMentoria;
-
+        console.log('las men',this.mentoriasAgendadas)
       },
-      (err) => {
-
-      }
+      (err) => {}
     );
   }
-  async presentAlert(id,id_registro_mentoria) {
-
+  async presentAlert(id, id_registro_mentoria) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Anular solicitud de agendamiento',
@@ -82,16 +71,13 @@ export class MisMentoriasPage implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
-
-          },
+          handler: (blah) => {},
         },
         {
           text: 'Confirmar',
           role: 'confirmar',
           handler: () => {
-
-            this.cancelarAgendamiento(id,id_registro_mentoria)
+            this.cancelarAgendamiento(id, id_registro_mentoria);
           },
         },
       ],
@@ -100,40 +86,31 @@ export class MisMentoriasPage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-
   }
-  cancelarAgendamiento(id:number, id_registro_mentoria:number){
+  cancelarAgendamiento(id: number, id_registro_mentoria: number) {
+    this.datosM.id_registro_mentoria = id_registro_mentoria;
+    this.datosM.id_usuario = this.datos.id_usuario;
 
-    this.datosM.id_registro_mentoria=id_registro_mentoria
-    this.datosM.id_usuario=this.datos.id_usuario
-
-    this.regitroAgendarMentoriaService.cancelarMentoria(id,this.datosM).subscribe(
-      (res) => {
-        this.mensajeServices.presentToast('Mentoria anulada correctamente');
-        this.getAgedamiento();
-
-      },
-      (err)=>{
-
-      this.mensajeServices.presentAlert('',err.error.text)
-      }
-
-    )
-
+    this.regitroAgendarMentoriaService
+      .cancelarMentoria(id, this.datosM)
+      .subscribe(
+        (res) => {
+          this.mensajeServices.presentToast('Mentoria anulada correctamente');
+          this.getAgedamiento();
+        },
+        (err) => {
+          this.mensajeServices.presentAlert('', err.error.text);
+        }
+      );
   }
 
-
-  deleteAgendamiento(id:number,){
+  deleteAgendamiento(id: number) {
     this.regitroAgendarMentoriaService.deleteAgendarMentoria(id).subscribe(
       (res) => {
         this.mensajeServices.presentToast('Mentoria anulada correctamente');
         this.getAgedamiento();
-
       },
-      (err)=>{
-
-      }
-    )
-
+      (err) => {}
+    );
   }
 }
